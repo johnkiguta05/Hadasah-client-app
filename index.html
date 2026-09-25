@@ -4,8 +4,6 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
 <title>Hadasah Investment Ltd</title>
-
-<!-- ═══ PWA META ═══ -->
 <meta name="application-name"  content="Hadasah Investment"/>
 <meta name="apple-mobile-web-app-capable"           content="yes"/>
 <meta name="apple-mobile-web-app-status-bar-style"  content="black-translucent"/>
@@ -13,16 +11,11 @@
 <meta name="theme-color"                            content="#0a5c36"/>
 <meta name="mobile-web-app-capable"                 content="yes"/>
 <meta name="description" content="Hadasah Investment Ltd – Earn 4–8% monthly returns on your portfolio."/>
-
-<!-- PWA Icons (inline SVG data URIs so no extra files needed) -->
 <link rel="icon" type="image/svg+xml"
   href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230a5c36'/%3E%3Ctext y='.9em' font-size='72' x='12'%3E🌿%3C/text%3E%3C/svg%3E"/>
 <link rel="apple-touch-icon"
   href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230a5c36'/%3E%3Ctext y='.9em' font-size='72' x='12'%3E🌿%3C/text%3E%3C/svg%3E"/>
-
-<!-- PWA Manifest (inline) -->
-<link rel="manifest" href="data:application/json,%7B%22name%22%3A%22Hadasah%20Investment%20Ltd%22%2C%22short_name%22%3A%22Hadasah%22%2C%22description%22%3A%22Earn%204%E2%80%938%25%20monthly%20returns%22%2C%22start_url%22%3A%22.%2F%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%23f4f7f5%22%2C%22theme_color%22%3A%22%230a5c36%22%2C%22orientation%22%3A%22portrait%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22data%3Aimage%2Fsvg%2Bxml%2C%253Csvg%2520xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%2520viewBox%3D'0%25200%2520100%2520100'%253E%253Crect%2520width%3D'100'%2520height%3D'100'%2520rx%3D'22'%2520fill%3D'%25230a5c36'%2F%253E%253Ctext%2520y%3D'.9em'%2520font-size%3D'72'%2520x%3D'12'%253E%25F0%259F%258C%25BF%253C%2Ftext%253E%253C%2Fsvg%253E%22%2C%22sizes%22%3A%22192x192%22%2C%22type%22%3A%22image%2Fsvg%2Bxml%22%7D%5D%7D"/>
-
+<link rel="manifest" href="data:application/json,%7B%22name%22%3A%22Hadasah%20Investment%20Ltd%22%2C%22short_name%22%3A%22Hadasah%22%2C%22description%22%3A%22Earn%204%E2%80%938%25%20monthly%20returns%22%2C%22start_url%22%3A%22.%2F%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%23f4f7f5%22%2C%22theme_color%22%3A%22%230a5c36%22%2C%22orientation%22%3A%22portrait%22%7D"/>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet"/>
 <style>
   :root {
@@ -48,12 +41,8 @@
     -webkit-tap-highlight-color: transparent;
     overscroll-behavior: none;
   }
-
-  /* ── SCREENS ── */
   .screen { display: none; min-height: 100vh; flex-direction: column; }
   .screen.active { display: flex; }
-
-  /* ── NAV BAR ── */
   .navbar {
     background: var(--white);
     padding: calc(14px + var(--safe-top)) 20px 14px;
@@ -62,123 +51,45 @@
     position: sticky; top: 0; z-index: 100;
   }
   .navbar .logo { display: flex; align-items: center; gap: 10px; }
-  .navbar .logo-icon {
-    width: 36px; height: 36px; background: var(--green-deep);
-    border-radius: 8px; display: flex; align-items: center;
-    justify-content: center; color: var(--white); font-size: 18px;
-  }
+  .navbar .logo-icon { width: 36px; height: 36px; background: var(--green-deep); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: var(--white); font-size: 18px; }
   .navbar .logo-text { font-weight: 700; font-size: 15px; color: var(--green-deep); }
   .navbar .logo-sub  { font-size: 10px; color: var(--grey-text); font-weight: 400; }
   .nav-actions { display: flex; gap: 10px; align-items: center; }
   .nav-name { font-size: 13px; color: var(--grey-text); }
-  .btn-logout {
-    background: transparent; border: 1.5px solid var(--green-mid);
-    color: var(--green-deep); padding: 7px 16px; border-radius: 8px;
-    font-size: 13px; font-weight: 600; cursor: pointer;
-  }
-
-  /* ── LANDING ── */
+  .btn-logout { background: transparent; border: 1.5px solid var(--green-mid); color: var(--green-deep); padding: 7px 16px; border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer; }
   #screen-landing {
     background: linear-gradient(160deg, var(--green-deep) 0%, var(--green-mid) 60%, var(--green-light) 100%);
     align-items: center; justify-content: center; text-align: center;
     padding: calc(40px + var(--safe-top)) 24px calc(40px + var(--safe-bottom));
   }
-  .landing-badge {
-    display: inline-block; background: rgba(255,255,255,.15);
-    color: #fff; font-size: 12px; font-weight: 500;
-    padding: 5px 14px; border-radius: 20px; margin-bottom: 24px;
-    letter-spacing: .5px;
-  }
-  .landing-title {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(32px, 8vw, 56px);
-    color: #fff; line-height: 1.15; margin-bottom: 16px;
-  }
-  .landing-sub {
-    font-size: 16px; color: rgba(255,255,255,.80);
-    max-width: 360px; margin: 0 auto 40px; line-height: 1.6;
-  }
+  .landing-badge { display: inline-block; background: rgba(255,255,255,.15); color: #fff; font-size: 12px; font-weight: 500; padding: 5px 14px; border-radius: 20px; margin-bottom: 24px; letter-spacing: .5px; }
+  .landing-title { font-family: 'Playfair Display', serif; font-size: clamp(32px, 8vw, 56px); color: #fff; line-height: 1.15; margin-bottom: 16px; }
+  .landing-sub { font-size: 16px; color: rgba(255,255,255,.80); max-width: 360px; margin: 0 auto 40px; line-height: 1.6; }
   .landing-buttons { display: flex; flex-direction: column; gap: 12px; width: 100%; max-width: 320px; margin: 0 auto; }
-  .btn-primary {
-    background: var(--white); color: var(--green-deep);
-    border: none; padding: 16px; border-radius: var(--radius);
-    font-size: 15px; font-weight: 700; cursor: pointer;
-    transition: transform .15s, box-shadow .15s;
-  }
+  .btn-primary { background: var(--white); color: var(--green-deep); border: none; padding: 16px; border-radius: var(--radius); font-size: 15px; font-weight: 700; cursor: pointer; transition: transform .15s, box-shadow .15s; }
   .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,.15); }
-  .btn-outline {
-    background: transparent; color: var(--white);
-    border: 2px solid rgba(255,255,255,.60);
-    padding: 15px; border-radius: var(--radius);
-    font-size: 15px; font-weight: 600; cursor: pointer;
-  }
+  .btn-outline { background: transparent; color: var(--white); border: 2px solid rgba(255,255,255,.60); padding: 15px; border-radius: var(--radius); font-size: 15px; font-weight: 600; cursor: pointer; }
   .landing-stats { display: flex; gap: 32px; margin-top: 48px; justify-content: center; flex-wrap: wrap; }
   .stat-item { text-align: center; }
   .stat-value { font-size: 26px; font-weight: 700; color: var(--white); }
   .stat-label { font-size: 11px; color: rgba(255,255,255,.65); margin-top: 2px; }
-
-  /* ── INSTALL BANNER ── */
-  #install-banner {
-    display: none; background: var(--green-pale); border: 1px solid #b2dfc8;
-    border-radius: 12px; padding: 14px 16px; margin: 16px 24px 0;
-    align-items: center; gap: 12px;
-  }
+  #install-banner { display: none; background: var(--green-pale); border: 1px solid #b2dfc8; border-radius: 12px; padding: 14px 16px; margin: 16px 24px 0; align-items: center; gap: 12px; }
   #install-banner.show { display: flex; }
   #install-banner .install-text { flex: 1; font-size: 13px; color: var(--green-deep); font-weight: 500; }
-  #install-banner .btn-install {
-    background: var(--green-deep); color: #fff; border: none;
-    padding: 9px 16px; border-radius: 8px; font-size: 13px;
-    font-weight: 700; cursor: pointer; white-space: nowrap;
-  }
-  #install-banner .btn-dismiss {
-    background: none; border: none; color: var(--grey-text);
-    font-size: 18px; cursor: pointer; padding: 0 4px;
-  }
-
-  /* iOS install tip */
-  #ios-tip {
-    display: none; background: #fff8e6; border: 1px solid #f0d080;
-    border-radius: 12px; padding: 14px 16px; margin: 16px 24px 0;
-    font-size: 13px; color: #7a5500; line-height: 1.6;
-  }
+  #install-banner .btn-install { background: var(--green-deep); color: #fff; border: none; padding: 9px 16px; border-radius: 8px; font-size: 13px; font-weight: 700; cursor: pointer; white-space: nowrap; }
+  #install-banner .btn-dismiss { background: none; border: none; color: var(--grey-text); font-size: 18px; cursor: pointer; padding: 0 4px; }
+  #ios-tip { display: none; background: #fff8e6; border: 1px solid #f0d080; border-radius: 12px; padding: 14px 16px; margin: 16px 24px 0; font-size: 13px; color: #7a5500; line-height: 1.6; }
   #ios-tip.show { display: block; }
-  #ios-tip strong { display: block; margin-bottom: 4px; }
-
-  /* ── AUTH SCREENS ── */
-  #screen-login, #screen-register {
-    background: var(--grey-soft);
-    align-items: center; justify-content: center; padding: 24px;
-  }
-  .auth-card {
-    background: var(--white); border-radius: 20px;
-    padding: 36px 32px; width: 100%; max-width: 400px;
-    box-shadow: var(--shadow);
-  }
-  .auth-logo {
-    width: 52px; height: 52px; background: var(--green-deep);
-    border-radius: 14px; display: flex; align-items: center;
-    justify-content: center; color: var(--white);
-    font-size: 24px; margin: 0 auto 20px;
-  }
-  .auth-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 24px; text-align: center; color: var(--dark); margin-bottom: 6px;
-  }
+  #screen-login, #screen-register { background: var(--grey-soft); align-items: center; justify-content: center; padding: 24px; }
+  .auth-card { background: var(--white); border-radius: 20px; padding: 36px 32px; width: 100%; max-width: 400px; box-shadow: var(--shadow); }
+  .auth-logo { width: 52px; height: 52px; background: var(--green-deep); border-radius: 14px; display: flex; align-items: center; justify-content: center; color: var(--white); font-size: 24px; margin: 0 auto 20px; }
+  .auth-title { font-family: 'Playfair Display', serif; font-size: 24px; text-align: center; color: var(--dark); margin-bottom: 6px; }
   .auth-sub { text-align: center; font-size: 13px; color: var(--grey-text); margin-bottom: 28px; }
   .form-group { margin-bottom: 16px; }
   .form-label { font-size: 13px; font-weight: 600; color: var(--dark); margin-bottom: 6px; display: block; }
-  .form-input {
-    width: 100%; padding: 13px 16px; border: 1.5px solid #dde8e2;
-    border-radius: 10px; font-size: 14px; font-family: 'Inter', sans-serif;
-    background: var(--grey-soft); color: var(--dark); transition: border-color .2s;
-  }
+  .form-input { width: 100%; padding: 13px 16px; border: 1.5px solid #dde8e2; border-radius: 10px; font-size: 14px; font-family: 'Inter', sans-serif; background: var(--grey-soft); color: var(--dark); transition: border-color .2s; }
   .form-input:focus { outline: none; border-color: var(--green-mid); background: #fff; }
-  .btn-green {
-    width: 100%; background: var(--green-deep); color: var(--white);
-    border: none; padding: 15px; border-radius: 10px;
-    font-size: 15px; font-weight: 700; cursor: pointer; margin-top: 8px;
-    transition: background .2s;
-  }
+  .btn-green { width: 100%; background: var(--green-deep); color: var(--white); border: none; padding: 15px; border-radius: 10px; font-size: 15px; font-weight: 700; cursor: pointer; margin-top: 8px; transition: background .2s; }
   .btn-green:hover { background: var(--green-mid); }
   .btn-green:disabled { background: #aaa; cursor: not-allowed; }
   .auth-switch { text-align: center; margin-top: 20px; font-size: 13px; color: var(--grey-text); }
@@ -187,28 +98,13 @@
   .auth-back a { color: var(--green-deep); font-size: 13px; cursor: pointer; }
   .forgot-link { text-align: right; margin-top: -8px; margin-bottom: 12px; }
   .forgot-link a { font-size: 12px; color: var(--green-mid); cursor: pointer; font-weight: 600; }
-  .error-msg {
-    background: #fef0f0; color: var(--red); border: 1px solid #fcc;
-    padding: 10px 14px; border-radius: 8px; font-size: 13px;
-    margin-bottom: 14px; display: none;
-  }
-  .success-msg {
-    background: var(--green-pale); color: var(--green-deep);
-    border: 1px solid #b2dfc8; padding: 10px 14px;
-    border-radius: 8px; font-size: 13px; margin-bottom: 14px; display: none;
-  }
-
-  /* ── DASHBOARD ── */
+  .error-msg { background: #fef0f0; color: var(--red); border: 1px solid #fcc; padding: 10px 14px; border-radius: 8px; font-size: 13px; margin-bottom: 14px; display: none; }
+  .success-msg { background: var(--green-pale); color: var(--green-deep); border: 1px solid #b2dfc8; padding: 10px 14px; border-radius: 8px; font-size: 13px; margin-bottom: 14px; display: none; }
   #screen-dashboard { background: var(--grey-soft); }
   .page-content { padding: 20px 16px; flex: 1; overflow-y: auto; }
   .page-title { font-size: 20px; font-weight: 700; color: var(--dark); margin-bottom: 4px; }
   .page-sub   { font-size: 13px; color: var(--grey-text); margin-bottom: 20px; }
-
-  /* Portfolio banner */
-  .portfolio-banner {
-    background: linear-gradient(135deg, var(--green-deep), var(--green-mid));
-    border-radius: var(--radius); padding: 24px 20px; color: #fff; margin-bottom: 16px;
-  }
+  .portfolio-banner { background: linear-gradient(135deg, var(--green-deep), var(--green-mid)); border-radius: var(--radius); padding: 24px 20px; color: #fff; margin-bottom: 16px; }
   .portfolio-label  { font-size: 12px; opacity: .75; margin-bottom: 6px; }
   .portfolio-amount { font-size: 34px; font-weight: 700; margin-bottom: 2px; }
   .portfolio-sub    { font-size: 12px; opacity: .75; }
@@ -216,33 +112,19 @@
   .portfolio-mini   { flex: 1; background: rgba(255,255,255,.15); border-radius: 10px; padding: 12px; }
   .portfolio-mini-label { font-size: 10px; opacity: .75; margin-bottom: 4px; }
   .portfolio-mini-value { font-size: 17px; font-weight: 700; }
-
-  /* Stat cards */
   .cards-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px; }
   .stat-card  { background: var(--white); border-radius: var(--radius); padding: 18px 16px; box-shadow: var(--shadow); }
   .stat-card-label { font-size: 11px; color: var(--grey-text); margin-bottom: 6px; font-weight: 500; }
   .stat-card-value { font-size: 20px; font-weight: 700; color: var(--dark); }
   .stat-card-value.green { color: var(--green-deep); }
   .stat-card-value.gold  { color: var(--gold); }
-
-  /* Section heading */
   .section-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
   .section-title { font-size: 15px; font-weight: 700; color: var(--dark); }
   .section-link  { font-size: 12px; color: var(--green-mid); cursor: pointer; font-weight: 600; }
-
-  /* Transaction list */
   .tx-list { display: flex; flex-direction: column; gap: 10px; }
-  .tx-item {
-    background: var(--white); border-radius: 12px;
-    padding: 14px 16px; display: flex;
-    justify-content: space-between; align-items: center;
-    box-shadow: 0 2px 8px rgba(10,92,54,.06);
-  }
+  .tx-item { background: var(--white); border-radius: 12px; padding: 14px 16px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 8px rgba(10,92,54,.06); }
   .tx-left { display: flex; align-items: center; gap: 12px; }
-  .tx-icon {
-    width: 38px; height: 38px; border-radius: 10px;
-    display: flex; align-items: center; justify-content: center; font-size: 17px;
-  }
+  .tx-icon { width: 38px; height: 38px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 17px; }
   .tx-icon.invest { background: var(--green-pale); }
   .tx-icon.return { background: #fff8e6; }
   .tx-type   { font-size: 13px; font-weight: 600; color: var(--dark); }
@@ -250,111 +132,47 @@
   .tx-amount { font-size: 14px; font-weight: 700; }
   .tx-amount.positive { color: var(--green-deep); }
   .tx-amount.neutral  { color: var(--gold); }
-
-  /* Status badge */
   .badge { font-size: 10px; font-weight: 700; padding: 3px 9px; border-radius: 20px; text-transform: uppercase; }
   .badge.active   { background: var(--green-pale); color: var(--green-deep); }
   .badge.pending  { background: #fff8e6; color: #9a6f00; }
   .badge.rejected { background: #fef0f0; color: var(--red); }
-
-  /* ── INVEST SCREEN ── */
   #screen-invest { background: var(--grey-soft); }
   .packages-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px; }
-  .package-card {
-    background: var(--white); border-radius: var(--radius);
-    padding: 20px 16px; text-align: center; cursor: pointer;
-    border: 2px solid transparent; box-shadow: var(--shadow);
-    transition: border-color .2s, transform .15s;
-  }
+  .package-card { background: var(--white); border-radius: var(--radius); padding: 20px 16px; text-align: center; cursor: pointer; border: 2px solid transparent; box-shadow: var(--shadow); transition: border-color .2s, transform .15s; }
   .package-card:hover   { transform: translateY(-2px); }
   .package-card.selected{ border-color: var(--green-mid); background: var(--green-pale); }
   .package-amount   { font-size: 20px; font-weight: 700; color: var(--green-deep); }
   .package-currency { font-size: 11px; color: var(--grey-text); margin-top: 3px; }
   .package-returns  { font-size: 11px; color: var(--green-mid); margin-top: 8px; font-weight: 600; }
-  .custom-box {
-    background: var(--white); border-radius: var(--radius);
-    padding: 20px; margin-bottom: 20px; box-shadow: var(--shadow);
-  }
+  .custom-box { background: var(--white); border-radius: var(--radius); padding: 20px; margin-bottom: 20px; box-shadow: var(--shadow); }
   .custom-box-title { font-size: 14px; font-weight: 700; margin-bottom: 12px; color: var(--dark); }
-
-  /* ── HISTORY SCREEN ── */
   #screen-history { background: var(--grey-soft); }
-
-  /* ── PROFILE SCREEN ── */
   #screen-profile { background: var(--grey-soft); }
-
-  /* ── BOTTOM NAV ── */
-  .bottom-nav {
-    background: var(--white); display: flex;
-    border-top: 1px solid #e8ede9;
-    position: sticky; bottom: 0;
-    box-shadow: 0 -4px 16px rgba(10,92,54,.08);
-    padding-bottom: var(--safe-bottom);
-  }
-  .nav-item {
-    flex: 1; display: flex; flex-direction: column;
-    align-items: center; padding: 10px 0 12px;
-    cursor: pointer; transition: color .2s;
-    color: var(--grey-text); font-size: 10px; font-weight: 500; gap: 4px;
-    border: none; background: transparent;
-  }
+  .bottom-nav { background: var(--white); display: flex; border-top: 1px solid #e8ede9; position: sticky; bottom: 0; box-shadow: 0 -4px 16px rgba(10,92,54,.08); padding-bottom: var(--safe-bottom); }
+  .nav-item { flex: 1; display: flex; flex-direction: column; align-items: center; padding: 10px 0 12px; cursor: pointer; transition: color .2s; color: var(--grey-text); font-size: 10px; font-weight: 500; gap: 4px; border: none; background: transparent; }
   .nav-item.active { color: var(--green-deep); }
   .nav-item svg { width: 22px; height: 22px; }
-
-  /* Loader */
-  .loader {
-    display: inline-block; width: 18px; height: 18px;
-    border: 2.5px solid rgba(255,255,255,.4);
-    border-top-color: #fff; border-radius: 50%;
-    animation: spin .7s linear infinite; vertical-align: middle;
-  }
+  .loader { display: inline-block; width: 18px; height: 18px; border: 2.5px solid rgba(255,255,255,.4); border-top-color: #fff; border-radius: 50%; animation: spin .7s linear infinite; vertical-align: middle; }
   @keyframes spin { to { transform: rotate(360deg); } }
-
   .empty-state { text-align: center; padding: 40px 20px; color: var(--grey-text); }
   .empty-icon  { font-size: 40px; margin-bottom: 10px; }
   .empty-text  { font-size: 14px; }
-
-  /* Pending notice */
-  .pending-notice {
-    background: #fff8e6; border: 1px solid #f0d080;
-    border-radius: 10px; padding: 14px 16px;
-    font-size: 13px; color: #7a5500; margin-bottom: 16px; display: none;
-  }
-
-  /* Blocked notice on invest tab */
-  .blocked-notice {
-    background: #fef0f0; border: 1px solid #fcc;
-    border-radius: 10px; padding: 18px 16px;
-    font-size: 14px; color: var(--red); margin-bottom: 16px;
-    text-align: center; line-height: 1.6; display: none;
-  }
-
-  /* Confirm modal */
-  .modal-overlay {
-    position: fixed; inset: 0; background: rgba(0,0,0,.5);
-    display: none; align-items: center; justify-content: center;
-    z-index: 999; padding: 20px;
-  }
+  .pending-notice { background: #fff8e6; border: 1px solid #f0d080; border-radius: 10px; padding: 14px 16px; font-size: 13px; color: #7a5500; margin-bottom: 16px; display: none; }
+  .blocked-notice { background: #fef0f0; border: 1px solid #fcc; border-radius: 10px; padding: 18px 16px; font-size: 14px; color: var(--red); margin-bottom: 16px; text-align: center; line-height: 1.6; display: none; }
+  .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,.5); display: none; align-items: center; justify-content: center; z-index: 999; padding: 20px; }
   .modal-overlay.open { display: flex; }
-  .modal-box {
-    background: var(--white); border-radius: 20px;
-    padding: 28px 24px; width: 100%; max-width: 360px;
-    box-shadow: 0 20px 60px rgba(0,0,0,.2);
-  }
+  .modal-box { background: var(--white); border-radius: 20px; padding: 28px 24px; width: 100%; max-width: 360px; box-shadow: 0 20px 60px rgba(0,0,0,.2); }
   .modal-title   { font-size: 18px; font-weight: 700; margin-bottom: 8px; color: var(--dark); }
   .modal-body    { font-size: 14px; color: var(--grey-text); margin-bottom: 24px; line-height: 1.6; }
   .modal-actions { display: flex; gap: 10px; }
   .btn-cancel  { flex: 1; padding: 13px; border-radius: 10px; border: 1.5px solid #dde8e2; background: transparent; font-size: 14px; font-weight: 600; cursor: pointer; color: var(--dark); }
   .btn-confirm { flex: 1; padding: 13px; border-radius: 10px; border: none; background: var(--green-deep); font-size: 14px; font-weight: 700; cursor: pointer; color: #fff; }
-
   select.form-input { appearance: none; }
 </style>
 </head>
 <body>
 
-<!-- ═══════════════════════════════════════════ -->
-<!--  LANDING SCREEN                            -->
-<!-- ═══════════════════════════════════════════ -->
+<!-- LANDING -->
 <div id="screen-landing" class="screen active">
   <div style="padding:40px 24px 0; text-align:center; flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center;">
     <div class="landing-badge">Trusted Investment Platform</div>
@@ -370,25 +188,19 @@
       <div class="stat-item"><div class="stat-value">100%</div><div class="stat-label">Secure</div></div>
     </div>
   </div>
-
-  <!-- Android / Desktop install banner -->
   <div id="install-banner">
-    <span class="install-text">📲 Install Hadasah as an app on your phone for quick access!</span>
-    <button class="btn-install" id="install-btn" onclick="triggerInstall()">Install</button>
-    <button class="btn-dismiss" onclick="dismissInstall()" title="Dismiss">✕</button>
+    <span class="install-text">📲 Install Hadasah as an app on your phone!</span>
+    <button class="btn-install" onclick="triggerInstall()">Install</button>
+    <button class="btn-dismiss" onclick="dismissInstall()">✕</button>
   </div>
-
-  <!-- iOS install tip -->
   <div id="ios-tip">
     <strong>📲 Install on iPhone / iPad</strong>
-    Tap the <strong>Share</strong> button (↑) in Safari, then choose <strong>"Add to Home Screen"</strong> to use Hadasah as an app.
+    Tap the <strong>Share</strong> button (↑) in Safari, then choose <strong>"Add to Home Screen"</strong>.
     <span style="float:right; cursor:pointer; font-size:16px;" onclick="document.getElementById('ios-tip').classList.remove('show')">✕</span>
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════════ -->
-<!--  REGISTER SCREEN                           -->
-<!-- ═══════════════════════════════════════════ -->
+<!-- REGISTER -->
 <div id="screen-register" class="screen">
   <div style="flex:1; display:flex; align-items:center; justify-content:center; padding:24px; overflow-y:auto;">
     <div class="auth-card">
@@ -424,9 +236,7 @@
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════════ -->
-<!--  LOGIN SCREEN                              -->
-<!-- ═══════════════════════════════════════════ -->
+<!-- LOGIN -->
 <div id="screen-login" class="screen">
   <div style="flex:1; display:flex; align-items:center; justify-content:center; padding:24px;">
     <div class="auth-card">
@@ -451,17 +261,12 @@
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════════ -->
-<!--  DASHBOARD SCREEN                          -->
-<!-- ═══════════════════════════════════════════ -->
+<!-- DASHBOARD -->
 <div id="screen-dashboard" class="screen">
   <nav class="navbar">
     <div class="logo">
       <div class="logo-icon">🌿</div>
-      <div>
-        <div class="logo-text">Hadasah Investment</div>
-        <div class="logo-sub">Client Portal</div>
-      </div>
+      <div><div class="logo-text">Hadasah Investment</div><div class="logo-sub">Client Portal</div></div>
     </div>
     <div class="nav-actions">
       <span class="nav-name" id="nav-client-name"></span>
@@ -471,41 +276,21 @@
   <div class="page-content">
     <div class="page-title" id="dash-greeting">Good morning!</div>
     <p class="page-sub" id="dash-clientno"></p>
-    <div class="pending-notice" id="pending-notice">
-      ⏳ Your account is pending admin approval. You can still submit an investment request.
-    </div>
+    <div class="pending-notice" id="pending-notice">⏳ Your account is pending admin approval. You can still submit an investment request.</div>
     <div class="portfolio-banner">
       <div class="portfolio-label">Total Portfolio Value</div>
       <div class="portfolio-amount" id="dash-total-invested">KSh 0</div>
       <div class="portfolio-sub">Active investment balance</div>
       <div class="portfolio-row">
-        <div class="portfolio-mini">
-          <div class="portfolio-mini-label">Est. Monthly Returns</div>
-          <div class="portfolio-mini-value" id="dash-monthly-return">KSh 0</div>
-        </div>
-        <div class="portfolio-mini">
-          <div class="portfolio-mini-label">Total Earned</div>
-          <div class="portfolio-mini-value" id="dash-total-earned">KSh 0</div>
-        </div>
+        <div class="portfolio-mini"><div class="portfolio-mini-label">Est. Monthly Returns</div><div class="portfolio-mini-value" id="dash-monthly-return">KSh 0</div></div>
+        <div class="portfolio-mini"><div class="portfolio-mini-label">Total Earned</div><div class="portfolio-mini-value" id="dash-total-earned">KSh 0</div></div>
       </div>
     </div>
     <div class="cards-grid">
-      <div class="stat-card">
-        <div class="stat-card-label">Interest Rate</div>
-        <div class="stat-card-value green" id="dash-rate">0%</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-card-label">Account Status</div>
-        <div class="stat-card-value" id="dash-status">—</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-card-label">Date Joined</div>
-        <div class="stat-card-value" id="dash-joined" style="font-size:14px;">—</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-card-label">Investments</div>
-        <div class="stat-card-value gold" id="dash-inv-count">0</div>
-      </div>
+      <div class="stat-card"><div class="stat-card-label">Interest Rate</div><div class="stat-card-value green" id="dash-rate">0%</div></div>
+      <div class="stat-card"><div class="stat-card-label">Account Status</div><div class="stat-card-value" id="dash-status">—</div></div>
+      <div class="stat-card"><div class="stat-card-label">Date Joined</div><div class="stat-card-value" id="dash-joined" style="font-size:14px;">—</div></div>
+      <div class="stat-card"><div class="stat-card-label">Investments</div><div class="stat-card-value gold" id="dash-inv-count">0</div></div>
     </div>
     <div class="section-head">
       <div class="section-title">Recent Activity</div>
@@ -515,40 +300,23 @@
       <div class="empty-state"><div class="empty-icon">📊</div><div class="empty-text">No transactions yet</div></div>
     </div>
   </div>
-  <div class="bottom-nav" id="bnav-dashboard">
-    <button class="nav-item active" onclick="switchTab('dashboard')">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>Dashboard
-    </button>
-    <button class="nav-item" onclick="switchTab('invest')">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>Invest
-    </button>
-    <button class="nav-item" onclick="switchTab('history')">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>History
-    </button>
-    <button class="nav-item" onclick="switchTab('profile')">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>Profile
-    </button>
+  <div class="bottom-nav">
+    <button class="nav-item active" onclick="switchTab('dashboard')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>Dashboard</button>
+    <button class="nav-item" onclick="switchTab('invest')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>Invest</button>
+    <button class="nav-item" onclick="switchTab('history')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>History</button>
+    <button class="nav-item" onclick="switchTab('profile')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>Profile</button>
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════════ -->
-<!--  INVEST SCREEN                             -->
-<!-- ═══════════════════════════════════════════ -->
+<!-- INVEST -->
 <div id="screen-invest" class="screen">
   <nav class="navbar">
-    <div class="logo">
-      <div class="logo-icon">🌿</div>
-      <div><div class="logo-text">Hadasah Investment</div></div>
-    </div>
+    <div class="logo"><div class="logo-icon">🌿</div><div><div class="logo-text">Hadasah Investment</div></div></div>
   </nav>
   <div class="page-content">
     <div class="page-title">New Investment</div>
     <p class="page-sub">Choose a package or enter a custom amount</p>
-    <!-- Shown when account is pending -->
-    <div class="blocked-notice" id="invest-blocked">
-      ⚠️ Your account is awaiting admin approval.<br/>
-      You can submit a request and it will be processed once your account is activated.
-    </div>
+    <div class="blocked-notice" id="invest-blocked">⚠️ Your account is awaiting admin approval.<br/>You can submit a request and it will be processed once your account is activated.</div>
     <div id="invest-error"   class="error-msg"></div>
     <div id="invest-success" class="success-msg"></div>
     <div class="section-title" style="margin-bottom:12px;">Select Package</div>
@@ -564,41 +332,23 @@
     </div>
     <div class="custom-box" id="custom-box" style="display:none;">
       <div class="custom-box-title">Enter Custom Amount</div>
-      <div class="form-group">
-        <label class="form-label">Amount (KSh)</label>
-        <input id="custom-amount" class="form-input" type="number" placeholder="e.g 15000" min="1000"/>
-      </div>
+      <div class="form-group"><label class="form-label">Amount (KSh)</label><input id="custom-amount" class="form-input" type="number" placeholder="e.g 15000" min="1000"/></div>
     </div>
     <button class="btn-green" onclick="submitInvestment()">Submit Investment Request</button>
-    <p style="font-size:12px; color:var(--grey-text); margin-top:12px; text-align:center;">
-      Your request will be reviewed and approved by admin after payment confirmation.
-    </p>
+    <p style="font-size:12px; color:var(--grey-text); margin-top:12px; text-align:center;">Your request will be reviewed and approved by admin after payment confirmation.</p>
   </div>
   <div class="bottom-nav">
-    <button class="nav-item" onclick="switchTab('dashboard')">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>Dashboard
-    </button>
-    <button class="nav-item active" onclick="switchTab('invest')">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>Invest
-    </button>
-    <button class="nav-item" onclick="switchTab('history')">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>History
-    </button>
-    <button class="nav-item" onclick="switchTab('profile')">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>Profile
-    </button>
+    <button class="nav-item" onclick="switchTab('dashboard')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>Dashboard</button>
+    <button class="nav-item active" onclick="switchTab('invest')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>Invest</button>
+    <button class="nav-item" onclick="switchTab('history')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>History</button>
+    <button class="nav-item" onclick="switchTab('profile')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>Profile</button>
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════════ -->
-<!--  HISTORY SCREEN                            -->
-<!-- ═══════════════════════════════════════════ -->
+<!-- HISTORY -->
 <div id="screen-history" class="screen">
   <nav class="navbar">
-    <div class="logo">
-      <div class="logo-icon">🌿</div>
-      <div><div class="logo-text">Hadasah Investment</div></div>
-    </div>
+    <div class="logo"><div class="logo-icon">🌿</div><div><div class="logo-text">Hadasah Investment</div></div></div>
   </nav>
   <div class="page-content">
     <div class="page-title">Transaction History</div>
@@ -615,30 +365,17 @@
     </div>
   </div>
   <div class="bottom-nav">
-    <button class="nav-item" onclick="switchTab('dashboard')">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>Dashboard
-    </button>
-    <button class="nav-item" onclick="switchTab('invest')">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>Invest
-    </button>
-    <button class="nav-item active" onclick="switchTab('history')">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>History
-    </button>
-    <button class="nav-item" onclick="switchTab('profile')">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>Profile
-    </button>
+    <button class="nav-item" onclick="switchTab('dashboard')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>Dashboard</button>
+    <button class="nav-item" onclick="switchTab('invest')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>Invest</button>
+    <button class="nav-item active" onclick="switchTab('history')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>History</button>
+    <button class="nav-item" onclick="switchTab('profile')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>Profile</button>
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════════ -->
-<!--  PROFILE SCREEN                            -->
-<!-- ═══════════════════════════════════════════ -->
+<!-- PROFILE -->
 <div id="screen-profile" class="screen">
   <nav class="navbar">
-    <div class="logo">
-      <div class="logo-icon">🌿</div>
-      <div><div class="logo-text">Hadasah Investment</div></div>
-    </div>
+    <div class="logo"><div class="logo-icon">🌿</div><div><div class="logo-text">Hadasah Investment</div></div></div>
   </nav>
   <div class="page-content">
     <div class="page-title">My Profile</div>
@@ -646,141 +383,61 @@
     <div style="background:var(--white); border-radius:var(--radius); padding:24px; box-shadow:var(--shadow); margin-bottom:16px;">
       <div style="display:flex; align-items:center; gap:16px; margin-bottom:20px;">
         <div style="width:56px; height:56px; background:var(--green-deep); border-radius:50%; display:flex; align-items:center; justify-content:center; color:#fff; font-size:22px; font-weight:700;" id="profile-avatar">?</div>
-        <div>
-          <div style="font-weight:700; font-size:17px;" id="profile-name">—</div>
-          <div style="font-size:13px; color:var(--grey-text);" id="profile-email">—</div>
-        </div>
+        <div><div style="font-weight:700; font-size:17px;" id="profile-name">—</div><div style="font-size:13px; color:var(--grey-text);" id="profile-email">—</div></div>
       </div>
       <div style="display:flex; flex-direction:column; gap:14px;">
-        <div style="display:flex; justify-content:space-between; border-bottom:1px solid var(--grey-soft); padding-bottom:12px;">
-          <span style="font-size:13px; color:var(--grey-text);">Client Number</span>
-          <span style="font-size:13px; font-weight:700; color:var(--green-deep);" id="profile-clientno">—</span>
-        </div>
-        <div style="display:flex; justify-content:space-between; border-bottom:1px solid var(--grey-soft); padding-bottom:12px;">
-          <span style="font-size:13px; color:var(--grey-text);">Phone</span>
-          <span style="font-size:13px; font-weight:600;" id="profile-phone">—</span>
-        </div>
-        <div style="display:flex; justify-content:space-between; border-bottom:1px solid var(--grey-soft); padding-bottom:12px;">
-          <span style="font-size:13px; color:var(--grey-text);">National ID</span>
-          <span style="font-size:13px; font-weight:600;" id="profile-id">—</span>
-        </div>
-        <div style="display:flex; justify-content:space-between; border-bottom:1px solid var(--grey-soft); padding-bottom:12px;">
-          <span style="font-size:13px; color:var(--grey-text);">Date Joined</span>
-          <span style="font-size:13px; font-weight:600;" id="profile-joined">—</span>
-        </div>
-        <div style="display:flex; justify-content:space-between;">
-          <span style="font-size:13px; color:var(--grey-text);">Account Status</span>
-          <span id="profile-status">—</span>
-        </div>
+        <div style="display:flex; justify-content:space-between; border-bottom:1px solid var(--grey-soft); padding-bottom:12px;"><span style="font-size:13px; color:var(--grey-text);">Client Number</span><span style="font-size:13px; font-weight:700; color:var(--green-deep);" id="profile-clientno">—</span></div>
+        <div style="display:flex; justify-content:space-between; border-bottom:1px solid var(--grey-soft); padding-bottom:12px;"><span style="font-size:13px; color:var(--grey-text);">Phone</span><span style="font-size:13px; font-weight:600;" id="profile-phone">—</span></div>
+        <div style="display:flex; justify-content:space-between; border-bottom:1px solid var(--grey-soft); padding-bottom:12px;"><span style="font-size:13px; color:var(--grey-text);">National ID</span><span style="font-size:13px; font-weight:600;" id="profile-id">—</span></div>
+        <div style="display:flex; justify-content:space-between; border-bottom:1px solid var(--grey-soft); padding-bottom:12px;"><span style="font-size:13px; color:var(--grey-text);">Date Joined</span><span style="font-size:13px; font-weight:600;" id="profile-joined">—</span></div>
+        <div style="display:flex; justify-content:space-between;"><span style="font-size:13px; color:var(--grey-text);">Account Status</span><span id="profile-status">—</span></div>
       </div>
     </div>
     <button class="btn-green" style="background:var(--red);" onclick="handleLogout()">Sign Out</button>
   </div>
   <div class="bottom-nav">
-    <button class="nav-item" onclick="switchTab('dashboard')">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>Dashboard
-    </button>
-    <button class="nav-item" onclick="switchTab('invest')">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>Invest
-    </button>
-    <button class="nav-item" onclick="switchTab('history')">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>History
-    </button>
-    <button class="nav-item active" onclick="switchTab('profile')">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>Profile
-    </button>
+    <button class="nav-item" onclick="switchTab('dashboard')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>Dashboard</button>
+    <button class="nav-item" onclick="switchTab('invest')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>Invest</button>
+    <button class="nav-item" onclick="switchTab('history')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>History</button>
+    <button class="nav-item active" onclick="switchTab('profile')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>Profile</button>
   </div>
 </div>
 
-<!-- Confirm Modal -->
+<!-- CONFIRM MODAL -->
 <div class="modal-overlay" id="confirm-modal">
   <div class="modal-box">
     <div class="modal-title">Confirm Investment</div>
     <div class="modal-body" id="modal-body"></div>
     <div class="modal-actions">
-      <button class="btn-cancel"  onclick="closeModal()">Cancel</button>
+      <button class="btn-cancel" onclick="closeModal()">Cancel</button>
       <button class="btn-confirm" onclick="confirmInvestment()">Confirm & Submit</button>
     </div>
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════════════════════════ -->
-<!--  PWA SERVICE WORKER REGISTRATION                          -->
-<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- PWA -->
 <script>
-  // ── PWA Install prompt ──────────────────────────────────────
   let deferredPrompt = null;
-
-  function isIOS() {
-    return /iphone|ipad|ipod/i.test(navigator.userAgent) && !window.MSStream;
-  }
-  function isInStandaloneMode() {
-    return ('standalone' in window.navigator && window.navigator.standalone)
-        || window.matchMedia('(display-mode: standalone)').matches;
-  }
-
+  function isIOS() { return /iphone|ipad|ipod/i.test(navigator.userAgent) && !window.MSStream; }
+  function isInStandaloneMode() { return ('standalone' in window.navigator && window.navigator.standalone) || window.matchMedia('(display-mode: standalone)').matches; }
   window.addEventListener('beforeinstallprompt', (e) => {
-    e.preventDefault();
-    deferredPrompt = e;
-    if (!localStorage.getItem('installDismissed')) {
-      document.getElementById('install-banner').classList.add('show');
-    }
+    e.preventDefault(); deferredPrompt = e;
+    if (!localStorage.getItem('installDismissed')) document.getElementById('install-banner').classList.add('show');
   });
-
   window.triggerInstall = async () => {
     if (!deferredPrompt) return;
     deferredPrompt.prompt();
     const { outcome } = await deferredPrompt.userChoice;
-    if (outcome === 'accepted') {
-      document.getElementById('install-banner').classList.remove('show');
-    }
+    if (outcome === 'accepted') document.getElementById('install-banner').classList.remove('show');
     deferredPrompt = null;
   };
-
-  window.dismissInstall = () => {
-    document.getElementById('install-banner').classList.remove('show');
-    localStorage.setItem('installDismissed', '1');
-  };
-
-  // Show iOS tip if on iOS Safari and not already installed
+  window.dismissInstall = () => { document.getElementById('install-banner').classList.remove('show'); localStorage.setItem('installDismissed','1'); };
   window.addEventListener('load', () => {
-    if (isIOS() && !isInStandaloneMode() && !localStorage.getItem('iosTipDismissed')) {
-      document.getElementById('ios-tip').classList.add('show');
-    }
+    if (isIOS() && !isInStandaloneMode() && !localStorage.getItem('iosTipDismissed')) document.getElementById('ios-tip').classList.add('show');
   });
-
-  // Register service worker for offline support
-  if ('serviceWorker' in navigator) {
-    const swCode = `
-      const CACHE = 'hadasah-v1';
-      const OFFLINE = ['/', '/index.html'];
-      self.addEventListener('install', e => {
-        e.waitUntil(caches.open(CACHE).then(c => c.addAll(OFFLINE)));
-        self.skipWaiting();
-      });
-      self.addEventListener('activate', e => {
-        e.waitUntil(caches.keys().then(keys =>
-          Promise.all(keys.filter(k => k !== CACHE).map(k => caches.delete(k)))));
-        self.clients.claim();
-      });
-      self.addEventListener('fetch', e => {
-        if (e.request.method !== 'GET') return;
-        e.respondWith(
-          fetch(e.request).catch(() =>
-            caches.match(e.request).then(r => r || caches.match('/index.html'))
-          )
-        );
-      });
-    `;
-    const blob = new Blob([swCode], { type: 'application/javascript' });
-    const swUrl = URL.createObjectURL(blob);
-    navigator.serviceWorker.register(swUrl).catch(() => {});
-  }
 </script>
 
-<!-- ═══════════════════════════════════════════════════════════ -->
-<!--  FIREBASE + APP LOGIC                                      -->
-<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- FIREBASE + APP -->
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
   import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword,
@@ -790,7 +447,6 @@
            getDocs, addDoc, onSnapshot }
     from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
-  // ── ⚠️  PASTE YOUR FIREBASE CONFIG HERE ─────────────────────
   const firebaseConfig = {
     apiKey:            "AIzaSyBmzhL67TrBTWAg7MhOUZwJSWOpgqKBIoo",
     authDomain:        "hadasah-investment-ltd.firebaseapp.com",
@@ -799,7 +455,6 @@
     messagingSenderId: "325828407862",
     appId:             "1:325828407862:web:b52a74449c25e4ae7c1e97"
   };
-  // ─────────────────────────────────────────────────────────────
 
   const app  = initializeApp(firebaseConfig);
   const auth = getAuth(app);
@@ -811,55 +466,48 @@
   let currentData  = null;
   let allTxHistory = [];
   let selectedPkg  = null;
-  let unsubInv     = null;   // real-time investment listener unsub fn
-  let unsubRet     = null;   // real-time returns listener unsub fn
+  let unsubInv     = null;
+  let unsubRet     = null;
 
-  // ── SCREEN NAVIGATION ──────────────────────────────────────
+  // ── KEY FIX: this flag prevents onAuthStateChanged from reacting
+  //    during registration while setDoc is still in flight ──────────
+  let isRegistering = false;
+
   window.showScreen = (name) => {
     document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
     document.getElementById('screen-' + name).classList.add('active');
   };
 
-  // ── TAB SWITCHING WITH ACTIVE NAV STATE ────────────────────
   window.switchTab = (tab) => {
-    const map = {
-      dashboard: 'screen-dashboard',
-      invest:    'screen-invest',
-      history:   'screen-history',
-      profile:   'screen-profile'
-    };
-    // Show correct screen
+    const map = { dashboard:'screen-dashboard', invest:'screen-invest', history:'screen-history', profile:'screen-profile' };
     document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
     document.getElementById(map[tab]).classList.add('active');
-
-    // Update ALL bottom navs so active state is correct on every screen
     document.querySelectorAll('.bottom-nav').forEach(nav => {
       nav.querySelectorAll('.nav-item').forEach((btn, i) => {
         const tabs = ['dashboard','invest','history','profile'];
         btn.classList.toggle('active', tabs[i] === tab);
       });
     });
-
     if (tab === 'history') loadHistory();
     if (tab === 'profile') loadProfile();
     if (tab === 'invest')  showInvestBlocked();
   };
 
-  // Show/hide the pending notice on invest screen
   function showInvestBlocked() {
     const blocked = document.getElementById('invest-blocked');
     if (!currentData) return;
     blocked.style.display = currentData.status === 'pending' ? 'block' : 'none';
   }
 
-  // ── AUTH STATE ──────────────────────────────────────────────
+  // ── AUTH STATE ── only reacts when NOT mid-registration ─────────
   onAuthStateChanged(auth, async (user) => {
+    if (isRegistering) return;   // ← the fix: skip while setDoc is running
+
     if (user) {
       currentUser = user;
       await loadUserData();
       showScreen('dashboard');
     } else {
-      // Cleanup listeners
       if (unsubInv) { unsubInv(); unsubInv = null; }
       if (unsubRet) { unsubRet(); unsubRet = null; }
       currentUser = null;
@@ -868,7 +516,7 @@
     }
   });
 
-  // ── REGISTER ───────────────────────────────────────────────
+  // ── REGISTER ────────────────────────────────────────────────────
   window.handleRegister = async () => {
     const name  = document.getElementById('reg-name').value.trim();
     const email = document.getElementById('reg-email').value.trim();
@@ -894,12 +542,14 @@
     btn.disabled = true;
     btn.innerHTML = '<span class="loader"></span> Creating account...';
 
+    // ── STEP 1: set flag so auth listener doesn't fire yet ──────
+    isRegistering = true;
+
     let cred = null;
-    // Step 1: Create Firebase Auth account
     try {
       cred = await createUserWithEmailAndPassword(auth, email, pass);
     } catch (e) {
-      console.error('Auth error:', e.code, e.message);
+      isRegistering = false;   // release flag on auth failure
       err.textContent = translateAuthError(e.code);
       err.style.display = 'block';
       btn.disabled = false;
@@ -907,7 +557,7 @@
       return;
     }
 
-    // Step 2: Save profile to Firestore
+    // ── STEP 2: write Firestore profile ─────────────────────────
     try {
       const uid  = cred.user.uid;
       const snap = await getDocs(collection(db, 'users'));
@@ -925,23 +575,23 @@
         uid:          uid
       });
 
-      suc.textContent = '✅ Account created! Client No: ' + clientNumber + '. Awaiting admin approval.';
-      suc.style.display = 'block';
-      btn.disabled = false;
-      btn.textContent = 'Create Account';
+      // ── STEP 3: release flag, then load data & go to dashboard ─
+      isRegistering = false;
+      currentUser   = cred.user;
+      await loadUserData();
+      showScreen('dashboard');
 
     } catch (e) {
-      console.error('Firestore error:', e.code, e.message);
-      // Auth account was created but Firestore save failed — show specific message
-      err.textContent = 'Account created but profile save failed: ' + e.message +
-                        '. Please contact support with your email.';
+      isRegistering = false;   // release flag on Firestore failure
+      console.error('Firestore setDoc error:', e.code, e.message);
+      err.textContent = 'Profile save failed: ' + e.message + '. Contact support with your email.';
       err.style.display = 'block';
       btn.disabled = false;
       btn.textContent = 'Create Account';
     }
   };
 
-  // ── LOGIN ───────────────────────────────────────────────────
+  // ── LOGIN ───────────────────────────────────────────────────────
   window.handleLogin = async () => {
     const email = document.getElementById('login-email').value.trim();
     const pass  = document.getElementById('login-password').value;
@@ -949,10 +599,7 @@
     const btn   = document.getElementById('login-btn');
 
     err.style.display = 'none';
-    if (!email || !pass) {
-      err.textContent = 'Please enter email and password.';
-      err.style.display = 'block'; return;
-    }
+    if (!email || !pass) { err.textContent = 'Please enter email and password.'; err.style.display = 'block'; return; }
 
     btn.disabled = true;
     btn.innerHTML = '<span class="loader"></span> Signing in...';
@@ -962,100 +609,78 @@
       btn.disabled = false;
       btn.textContent = 'Sign In';
     } catch (e) {
-      console.error('Login error:', e.code, e.message);
       const msg = translateAuthError(e.code);
-      // If still generic, show the raw code so we can debug
       err.textContent = msg !== 'Something went wrong. Please try again.'
-        ? msg
-        : 'Error (' + (e.code || 'unknown') + '): ' + e.message;
+        ? msg : 'Error (' + (e.code || 'unknown') + '): ' + e.message;
       err.style.display = 'block';
       btn.disabled = false;
       btn.textContent = 'Sign In';
     }
   };
 
-  // ── FORGOT PASSWORD ─────────────────────────────────────────
   window.handleForgotPassword = async () => {
     const email = document.getElementById('login-email').value.trim();
     const err   = document.getElementById('login-error');
     const suc   = document.getElementById('reset-success');
-    err.style.display = 'none';
-    suc.style.display = 'none';
-
-    if (!email) {
-      err.textContent = 'Enter your email address above, then tap Forgot password.';
-      err.style.display = 'block'; return;
-    }
+    err.style.display = 'none'; suc.style.display = 'none';
+    if (!email) { err.textContent = 'Enter your email above, then tap Forgot password.'; err.style.display = 'block'; return; }
     try {
       await sendPasswordResetEmail(auth, email);
       suc.textContent = '✅ Password reset email sent. Check your inbox.';
       suc.style.display = 'block';
-    } catch (e) {
-      err.textContent = translateAuthError(e.code);
-      err.style.display = 'block';
-    }
+    } catch (e) { err.textContent = translateAuthError(e.code); err.style.display = 'block'; }
   };
 
-  // ── LOGOUT ──────────────────────────────────────────────────
-  window.handleLogout = async () => {
-    await signOut(auth);
-  };
+  window.handleLogout = async () => { await signOut(auth); };
 
-  // ── LOAD USER DATA ───────────────────────────────────────────
+  // ── LOAD USER DATA ─────────────────────────────────────────────
   async function loadUserData() {
     try {
       const snap = await getDoc(doc(db, 'users', currentUser.uid));
-      if (!snap.exists()) return;
-      currentData = snap.data();
+      if (!snap.exists()) {
+        // Profile not found — could be a race on very slow networks; retry once
+        await new Promise(r => setTimeout(r, 1500));
+        const retry = await getDoc(doc(db, 'users', currentUser.uid));
+        if (!retry.exists()) return;
+        currentData = retry.data();
+      } else {
+        currentData = snap.data();
+      }
 
       document.getElementById('nav-client-name').textContent =
         currentData.fullName ? currentData.fullName.split(' ')[0] : '';
 
       const hr = new Date().getHours();
       const greet = hr < 12 ? 'Good morning' : hr < 17 ? 'Good afternoon' : 'Good evening';
-      document.getElementById('dash-greeting').textContent =
-        greet + ', ' + (currentData.fullName || '') + '!';
-      document.getElementById('dash-clientno').textContent =
-        'Client No: ' + (currentData.clientNumber || '—');
+      document.getElementById('dash-greeting').textContent = greet + ', ' + (currentData.fullName || '') + '!';
+      document.getElementById('dash-clientno').textContent = 'Client No: ' + (currentData.clientNumber || '—');
 
       const status = currentData.status || 'pending';
       document.getElementById('dash-status').textContent = status.toUpperCase();
-      document.getElementById('dash-status').className =
-        'stat-card-value ' + (status === 'active' ? 'green' : 'gold');
-      document.getElementById('dash-joined').textContent =
-        currentData.dateJoined || '—';
+      document.getElementById('dash-status').className = 'stat-card-value ' + (status === 'active' ? 'green' : 'gold');
+      document.getElementById('dash-joined').textContent = currentData.dateJoined || '—';
+      document.getElementById('pending-notice').style.display = status === 'pending' ? 'block' : 'none';
 
-      document.getElementById('pending-notice').style.display =
-        status === 'pending' ? 'block' : 'none';
-
-      // Start real-time listeners
       startRealTimeListeners();
-
     } catch (e) {
       console.error('Load user error:', e);
     }
   }
 
-  // ── REAL-TIME LISTENERS (replaces one-time getDocs) ─────────
   function startRealTimeListeners() {
-    // Cleanup any existing
     if (unsubInv) unsubInv();
     if (unsubRet) unsubRet();
 
-    const invQuery = query(collection(db, 'investments'),
-      where('userId', '==', currentUser.uid));
-    const retQuery = query(collection(db, 'returns'),
-      where('userId', '==', currentUser.uid));
+    const invQuery = query(collection(db, 'investments'), where('userId', '==', currentUser.uid));
+    const retQuery = query(collection(db, 'returns'),     where('userId', '==', currentUser.uid));
 
-    let invData = [];
-    let retData = [];
+    let invData = [], retData = [];
 
     unsubInv = onSnapshot(invQuery, (snap) => {
       invData = [];
       snap.forEach(d => invData.push({ id: d.id, ...d.data() }));
       rebuildDashboard(invData, retData);
     });
-
     unsubRet = onSnapshot(retQuery, (snap) => {
       retData = [];
       snap.forEach(d => retData.push({ id: d.id, ...d.data() }));
@@ -1064,70 +689,40 @@
   }
 
   function rebuildDashboard(investments, returns) {
-    let totalInvested  = 0;
-    let weightedRate   = 0;
-    let totalActive    = 0;
-    let txItems        = [];
-    allTxHistory       = [];
+    let totalInvested = 0, weightedRate = 0, totalActive = 0;
+    let txItems = [];
+    allTxHistory = [];
 
     investments.forEach(inv => {
-      const amt  = Number(inv.amount) || 0;
+      const amt = Number(inv.amount) || 0;
       const rate = Number(inv.interestRate) || 0;
-      if (inv.status === 'active') {
-        totalInvested += amt;
-        weightedRate  += rate * amt;   // for weighted average later
-        totalActive   += amt;
-      }
-      const tx = {
-        type:   'Investment',
-        amount:  amt,
-        status:  inv.status || 'pending',
-        date:    inv.dateSubmitted || '',
-        month:   inv.dateSubmitted || ''
-      };
-      txItems.push(tx);
-      allTxHistory.push(tx);
+      if (inv.status === 'active') { totalInvested += amt; weightedRate += rate * amt; totalActive += amt; }
+      const tx = { type:'Investment', amount:amt, status:inv.status||'pending', date:inv.dateSubmitted||'', month:inv.dateSubmitted||'' };
+      txItems.push(tx); allTxHistory.push(tx);
     });
 
-    // Weighted average interest rate across all active investments
     const avgRate = totalActive > 0 ? weightedRate / totalActive : 0;
     const monthly = (totalInvested * avgRate) / 100;
-
     let totalEarned = 0;
+
     returns.forEach(ret => {
       const earned = Number(ret.amountEarned) || 0;
       totalEarned += earned;
-      const tx = {
-        type:   'Return',
-        amount:  earned,
-        status:  'Paid',
-        date:    ret.dateCalculated || '',
-        month:   ret.month || ''
-      };
-      txItems.push(tx);
-      allTxHistory.push(tx);
+      const tx = { type:'Return', amount:earned, status:'Paid', date:ret.dateCalculated||'', month:ret.month||'' };
+      txItems.push(tx); allTxHistory.push(tx);
     });
 
-    // Sort descending by date
     const byDate = (a, b) => b.date.localeCompare(a.date);
-    txItems.sort(byDate);
-    allTxHistory.sort(byDate);
+    txItems.sort(byDate); allTxHistory.sort(byDate);
 
-    document.getElementById('dash-total-invested').textContent =
-      'KSh ' + fmt(totalInvested) + '  (~USD ' + fmt(totalInvested / USD_RATE) + ')';
-    document.getElementById('dash-monthly-return').textContent =
-      'KSh ' + fmt(monthly);
-    document.getElementById('dash-total-earned').textContent =
-      'KSh ' + fmt(totalEarned);
-    document.getElementById('dash-rate').textContent =
-      avgRate ? avgRate.toFixed(1) + '%' : '0%';
-    document.getElementById('dash-inv-count').textContent =
-      investments.length;
-
+    document.getElementById('dash-total-invested').textContent  = 'KSh ' + fmt(totalInvested) + '  (~USD ' + fmt(totalInvested / USD_RATE) + ')';
+    document.getElementById('dash-monthly-return').textContent  = 'KSh ' + fmt(monthly);
+    document.getElementById('dash-total-earned').textContent    = 'KSh ' + fmt(totalEarned);
+    document.getElementById('dash-rate').textContent            = avgRate ? avgRate.toFixed(1) + '%' : '0%';
+    document.getElementById('dash-inv-count').textContent       = investments.length;
     renderTxList('dash-tx-list', txItems.slice(0, 3));
   }
 
-  // ── RENDER TX LIST ──────────────────────────────────────────
   function renderTxList(elId, items) {
     const el = document.getElementById(elId);
     if (!items.length) {
@@ -1137,86 +732,54 @@
     el.innerHTML = items.map(tx => `
       <div class="tx-item">
         <div class="tx-left">
-          <div class="tx-icon ${tx.type === 'Investment' ? 'invest' : 'return'}">
-            ${tx.type === 'Investment' ? '💰' : '📈'}
-          </div>
-          <div>
-            <div class="tx-type">${tx.type}</div>
-            <div class="tx-date">${tx.month || tx.date}</div>
-          </div>
+          <div class="tx-icon ${tx.type==='Investment'?'invest':'return'}">${tx.type==='Investment'?'💰':'📈'}</div>
+          <div><div class="tx-type">${tx.type}</div><div class="tx-date">${tx.month||tx.date}</div></div>
         </div>
         <div style="text-align:right;">
-          <div class="tx-amount ${tx.type === 'Return' ? 'positive' : 'neutral'}">
-            ${tx.type === 'Return' ? '+' : ''}KSh ${fmt(tx.amount)}
-          </div>
-          <span class="badge ${tx.status === 'active' || tx.status === 'Paid' ? 'active' : tx.status === 'rejected' ? 'rejected' : 'pending'}">
-            ${tx.status}
-          </span>
+          <div class="tx-amount ${tx.type==='Return'?'positive':'neutral'}">${tx.type==='Return'?'+':''}KSh ${fmt(tx.amount)}</div>
+          <span class="badge ${tx.status==='active'||tx.status==='Paid'?'active':tx.status==='rejected'?'rejected':'pending'}">${tx.status}</span>
         </div>
       </div>`).join('');
   }
 
-  // ── HISTORY ─────────────────────────────────────────────────
-  function loadHistory() {
-    renderTxList('history-list', allTxHistory);
-  }
+  function loadHistory() { renderTxList('history-list', allTxHistory); }
 
   window.filterHistory = (type) => {
-    const filtered = type === 'all'
-      ? allTxHistory
-      : allTxHistory.filter(t => t.type === type);
+    const filtered = type === 'all' ? allTxHistory : allTxHistory.filter(t => t.type === type);
     renderTxList('history-list', filtered);
   };
 
-  // ── PROFILE ─────────────────────────────────────────────────
   function loadProfile() {
     if (!currentData) return;
-    document.getElementById('profile-name').textContent     = currentData.fullName   || '—';
-    document.getElementById('profile-email').textContent    = currentData.email      || '—';
+    document.getElementById('profile-name').textContent     = currentData.fullName    || '—';
+    document.getElementById('profile-email').textContent    = currentData.email       || '—';
     document.getElementById('profile-clientno').textContent = currentData.clientNumber || '—';
-    document.getElementById('profile-phone').textContent    = currentData.phone      || '—';
-    document.getElementById('profile-id').textContent       = currentData.nationalId || '—';
-    document.getElementById('profile-joined').textContent   = currentData.dateJoined || '—';
-    document.getElementById('profile-avatar').textContent   =
-      (currentData.fullName || '?')[0].toUpperCase();
+    document.getElementById('profile-phone').textContent    = currentData.phone       || '—';
+    document.getElementById('profile-id').textContent       = currentData.nationalId  || '—';
+    document.getElementById('profile-joined').textContent   = currentData.dateJoined  || '—';
+    document.getElementById('profile-avatar').textContent   = (currentData.fullName||'?')[0].toUpperCase();
     const status = currentData.status || 'pending';
-    document.getElementById('profile-status').innerHTML =
-      `<span class="badge ${status === 'active' ? 'active' : 'pending'}">${status}</span>`;
+    document.getElementById('profile-status').innerHTML = `<span class="badge ${status==='active'?'active':'pending'}">${status}</span>`;
   }
 
-  // ── INVEST ──────────────────────────────────────────────────
   window.selectPackage = (el, pkg) => {
     document.querySelectorAll('.package-card').forEach(c => c.classList.remove('selected'));
-    el.classList.add('selected');
-    selectedPkg = pkg;
-    document.getElementById('custom-box').style.display =
-      pkg === 'custom' ? 'block' : 'none';
-    document.getElementById('invest-error').style.display   = 'none';
+    el.classList.add('selected'); selectedPkg = pkg;
+    document.getElementById('custom-box').style.display = pkg === 'custom' ? 'block' : 'none';
+    document.getElementById('invest-error').style.display = 'none';
     document.getElementById('invest-success').style.display = 'none';
   };
 
   window.submitInvestment = () => {
     const err = document.getElementById('invest-error');
     const suc = document.getElementById('invest-success');
-    err.style.display = 'none';
-    suc.style.display = 'none';
-
-    if (!selectedPkg) {
-      err.textContent = 'Please select an investment package.';
-      err.style.display = 'block'; return;
-    }
-
+    err.style.display = 'none'; suc.style.display = 'none';
+    if (!selectedPkg) { err.textContent = 'Please select an investment package.'; err.style.display = 'block'; return; }
     let amount = 0;
     if (selectedPkg === 'custom') {
       amount = Number(document.getElementById('custom-amount').value);
-      if (!amount || amount < 1000) {
-        err.textContent = 'Please enter a valid amount (min KSh 1,000).';
-        err.style.display = 'block'; return;
-      }
-    } else {
-      amount = Number(selectedPkg);
-    }
-
+      if (!amount || amount < 1000) { err.textContent = 'Please enter a valid amount (min KSh 1,000).'; err.style.display = 'block'; return; }
+    } else { amount = Number(selectedPkg); }
     document.getElementById('modal-body').innerHTML =
       `<strong>Package:</strong> KSh ${fmt(amount)}<br/>
        <strong>USD Equivalent:</strong> ~USD ${fmt(amount / USD_RATE)}<br/>
@@ -1226,16 +789,13 @@
     window._pendingAmount = amount;
   };
 
-  window.closeModal = () => {
-    document.getElementById('confirm-modal').classList.remove('open');
-  };
+  window.closeModal = () => { document.getElementById('confirm-modal').classList.remove('open'); };
 
   window.confirmInvestment = async () => {
     closeModal();
     const amount = window._pendingAmount;
     const suc = document.getElementById('invest-success');
     const err = document.getElementById('invest-error');
-
     try {
       await addDoc(collection(db, 'investments'), {
         userId:        currentUser.uid,
@@ -1249,40 +809,30 @@
         dateApproved:  '',
         lastUpdated:   new Date().toISOString().split('T')[0]
       });
-
-      suc.textContent =
-        '✅ Investment request of KSh ' + fmt(amount) +
-        ' submitted! Awaiting admin approval.';
+      suc.textContent = '✅ Investment request of KSh ' + fmt(amount) + ' submitted! Awaiting admin approval.';
       suc.style.display = 'block';
       selectedPkg = null;
       document.querySelectorAll('.package-card').forEach(c => c.classList.remove('selected'));
       document.getElementById('custom-box').style.display = 'none';
-
-    } catch (e) {
-      err.textContent = 'Error submitting: ' + e.message;
-      err.style.display = 'block';
-    }
+    } catch (e) { err.textContent = 'Error submitting: ' + e.message; err.style.display = 'block'; }
   };
 
-  // ── HELPERS ─────────────────────────────────────────────────
-  function fmt(n) {
-    return Number(n).toLocaleString('en-KE', { maximumFractionDigits: 0 });
-  }
+  function fmt(n) { return Number(n).toLocaleString('en-KE', { maximumFractionDigits: 0 }); }
 
   function translateAuthError(code) {
     const map = {
-      'auth/email-already-in-use':    'This email is already registered.',
-      'auth/invalid-email':           'Please enter a valid email address.',
-      'auth/weak-password':           'Password is too weak. Use at least 6 characters.',
-      'auth/user-not-found':          'No account found with this email.',
-      'auth/wrong-password':          'Incorrect password. Please try again.',
-      'auth/invalid-credential':      'Invalid email or password.',
-      'auth/too-many-requests':       'Too many attempts. Please try again later.',
-      'auth/network-request-failed':  'Network error. Check your connection.',
-      'auth/operation-not-allowed':   'Email/password login is not enabled. Please contact support.',
-      'auth/configuration-not-found': 'Firebase is not configured correctly. Contact support.',
-      'auth/api-key-not-valid':       'Invalid Firebase API key. Contact support.',
-      'auth/app-not-authorized':      'This domain is not authorized in Firebase. Contact support.'
+      'auth/email-already-in-use':   'This email is already registered.',
+      'auth/invalid-email':          'Please enter a valid email address.',
+      'auth/weak-password':          'Password is too weak. Use at least 6 characters.',
+      'auth/user-not-found':         'No account found with this email.',
+      'auth/wrong-password':         'Incorrect password. Please try again.',
+      'auth/invalid-credential':     'Invalid email or password.',
+      'auth/too-many-requests':      'Too many attempts. Please try again later.',
+      'auth/network-request-failed': 'Network error. Check your connection.',
+      'auth/operation-not-allowed':  'Email/password login is not enabled. Please contact support.',
+      'auth/configuration-not-found':'Firebase is not configured correctly. Contact support.',
+      'auth/api-key-not-valid':      'Invalid Firebase API key. Contact support.',
+      'auth/app-not-authorized':     'This domain is not authorized in Firebase. Contact support.'
     };
     return map[code] || 'Something went wrong. Please try again.';
   }
