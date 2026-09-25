@@ -890,24 +890,26 @@
       err.textContent = 'Password must be at least 6 characters.';
       err.style.display = 'block'; return;
     }
-    // Basic phone validation (Kenya format or generic)
-    if (phone.replace(/\s+/g,'').length < 9) {
-      err.textContent = 'Please enter a valid phone number.';
-      err.style.display = 'block'; return;
-    }
-    // Basic ID validation
-    if (nid.length < 5) {
-      err.textContent = 'Please enter a valid National ID or Passport number.';
-      err.style.display = 'block'; return;
-    }
 
     btn.disabled = true;
     btn.innerHTML = '<span class="loader"></span> Creating account...';
 
+    let cred = null;
+    // Step 1: Create Firebase Auth account
     try {
-      const cred = await createUserWithEmailAndPassword(auth, email, pass);
-      const uid  = cred.user.uid;
+      cred = await createUserWithEmailAndPassword(auth, email, pass);
+    } catch (e) {
+      console.error('Auth error:', e.code, e.message);
+      err.textContent = translateAuthError(e.code);
+      err.style.display = 'block';
+      btn.disabled = false;
+      btn.textContent = 'Create Account';
+      return;
+    }
 
+    // Step 2: Save profile to Firestore
+    try {
+      const uid  = cred.user.uid;
       const snap = await getDocs(collection(db, 'users'));
       const clientNumber = 'INV-' + String(snap.size + 1).padStart(5, '0');
 
@@ -929,7 +931,10 @@
       btn.textContent = 'Create Account';
 
     } catch (e) {
-      err.textContent = translateAuthError(e.code);
+      console.error('Firestore error:', e.code, e.message);
+      // Auth account was created but Firestore save failed — show specific message
+      err.textContent = 'Account created but profile save failed: ' + e.message +
+                        '. Please contact support with your email.';
       err.style.display = 'block';
       btn.disabled = false;
       btn.textContent = 'Create Account';
@@ -957,7 +962,12 @@
       btn.disabled = false;
       btn.textContent = 'Sign In';
     } catch (e) {
-      err.textContent = translateAuthError(e.code);
+      console.error('Login error:', e.code, e.message);
+      const msg = translateAuthError(e.code);
+      // If still generic, show the raw code so we can debug
+      err.textContent = msg !== 'Something went wrong. Please try again.'
+        ? msg
+        : 'Error (' + (e.code || 'unknown') + '): ' + e.message;
       err.style.display = 'block';
       btn.disabled = false;
       btn.textContent = 'Sign In';
@@ -1261,14 +1271,18 @@
 
   function translateAuthError(code) {
     const map = {
-      'auth/email-already-in-use':   'This email is already registered.',
-      'auth/invalid-email':          'Please enter a valid email address.',
-      'auth/weak-password':          'Password is too weak. Use at least 6 characters.',
-      'auth/user-not-found':         'No account found with this email.',
-      'auth/wrong-password':         'Incorrect password. Please try again.',
-      'auth/invalid-credential':     'Invalid email or password.',
-      'auth/too-many-requests':      'Too many attempts. Please try again later.',
-      'auth/network-request-failed': 'Network error. Check your connection.'
+      'auth/email-already-in-use':    'This email is already registered.',
+      'auth/invalid-email':           'Please enter a valid email address.',
+      'auth/weak-password':           'Password is too weak. Use at least 6 characters.',
+      'auth/user-not-found':          'No account found with this email.',
+      'auth/wrong-password':          'Incorrect password. Please try again.',
+      'auth/invalid-credential':      'Invalid email or password.',
+      'auth/too-many-requests':       'Too many attempts. Please try again later.',
+      'auth/network-request-failed':  'Network error. Check your connection.',
+      'auth/operation-not-allowed':   'Email/password login is not enabled. Please contact support.',
+      'auth/configuration-not-found': 'Firebase is not configured correctly. Contact support.',
+      'auth/api-key-not-valid':       'Invalid Firebase API key. Contact support.',
+      'auth/app-not-authorized':      'This domain is not authorized in Firebase. Contact support.'
     };
     return map[code] || 'Something went wrong. Please try again.';
   }
