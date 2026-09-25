@@ -15,7 +15,7 @@
   href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230a5c36'/%3E%3Ctext y='.9em' font-size='72' x='12'%3E🌿%3C/text%3E%3C/svg%3E"/>
 <link rel="apple-touch-icon"
   href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230a5c36'/%3E%3Ctext y='.9em' font-size='72' x='12'%3E🌿%3C/text%3E%3C/svg%3E"/>
-<link rel="manifest" href="data:application/json,%7B%22name%22%3A%22Hadasah%20Investment%20Ltd%22%2C%22short_name%22%3A%22Hadasah%22%2C%22description%22%3A%22Earn%204%E2%80%938%25%20monthly%20returns%22%2C%22start_url%22%3A%22.%2F%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%23f4f7f5%22%2C%22theme_color%22%3A%22%230a5c36%22%2C%22orientation%22%3A%22portrait%22%7D"/>
+<link rel="manifest" href="data:application/json,%7B%22name%22%3A%22Hadasah%20Investment%20Ltd%22%2C%22short_name%22%3A%22Hadasah%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%23f4f7f5%22%2C%22theme_color%22%3A%22%230a5c36%22%7D"/>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet"/>
 <style>
   :root {
@@ -35,21 +35,10 @@
     --safe-bottom: env(safe-area-inset-bottom, 0px);
   }
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  html, body {
-    height: 100%; font-family: 'Inter', sans-serif;
-    background: var(--grey-soft); color: var(--dark);
-    -webkit-tap-highlight-color: transparent;
-    overscroll-behavior: none;
-  }
+  html, body { height: 100%; font-family: 'Inter', sans-serif; background: var(--grey-soft); color: var(--dark); -webkit-tap-highlight-color: transparent; overscroll-behavior: none; }
   .screen { display: none; min-height: 100vh; flex-direction: column; }
   .screen.active { display: flex; }
-  .navbar {
-    background: var(--white);
-    padding: calc(14px + var(--safe-top)) 20px 14px;
-    display: flex; align-items: center; justify-content: space-between;
-    box-shadow: 0 2px 12px rgba(10,92,54,.08);
-    position: sticky; top: 0; z-index: 100;
-  }
+  .navbar { background: var(--white); padding: calc(14px + var(--safe-top)) 20px 14px; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 2px 12px rgba(10,92,54,.08); position: sticky; top: 0; z-index: 100; }
   .navbar .logo { display: flex; align-items: center; gap: 10px; }
   .navbar .logo-icon { width: 36px; height: 36px; background: var(--green-deep); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: var(--white); font-size: 18px; }
   .navbar .logo-text { font-weight: 700; font-size: 15px; color: var(--green-deep); }
@@ -57,11 +46,7 @@
   .nav-actions { display: flex; gap: 10px; align-items: center; }
   .nav-name { font-size: 13px; color: var(--grey-text); }
   .btn-logout { background: transparent; border: 1.5px solid var(--green-mid); color: var(--green-deep); padding: 7px 16px; border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer; }
-  #screen-landing {
-    background: linear-gradient(160deg, var(--green-deep) 0%, var(--green-mid) 60%, var(--green-light) 100%);
-    align-items: center; justify-content: center; text-align: center;
-    padding: calc(40px + var(--safe-top)) 24px calc(40px + var(--safe-bottom));
-  }
+  #screen-landing { background: linear-gradient(160deg, var(--green-deep) 0%, var(--green-mid) 60%, var(--green-light) 100%); align-items: center; justify-content: center; text-align: center; padding: calc(40px + var(--safe-top)) 24px calc(40px + var(--safe-bottom)); }
   .landing-badge { display: inline-block; background: rgba(255,255,255,.15); color: #fff; font-size: 12px; font-weight: 500; padding: 5px 14px; border-radius: 20px; margin-bottom: 24px; letter-spacing: .5px; }
   .landing-title { font-family: 'Playfair Display', serif; font-size: clamp(32px, 8vw, 56px); color: #fff; line-height: 1.15; margin-bottom: 16px; }
   .landing-sub { font-size: 16px; color: rgba(255,255,255,.80); max-width: 360px; margin: 0 auto 40px; line-height: 1.6; }
@@ -100,6 +85,9 @@
   .forgot-link a { font-size: 12px; color: var(--green-mid); cursor: pointer; font-weight: 600; }
   .error-msg { background: #fef0f0; color: var(--red); border: 1px solid #fcc; padding: 10px 14px; border-radius: 8px; font-size: 13px; margin-bottom: 14px; display: none; }
   .success-msg { background: var(--green-pale); color: var(--green-deep); border: 1px solid #b2dfc8; padding: 10px 14px; border-radius: 8px; font-size: 13px; margin-bottom: 14px; display: none; }
+  /* Debug box — visible during reg so user can see exactly what's happening */
+  .debug-box { background: #f0f4ff; border: 1px solid #b0c0ff; color: #1a2a6c; padding: 10px 14px; border-radius: 8px; font-size: 12px; margin-bottom: 14px; display: none; font-family: monospace; white-space: pre-wrap; line-height: 1.5; }
+  .debug-box.show { display: block; }
   #screen-dashboard { background: var(--grey-soft); }
   .page-content { padding: 20px 16px; flex: 1; overflow-y: auto; }
   .page-title { font-size: 20px; font-weight: 700; color: var(--dark); margin-bottom: 4px; }
@@ -136,11 +124,11 @@
   .badge.active   { background: var(--green-pale); color: var(--green-deep); }
   .badge.pending  { background: #fff8e6; color: #9a6f00; }
   .badge.rejected { background: #fef0f0; color: var(--red); }
-  #screen-invest { background: var(--grey-soft); }
-  .packages-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px; }
-  .package-card { background: var(--white); border-radius: var(--radius); padding: 20px 16px; text-align: center; cursor: pointer; border: 2px solid transparent; box-shadow: var(--shadow); transition: border-color .2s, transform .15s; }
-  .package-card:hover   { transform: translateY(-2px); }
-  .package-card.selected{ border-color: var(--green-mid); background: var(--green-pale); }
+  #screen-invest  { background: var(--grey-soft); }
+  .packages-grid  { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px; }
+  .package-card   { background: var(--white); border-radius: var(--radius); padding: 20px 16px; text-align: center; cursor: pointer; border: 2px solid transparent; box-shadow: var(--shadow); transition: border-color .2s, transform .15s; }
+  .package-card:hover    { transform: translateY(-2px); }
+  .package-card.selected { border-color: var(--green-mid); background: var(--green-pale); }
   .package-amount   { font-size: 20px; font-weight: 700; color: var(--green-deep); }
   .package-currency { font-size: 11px; color: var(--grey-text); margin-top: 3px; }
   .package-returns  { font-size: 11px; color: var(--green-mid); margin-top: 8px; font-weight: 600; }
@@ -195,21 +183,24 @@
   </div>
   <div id="ios-tip">
     <strong>📲 Install on iPhone / iPad</strong>
-    Tap the <strong>Share</strong> button (↑) in Safari, then choose <strong>"Add to Home Screen"</strong>.
-    <span style="float:right; cursor:pointer; font-size:16px;" onclick="document.getElementById('ios-tip').classList.remove('show')">✕</span>
+    Tap the <strong>Share</strong> button (↑) in Safari, then <strong>"Add to Home Screen"</strong>.
+    <span style="float:right;cursor:pointer;font-size:16px;" onclick="document.getElementById('ios-tip').classList.remove('show')">✕</span>
   </div>
 </div>
 
 <!-- REGISTER -->
 <div id="screen-register" class="screen">
-  <div style="flex:1; display:flex; align-items:center; justify-content:center; padding:24px; overflow-y:auto;">
+  <div style="flex:1;display:flex;align-items:center;justify-content:center;padding:24px;overflow-y:auto;">
     <div class="auth-card">
       <div class="auth-back"><a onclick="showScreen('landing')">← Back</a></div>
       <div class="auth-logo">🌿</div>
       <h2 class="auth-title">Create Account</h2>
       <p class="auth-sub">Join Hadasah Investment Ltd today</p>
+
       <div id="reg-error"   class="error-msg"></div>
       <div id="reg-success" class="success-msg"></div>
+      <div id="reg-debug"   class="debug-box"></div>
+
       <div class="form-group">
         <label class="form-label">Full Name</label>
         <input id="reg-name" class="form-input" type="text" placeholder="Your full name" autocomplete="name"/>
@@ -238,7 +229,7 @@
 
 <!-- LOGIN -->
 <div id="screen-login" class="screen">
-  <div style="flex:1; display:flex; align-items:center; justify-content:center; padding:24px;">
+  <div style="flex:1;display:flex;align-items:center;justify-content:center;padding:24px;">
     <div class="auth-card">
       <div class="auth-back"><a onclick="showScreen('landing')">← Back</a></div>
       <div class="auth-logo">🌿</div>
@@ -335,7 +326,7 @@
       <div class="form-group"><label class="form-label">Amount (KSh)</label><input id="custom-amount" class="form-input" type="number" placeholder="e.g 15000" min="1000"/></div>
     </div>
     <button class="btn-green" onclick="submitInvestment()">Submit Investment Request</button>
-    <p style="font-size:12px; color:var(--grey-text); margin-top:12px; text-align:center;">Your request will be reviewed and approved by admin after payment confirmation.</p>
+    <p style="font-size:12px;color:var(--grey-text);margin-top:12px;text-align:center;">Your request will be reviewed and approved by admin after payment confirmation.</p>
   </div>
   <div class="bottom-nav">
     <button class="nav-item" onclick="switchTab('dashboard')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>Dashboard</button>
@@ -380,17 +371,17 @@
   <div class="page-content">
     <div class="page-title">My Profile</div>
     <p class="page-sub">Your account details</p>
-    <div style="background:var(--white); border-radius:var(--radius); padding:24px; box-shadow:var(--shadow); margin-bottom:16px;">
-      <div style="display:flex; align-items:center; gap:16px; margin-bottom:20px;">
-        <div style="width:56px; height:56px; background:var(--green-deep); border-radius:50%; display:flex; align-items:center; justify-content:center; color:#fff; font-size:22px; font-weight:700;" id="profile-avatar">?</div>
-        <div><div style="font-weight:700; font-size:17px;" id="profile-name">—</div><div style="font-size:13px; color:var(--grey-text);" id="profile-email">—</div></div>
+    <div style="background:var(--white);border-radius:var(--radius);padding:24px;box-shadow:var(--shadow);margin-bottom:16px;">
+      <div style="display:flex;align-items:center;gap:16px;margin-bottom:20px;">
+        <div style="width:56px;height:56px;background:var(--green-deep);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:22px;font-weight:700;" id="profile-avatar">?</div>
+        <div><div style="font-weight:700;font-size:17px;" id="profile-name">—</div><div style="font-size:13px;color:var(--grey-text);" id="profile-email">—</div></div>
       </div>
-      <div style="display:flex; flex-direction:column; gap:14px;">
-        <div style="display:flex; justify-content:space-between; border-bottom:1px solid var(--grey-soft); padding-bottom:12px;"><span style="font-size:13px; color:var(--grey-text);">Client Number</span><span style="font-size:13px; font-weight:700; color:var(--green-deep);" id="profile-clientno">—</span></div>
-        <div style="display:flex; justify-content:space-between; border-bottom:1px solid var(--grey-soft); padding-bottom:12px;"><span style="font-size:13px; color:var(--grey-text);">Phone</span><span style="font-size:13px; font-weight:600;" id="profile-phone">—</span></div>
-        <div style="display:flex; justify-content:space-between; border-bottom:1px solid var(--grey-soft); padding-bottom:12px;"><span style="font-size:13px; color:var(--grey-text);">National ID</span><span style="font-size:13px; font-weight:600;" id="profile-id">—</span></div>
-        <div style="display:flex; justify-content:space-between; border-bottom:1px solid var(--grey-soft); padding-bottom:12px;"><span style="font-size:13px; color:var(--grey-text);">Date Joined</span><span style="font-size:13px; font-weight:600;" id="profile-joined">—</span></div>
-        <div style="display:flex; justify-content:space-between;"><span style="font-size:13px; color:var(--grey-text);">Account Status</span><span id="profile-status">—</span></div>
+      <div style="display:flex;flex-direction:column;gap:14px;">
+        <div style="display:flex;justify-content:space-between;border-bottom:1px solid var(--grey-soft);padding-bottom:12px;"><span style="font-size:13px;color:var(--grey-text);">Client Number</span><span style="font-size:13px;font-weight:700;color:var(--green-deep);" id="profile-clientno">—</span></div>
+        <div style="display:flex;justify-content:space-between;border-bottom:1px solid var(--grey-soft);padding-bottom:12px;"><span style="font-size:13px;color:var(--grey-text);">Phone</span><span style="font-size:13px;font-weight:600;" id="profile-phone">—</span></div>
+        <div style="display:flex;justify-content:space-between;border-bottom:1px solid var(--grey-soft);padding-bottom:12px;"><span style="font-size:13px;color:var(--grey-text);">National ID</span><span style="font-size:13px;font-weight:600;" id="profile-id">—</span></div>
+        <div style="display:flex;justify-content:space-between;border-bottom:1px solid var(--grey-soft);padding-bottom:12px;"><span style="font-size:13px;color:var(--grey-text);">Date Joined</span><span style="font-size:13px;font-weight:600;" id="profile-joined">—</span></div>
+        <div style="display:flex;justify-content:space-between;"><span style="font-size:13px;color:var(--grey-text);">Account Status</span><span id="profile-status">—</span></div>
       </div>
     </div>
     <button class="btn-green" style="background:var(--red);" onclick="handleLogout()">Sign Out</button>
@@ -418,33 +409,23 @@
 <!-- PWA -->
 <script>
   let deferredPrompt = null;
-  function isIOS() { return /iphone|ipad|ipod/i.test(navigator.userAgent) && !window.MSStream; }
-  function isInStandaloneMode() { return ('standalone' in window.navigator && window.navigator.standalone) || window.matchMedia('(display-mode: standalone)').matches; }
-  window.addEventListener('beforeinstallprompt', (e) => {
-    e.preventDefault(); deferredPrompt = e;
-    if (!localStorage.getItem('installDismissed')) document.getElementById('install-banner').classList.add('show');
-  });
-  window.triggerInstall = async () => {
-    if (!deferredPrompt) return;
-    deferredPrompt.prompt();
-    const { outcome } = await deferredPrompt.userChoice;
-    if (outcome === 'accepted') document.getElementById('install-banner').classList.remove('show');
-    deferredPrompt = null;
-  };
-  window.dismissInstall = () => { document.getElementById('install-banner').classList.remove('show'); localStorage.setItem('installDismissed','1'); };
-  window.addEventListener('load', () => {
-    if (isIOS() && !isInStandaloneMode() && !localStorage.getItem('iosTipDismissed')) document.getElementById('ios-tip').classList.add('show');
-  });
+  function isIOS(){ return /iphone|ipad|ipod/i.test(navigator.userAgent)&&!window.MSStream; }
+  function isInStandaloneMode(){ return ('standalone' in window.navigator&&window.navigator.standalone)||window.matchMedia('(display-mode: standalone)').matches; }
+  window.addEventListener('beforeinstallprompt',(e)=>{ e.preventDefault(); deferredPrompt=e; if(!localStorage.getItem('installDismissed')) document.getElementById('install-banner').classList.add('show'); });
+  window.triggerInstall=async()=>{ if(!deferredPrompt)return; deferredPrompt.prompt(); const{outcome}=await deferredPrompt.userChoice; if(outcome==='accepted') document.getElementById('install-banner').classList.remove('show'); deferredPrompt=null; };
+  window.dismissInstall=()=>{ document.getElementById('install-banner').classList.remove('show'); localStorage.setItem('installDismissed','1'); };
+  window.addEventListener('load',()=>{ if(isIOS()&&!isInStandaloneMode()&&!localStorage.getItem('iosTipDismissed')) document.getElementById('ios-tip').classList.add('show'); });
 </script>
 
 <!-- FIREBASE + APP -->
 <script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+  import { initializeApp }
+    from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
   import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword,
            sendPasswordResetEmail, signOut, onAuthStateChanged }
     from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
   import { getFirestore, doc, setDoc, getDoc, collection, query, where,
-           getDocs, addDoc, onSnapshot }
+           getDocs, addDoc, onSnapshot, serverTimestamp }
     from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
   const firebaseConfig = {
@@ -468,10 +449,30 @@
   let selectedPkg  = null;
   let unsubInv     = null;
   let unsubRet     = null;
+  let isRegistering = false;   // blocks auth listener during setDoc
 
-  // ── KEY FIX: this flag prevents onAuthStateChanged from reacting
-  //    during registration while setDoc is still in flight ──────────
-  let isRegistering = false;
+  // ── helper: write to the debug box on register screen ────────
+  function dbg(msg) {
+    const box = document.getElementById('reg-debug');
+    box.classList.add('show');
+    box.textContent += msg + '\n';
+    console.log('[Hadasah]', msg);
+  }
+  function dbgClear() {
+    const box = document.getElementById('reg-debug');
+    box.classList.remove('show');
+    box.textContent = '';
+  }
+
+  // ── generate a client number that doesn't need a full-collection read ──
+  // Uses timestamp + random suffix → e.g. INV-00042  (still sequential-ish)
+  function makeClientNumber() {
+    const ts   = Date.now();            // ms since epoch
+    const rand = Math.floor(Math.random() * 900) + 100; // 3-digit suffix
+    // last 5 digits of timestamp + rand keeps it short
+    const num  = String(ts).slice(-4) + String(rand);
+    return 'INV-' + num;               // e.g. INV-74832847
+  }
 
   window.showScreen = (name) => {
     document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
@@ -484,8 +485,7 @@
     document.getElementById(map[tab]).classList.add('active');
     document.querySelectorAll('.bottom-nav').forEach(nav => {
       nav.querySelectorAll('.nav-item').forEach((btn, i) => {
-        const tabs = ['dashboard','invest','history','profile'];
-        btn.classList.toggle('active', tabs[i] === tab);
+        btn.classList.toggle('active', ['dashboard','invest','history','profile'][i] === tab);
       });
     });
     if (tab === 'history') loadHistory();
@@ -494,14 +494,13 @@
   };
 
   function showInvestBlocked() {
-    const blocked = document.getElementById('invest-blocked');
-    if (!currentData) return;
-    blocked.style.display = currentData.status === 'pending' ? 'block' : 'none';
+    document.getElementById('invest-blocked').style.display =
+      currentData && currentData.status === 'pending' ? 'block' : 'none';
   }
 
-  // ── AUTH STATE ── only reacts when NOT mid-registration ─────────
+  // ── AUTH STATE LISTENER ──────────────────────────────────────
   onAuthStateChanged(auth, async (user) => {
-    if (isRegistering) return;   // ← the fix: skip while setDoc is running
+    if (isRegistering) return;   // skip while registration setDoc is in flight
 
     if (user) {
       currentUser = user;
@@ -516,82 +515,103 @@
     }
   });
 
-  // ── REGISTER ────────────────────────────────────────────────────
+  // ── REGISTER ─────────────────────────────────────────────────
   window.handleRegister = async () => {
     const name  = document.getElementById('reg-name').value.trim();
     const email = document.getElementById('reg-email').value.trim();
     const phone = document.getElementById('reg-phone').value.trim();
     const nid   = document.getElementById('reg-id').value.trim();
     const pass  = document.getElementById('reg-password').value;
-    const err   = document.getElementById('reg-error');
-    const suc   = document.getElementById('reg-success');
+
+    const errEl = document.getElementById('reg-error');
+    const sucEl = document.getElementById('reg-success');
     const btn   = document.getElementById('reg-btn');
 
-    err.style.display = 'none';
-    suc.style.display = 'none';
+    errEl.style.display = 'none';
+    sucEl.style.display = 'none';
+    dbgClear();
 
+    // ── client-side validation ──
     if (!name || !email || !phone || !nid || !pass) {
-      err.textContent = 'Please fill in all fields.';
-      err.style.display = 'block'; return;
+      errEl.textContent = 'Please fill in all fields.';
+      errEl.style.display = 'block'; return;
     }
     if (pass.length < 6) {
-      err.textContent = 'Password must be at least 6 characters.';
-      err.style.display = 'block'; return;
+      errEl.textContent = 'Password must be at least 6 characters.';
+      errEl.style.display = 'block'; return;
     }
 
     btn.disabled = true;
-    btn.innerHTML = '<span class="loader"></span> Creating account...';
+    btn.innerHTML = '<span class="loader"></span> Creating account…';
+    dbg('STEP 1 — Creating Firebase Auth user…');
 
-    // ── STEP 1: set flag so auth listener doesn't fire yet ──────
-    isRegistering = true;
+    // ── STEP 1: create Firebase Auth account ──
+    isRegistering = true;   // block auth listener
 
-    let cred = null;
+    let cred;
     try {
       cred = await createUserWithEmailAndPassword(auth, email, pass);
+      dbg('STEP 1 ✅ Auth UID: ' + cred.user.uid);
     } catch (e) {
-      isRegistering = false;   // release flag on auth failure
-      err.textContent = translateAuthError(e.code);
-      err.style.display = 'block';
+      isRegistering = false;
+      dbg('STEP 1 ❌ Auth error: ' + e.code + ' — ' + e.message);
+      errEl.textContent = translateAuthError(e.code);
+      errEl.style.display = 'block';
       btn.disabled = false;
       btn.textContent = 'Create Account';
       return;
     }
 
-    // ── STEP 2: write Firestore profile ─────────────────────────
+    // ── STEP 2: build the exact document Firestore expects ──────
+    const uid          = cred.user.uid;
+    const clientNumber = makeClientNumber();
+    const dateJoined   = new Date().toISOString().split('T')[0];   // "YYYY-MM-DD"
+
+    // ⬇ Exact field names and values as required:
+    const profileDoc = {
+      clientNumber: clientNumber,   // string  e.g. "INV-74832847"
+      dateJoined:   dateJoined,     // string  e.g. "2025-09-26"
+      email:        email,          // string
+      fullName:     name,           // string
+      nationalId:   nid,            // string
+      phone:        phone,          // string
+      role:         'client',       // string  literal "client"
+      status:       'pending',      // string  literal "pending"
+      uid:          uid             // string  (handy for admin queries)
+    };
+
+    dbg('STEP 2 — Writing Firestore doc to users/' + uid + '…');
+    dbg('Fields: ' + JSON.stringify(profileDoc, null, 2));
+
+    // ── STEP 3: write to Firestore ──────────────────────────────
     try {
-      const uid  = cred.user.uid;
-      const snap = await getDocs(collection(db, 'users'));
-      const clientNumber = 'INV-' + String(snap.size + 1).padStart(5, '0');
-
-      await setDoc(doc(db, 'users', uid), {
-        fullName:     name,
-        email:        email,
-        phone:        phone,
-        nationalId:   nid,
-        clientNumber: clientNumber,
-        dateJoined:   new Date().toISOString().split('T')[0],
-        status:       'pending',
-        role:         'client',
-        uid:          uid
-      });
-
-      // ── STEP 3: release flag, then load data & go to dashboard ─
-      isRegistering = false;
-      currentUser   = cred.user;
-      await loadUserData();
-      showScreen('dashboard');
-
+      await setDoc(doc(db, 'users', uid), profileDoc);
+      dbg('STEP 2 ✅ Firestore write successful!');
     } catch (e) {
-      isRegistering = false;   // release flag on Firestore failure
-      console.error('Firestore setDoc error:', e.code, e.message);
-      err.textContent = 'Profile save failed: ' + e.message + '. Contact support with your email.';
-      err.style.display = 'block';
+      isRegistering = false;
+      dbg('STEP 2 ❌ Firestore error: ' + e.code + ' — ' + e.message);
+      errEl.textContent =
+        '⚠️ Account created in Auth but profile save failed.\n' +
+        'Error: ' + (e.code || '') + ' — ' + e.message + '\n\n' +
+        'Most likely cause: Firestore Security Rules are blocking the write.\n' +
+        'Go to Firebase Console → Firestore → Rules and allow authenticated users to write their own document.';
+      errEl.style.display = 'block';
       btn.disabled = false;
       btn.textContent = 'Create Account';
+      return;
     }
+
+    // ── STEP 4: all good — release flag and navigate ────────────
+    isRegistering = false;
+    currentUser   = cred.user;
+    currentData   = profileDoc;
+
+    dbg('STEP 3 — Loading dashboard…');
+    await loadUserData();
+    showScreen('dashboard');
   };
 
-  // ── LOGIN ───────────────────────────────────────────────────────
+  // ── LOGIN ────────────────────────────────────────────────────
   window.handleLogin = async () => {
     const email = document.getElementById('login-email').value.trim();
     const pass  = document.getElementById('login-password').value;
@@ -602,8 +622,7 @@
     if (!email || !pass) { err.textContent = 'Please enter email and password.'; err.style.display = 'block'; return; }
 
     btn.disabled = true;
-    btn.innerHTML = '<span class="loader"></span> Signing in...';
-
+    btn.innerHTML = '<span class="loader"></span> Signing in…';
     try {
       await signInWithEmailAndPassword(auth, email, pass);
       btn.disabled = false;
@@ -623,7 +642,7 @@
     const err   = document.getElementById('login-error');
     const suc   = document.getElementById('reset-success');
     err.style.display = 'none'; suc.style.display = 'none';
-    if (!email) { err.textContent = 'Enter your email above, then tap Forgot password.'; err.style.display = 'block'; return; }
+    if (!email) { err.textContent = 'Enter your email above first.'; err.style.display = 'block'; return; }
     try {
       await sendPasswordResetEmail(auth, email);
       suc.textContent = '✅ Password reset email sent. Check your inbox.';
@@ -633,37 +652,40 @@
 
   window.handleLogout = async () => { await signOut(auth); };
 
-  // ── LOAD USER DATA ─────────────────────────────────────────────
+  // ── LOAD USER DATA ───────────────────────────────────────────
   async function loadUserData() {
     try {
-      const snap = await getDoc(doc(db, 'users', currentUser.uid));
-      if (!snap.exists()) {
-        // Profile not found — could be a race on very slow networks; retry once
-        await new Promise(r => setTimeout(r, 1500));
-        const retry = await getDoc(doc(db, 'users', currentUser.uid));
-        if (!retry.exists()) return;
-        currentData = retry.data();
-      } else {
-        currentData = snap.data();
+      // if we already have currentData (just registered), skip the read
+      if (!currentData) {
+        const snap = await getDoc(doc(db, 'users', currentUser.uid));
+        if (!snap.exists()) {
+          // give Firestore a moment (very slow connection edge case)
+          await new Promise(r => setTimeout(r, 2000));
+          const retry = await getDoc(doc(db, 'users', currentUser.uid));
+          if (!retry.exists()) return;
+          currentData = retry.data();
+        } else {
+          currentData = snap.data();
+        }
       }
 
-      document.getElementById('nav-client-name').textContent =
-        currentData.fullName ? currentData.fullName.split(' ')[0] : '';
+      const firstName = (currentData.fullName || '').split(' ')[0];
+      document.getElementById('nav-client-name').textContent = firstName;
 
-      const hr = new Date().getHours();
+      const hr    = new Date().getHours();
       const greet = hr < 12 ? 'Good morning' : hr < 17 ? 'Good afternoon' : 'Good evening';
-      document.getElementById('dash-greeting').textContent = greet + ', ' + (currentData.fullName || '') + '!';
-      document.getElementById('dash-clientno').textContent = 'Client No: ' + (currentData.clientNumber || '—');
+      document.getElementById('dash-greeting').textContent  = greet + ', ' + (currentData.fullName || '') + '!';
+      document.getElementById('dash-clientno').textContent  = 'Client No: ' + (currentData.clientNumber || '—');
 
       const status = currentData.status || 'pending';
-      document.getElementById('dash-status').textContent = status.toUpperCase();
-      document.getElementById('dash-status').className = 'stat-card-value ' + (status === 'active' ? 'green' : 'gold');
-      document.getElementById('dash-joined').textContent = currentData.dateJoined || '—';
+      document.getElementById('dash-status').textContent  = status.toUpperCase();
+      document.getElementById('dash-status').className    = 'stat-card-value ' + (status === 'active' ? 'green' : 'gold');
+      document.getElementById('dash-joined').textContent  = currentData.dateJoined || '—';
       document.getElementById('pending-notice').style.display = status === 'pending' ? 'block' : 'none';
 
       startRealTimeListeners();
     } catch (e) {
-      console.error('Load user error:', e);
+      console.error('loadUserData error:', e);
     }
   }
 
@@ -671,56 +693,50 @@
     if (unsubInv) unsubInv();
     if (unsubRet) unsubRet();
 
-    const invQuery = query(collection(db, 'investments'), where('userId', '==', currentUser.uid));
-    const retQuery = query(collection(db, 'returns'),     where('userId', '==', currentUser.uid));
+    const invQ = query(collection(db, 'investments'), where('userId', '==', currentUser.uid));
+    const retQ = query(collection(db, 'returns'),     where('userId', '==', currentUser.uid));
 
     let invData = [], retData = [];
 
-    unsubInv = onSnapshot(invQuery, (snap) => {
-      invData = [];
-      snap.forEach(d => invData.push({ id: d.id, ...d.data() }));
+    unsubInv = onSnapshot(invQ, snap => {
+      invData = snap.docs.map(d => ({ id: d.id, ...d.data() }));
       rebuildDashboard(invData, retData);
     });
-    unsubRet = onSnapshot(retQuery, (snap) => {
-      retData = [];
-      snap.forEach(d => retData.push({ id: d.id, ...d.data() }));
+    unsubRet = onSnapshot(retQ, snap => {
+      retData = snap.docs.map(d => ({ id: d.id, ...d.data() }));
       rebuildDashboard(invData, retData);
     });
   }
 
   function rebuildDashboard(investments, returns) {
     let totalInvested = 0, weightedRate = 0, totalActive = 0;
-    let txItems = [];
     allTxHistory = [];
 
     investments.forEach(inv => {
-      const amt = Number(inv.amount) || 0;
+      const amt  = Number(inv.amount) || 0;
       const rate = Number(inv.interestRate) || 0;
       if (inv.status === 'active') { totalInvested += amt; weightedRate += rate * amt; totalActive += amt; }
-      const tx = { type:'Investment', amount:amt, status:inv.status||'pending', date:inv.dateSubmitted||'', month:inv.dateSubmitted||'' };
-      txItems.push(tx); allTxHistory.push(tx);
+      allTxHistory.push({ type:'Investment', amount:amt, status:inv.status||'pending', date:inv.dateSubmitted||'', month:inv.dateSubmitted||'' });
     });
 
-    const avgRate = totalActive > 0 ? weightedRate / totalActive : 0;
-    const monthly = (totalInvested * avgRate) / 100;
+    const avgRate  = totalActive > 0 ? weightedRate / totalActive : 0;
+    const monthly  = (totalInvested * avgRate) / 100;
     let totalEarned = 0;
 
     returns.forEach(ret => {
       const earned = Number(ret.amountEarned) || 0;
       totalEarned += earned;
-      const tx = { type:'Return', amount:earned, status:'Paid', date:ret.dateCalculated||'', month:ret.month||'' };
-      txItems.push(tx); allTxHistory.push(tx);
+      allTxHistory.push({ type:'Return', amount:earned, status:'Paid', date:ret.dateCalculated||'', month:ret.month||'' });
     });
 
-    const byDate = (a, b) => b.date.localeCompare(a.date);
-    txItems.sort(byDate); allTxHistory.sort(byDate);
+    allTxHistory.sort((a, b) => b.date.localeCompare(a.date));
 
-    document.getElementById('dash-total-invested').textContent  = 'KSh ' + fmt(totalInvested) + '  (~USD ' + fmt(totalInvested / USD_RATE) + ')';
-    document.getElementById('dash-monthly-return').textContent  = 'KSh ' + fmt(monthly);
-    document.getElementById('dash-total-earned').textContent    = 'KSh ' + fmt(totalEarned);
-    document.getElementById('dash-rate').textContent            = avgRate ? avgRate.toFixed(1) + '%' : '0%';
-    document.getElementById('dash-inv-count').textContent       = investments.length;
-    renderTxList('dash-tx-list', txItems.slice(0, 3));
+    document.getElementById('dash-total-invested').textContent = 'KSh ' + fmt(totalInvested) + '  (~USD ' + fmt(totalInvested / USD_RATE) + ')';
+    document.getElementById('dash-monthly-return').textContent = 'KSh ' + fmt(monthly);
+    document.getElementById('dash-total-earned').textContent   = 'KSh ' + fmt(totalEarned);
+    document.getElementById('dash-rate').textContent           = avgRate ? avgRate.toFixed(1) + '%' : '0%';
+    document.getElementById('dash-inv-count').textContent      = investments.length;
+    renderTxList('dash-tx-list', allTxHistory.slice(0, 3));
   }
 
   function renderTxList(elId, items) {
@@ -745,18 +761,17 @@
   function loadHistory() { renderTxList('history-list', allTxHistory); }
 
   window.filterHistory = (type) => {
-    const filtered = type === 'all' ? allTxHistory : allTxHistory.filter(t => t.type === type);
-    renderTxList('history-list', filtered);
+    renderTxList('history-list', type === 'all' ? allTxHistory : allTxHistory.filter(t => t.type === type));
   };
 
   function loadProfile() {
     if (!currentData) return;
-    document.getElementById('profile-name').textContent     = currentData.fullName    || '—';
-    document.getElementById('profile-email').textContent    = currentData.email       || '—';
+    document.getElementById('profile-name').textContent     = currentData.fullName     || '—';
+    document.getElementById('profile-email').textContent    = currentData.email        || '—';
     document.getElementById('profile-clientno').textContent = currentData.clientNumber || '—';
-    document.getElementById('profile-phone').textContent    = currentData.phone       || '—';
-    document.getElementById('profile-id').textContent       = currentData.nationalId  || '—';
-    document.getElementById('profile-joined').textContent   = currentData.dateJoined  || '—';
+    document.getElementById('profile-phone').textContent    = currentData.phone        || '—';
+    document.getElementById('profile-id').textContent       = currentData.nationalId   || '—';
+    document.getElementById('profile-joined').textContent   = currentData.dateJoined   || '—';
     document.getElementById('profile-avatar').textContent   = (currentData.fullName||'?')[0].toUpperCase();
     const status = currentData.status || 'pending';
     document.getElementById('profile-status').innerHTML = `<span class="badge ${status==='active'?'active':'pending'}">${status}</span>`;
@@ -766,20 +781,18 @@
     document.querySelectorAll('.package-card').forEach(c => c.classList.remove('selected'));
     el.classList.add('selected'); selectedPkg = pkg;
     document.getElementById('custom-box').style.display = pkg === 'custom' ? 'block' : 'none';
-    document.getElementById('invest-error').style.display = 'none';
-    document.getElementById('invest-success').style.display = 'none';
+    document.getElementById('invest-error').style.display = document.getElementById('invest-success').style.display = 'none';
   };
 
   window.submitInvestment = () => {
     const err = document.getElementById('invest-error');
     const suc = document.getElementById('invest-success');
-    err.style.display = 'none'; suc.style.display = 'none';
+    err.style.display = suc.style.display = 'none';
     if (!selectedPkg) { err.textContent = 'Please select an investment package.'; err.style.display = 'block'; return; }
-    let amount = 0;
-    if (selectedPkg === 'custom') {
-      amount = Number(document.getElementById('custom-amount').value);
-      if (!amount || amount < 1000) { err.textContent = 'Please enter a valid amount (min KSh 1,000).'; err.style.display = 'block'; return; }
-    } else { amount = Number(selectedPkg); }
+    let amount = selectedPkg === 'custom'
+      ? Number(document.getElementById('custom-amount').value)
+      : Number(selectedPkg);
+    if (!amount || amount < 1000) { err.textContent = 'Please enter a valid amount (min KSh 1,000).'; err.style.display = 'block'; return; }
     document.getElementById('modal-body').innerHTML =
       `<strong>Package:</strong> KSh ${fmt(amount)}<br/>
        <strong>USD Equivalent:</strong> ~USD ${fmt(amount / USD_RATE)}<br/>
@@ -794,8 +807,8 @@
   window.confirmInvestment = async () => {
     closeModal();
     const amount = window._pendingAmount;
-    const suc = document.getElementById('invest-success');
     const err = document.getElementById('invest-error');
+    const suc = document.getElementById('invest-success');
     try {
       await addDoc(collection(db, 'investments'), {
         userId:        currentUser.uid,
@@ -820,7 +833,7 @@
   function fmt(n) { return Number(n).toLocaleString('en-KE', { maximumFractionDigits: 0 }); }
 
   function translateAuthError(code) {
-    const map = {
+    const m = {
       'auth/email-already-in-use':   'This email is already registered.',
       'auth/invalid-email':          'Please enter a valid email address.',
       'auth/weak-password':          'Password is too weak. Use at least 6 characters.',
@@ -829,12 +842,12 @@
       'auth/invalid-credential':     'Invalid email or password.',
       'auth/too-many-requests':      'Too many attempts. Please try again later.',
       'auth/network-request-failed': 'Network error. Check your connection.',
-      'auth/operation-not-allowed':  'Email/password login is not enabled. Please contact support.',
-      'auth/configuration-not-found':'Firebase is not configured correctly. Contact support.',
+      'auth/operation-not-allowed':  'Email/password login is not enabled. Contact support.',
+      'auth/configuration-not-found':'Firebase not configured correctly. Contact support.',
       'auth/api-key-not-valid':      'Invalid Firebase API key. Contact support.',
       'auth/app-not-authorized':     'This domain is not authorized in Firebase. Contact support.'
     };
-    return map[code] || 'Something went wrong. Please try again.';
+    return m[code] || 'Something went wrong. Please try again.';
   }
 </script>
 </body>
