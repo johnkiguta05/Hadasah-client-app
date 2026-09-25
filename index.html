@@ -8,424 +8,855 @@
 <meta name="apple-mobile-web-app-capable"           content="yes"/>
 <meta name="apple-mobile-web-app-status-bar-style"  content="black-translucent"/>
 <meta name="apple-mobile-web-app-title"             content="Hadasah"/>
-<meta name="theme-color"                            content="#0a5c36"/>
+<meta name="theme-color"                            content="#0B1F3A"/>
 <meta name="mobile-web-app-capable"                 content="yes"/>
 <meta name="description" content="Hadasah Investment Ltd – Earn 4–8% monthly returns on your portfolio."/>
 <link rel="icon" type="image/svg+xml"
-  href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230a5c36'/%3E%3Ctext y='.9em' font-size='72' x='12'%3E🌿%3C/text%3E%3C/svg%3E"/>
+  href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230B1F3A'/%3E%3Ctext y='.9em' font-size='72' x='12'%3E🌿%3C/text%3E%3C/svg%3E"/>
 <link rel="apple-touch-icon"
-  href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230a5c36'/%3E%3Ctext y='.9em' font-size='72' x='12'%3E🌿%3C/text%3E%3C/svg%3E"/>
-<link rel="manifest" href="data:application/json,%7B%22name%22%3A%22Hadasah%20Investment%20Ltd%22%2C%22short_name%22%3A%22Hadasah%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%23f4f7f5%22%2C%22theme_color%22%3A%22%230a5c36%22%7D"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet"/>
+  href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230B1F3A'/%3E%3Ctext y='.9em' font-size='72' x='12'%3E🌿%3C/text%3E%3C/svg%3E"/>
+<link rel="manifest" href="data:application/json,%7B%22name%22%3A%22Hadasah%20Investment%20Ltd%22%2C%22short_name%22%3A%22Hadasah%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%23F0F6FF%22%2C%22theme_color%22%3A%22%230B1F3A%22%7D"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
 <style>
-  :root {
-    --green-deep:  #0a5c36;
-    --green-mid:   #1a8a52;
-    --green-light: #25c26e;
-    --green-pale:  #e8f5ee;
-    --white:       #ffffff;
-    --grey-soft:   #f4f7f5;
-    --grey-text:   #6b7c74;
-    --dark:        #0d1f17;
-    --gold:        #c9a84c;
-    --red:         #d94040;
-    --radius:      14px;
-    --shadow:      0 4px 24px rgba(10,92,54,.10);
-    --safe-top:    env(safe-area-inset-top, 0px);
-    --safe-bottom: env(safe-area-inset-bottom, 0px);
-  }
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  html, body { height: 100%; font-family: 'Inter', sans-serif; background: var(--grey-soft); color: var(--dark); -webkit-tap-highlight-color: transparent; overscroll-behavior: none; }
-  .screen { display: none; min-height: 100vh; flex-direction: column; }
-  .screen.active { display: flex; }
-  .navbar { background: var(--white); padding: calc(14px + var(--safe-top)) 20px 14px; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 2px 12px rgba(10,92,54,.08); position: sticky; top: 0; z-index: 100; }
-  .navbar .logo { display: flex; align-items: center; gap: 10px; }
-  .navbar .logo-icon { width: 36px; height: 36px; background: var(--green-deep); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: var(--white); font-size: 18px; }
-  .navbar .logo-text { font-weight: 700; font-size: 15px; color: var(--green-deep); }
-  .navbar .logo-sub  { font-size: 10px; color: var(--grey-text); font-weight: 400; }
-  .nav-actions { display: flex; gap: 10px; align-items: center; }
-  .nav-name { font-size: 13px; color: var(--grey-text); }
-  .btn-logout { background: transparent; border: 1.5px solid var(--green-mid); color: var(--green-deep); padding: 7px 16px; border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer; }
-  #screen-landing { background: linear-gradient(160deg, var(--green-deep) 0%, var(--green-mid) 60%, var(--green-light) 100%); align-items: center; justify-content: center; text-align: center; padding: calc(40px + var(--safe-top)) 24px calc(40px + var(--safe-bottom)); }
-  .landing-badge { display: inline-block; background: rgba(255,255,255,.15); color: #fff; font-size: 12px; font-weight: 500; padding: 5px 14px; border-radius: 20px; margin-bottom: 24px; letter-spacing: .5px; }
-  .landing-title { font-family: 'Playfair Display', serif; font-size: clamp(32px, 8vw, 56px); color: #fff; line-height: 1.15; margin-bottom: 16px; }
-  .landing-sub { font-size: 16px; color: rgba(255,255,255,.80); max-width: 360px; margin: 0 auto 40px; line-height: 1.6; }
-  .landing-buttons { display: flex; flex-direction: column; gap: 12px; width: 100%; max-width: 320px; margin: 0 auto; }
-  .btn-primary { background: var(--white); color: var(--green-deep); border: none; padding: 16px; border-radius: var(--radius); font-size: 15px; font-weight: 700; cursor: pointer; transition: transform .15s, box-shadow .15s; }
-  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,.15); }
-  .btn-outline { background: transparent; color: var(--white); border: 2px solid rgba(255,255,255,.60); padding: 15px; border-radius: var(--radius); font-size: 15px; font-weight: 600; cursor: pointer; }
-  .landing-stats { display: flex; gap: 32px; margin-top: 48px; justify-content: center; flex-wrap: wrap; }
-  .stat-item { text-align: center; }
-  .stat-value { font-size: 26px; font-weight: 700; color: var(--white); }
-  .stat-label { font-size: 11px; color: rgba(255,255,255,.65); margin-top: 2px; }
-  #install-banner { display: none; background: var(--green-pale); border: 1px solid #b2dfc8; border-radius: 12px; padding: 14px 16px; margin: 16px 24px 0; align-items: center; gap: 12px; }
-  #install-banner.show { display: flex; }
-  #install-banner .install-text { flex: 1; font-size: 13px; color: var(--green-deep); font-weight: 500; }
-  #install-banner .btn-install { background: var(--green-deep); color: #fff; border: none; padding: 9px 16px; border-radius: 8px; font-size: 13px; font-weight: 700; cursor: pointer; white-space: nowrap; }
-  #install-banner .btn-dismiss { background: none; border: none; color: var(--grey-text); font-size: 18px; cursor: pointer; padding: 0 4px; }
-  #ios-tip { display: none; background: #fff8e6; border: 1px solid #f0d080; border-radius: 12px; padding: 14px 16px; margin: 16px 24px 0; font-size: 13px; color: #7a5500; line-height: 1.6; }
-  #ios-tip.show { display: block; }
-  #screen-login, #screen-register { background: var(--grey-soft); align-items: center; justify-content: center; padding: 24px; }
-  .auth-card { background: var(--white); border-radius: 20px; padding: 36px 32px; width: 100%; max-width: 400px; box-shadow: var(--shadow); }
-  .auth-logo { width: 52px; height: 52px; background: var(--green-deep); border-radius: 14px; display: flex; align-items: center; justify-content: center; color: var(--white); font-size: 24px; margin: 0 auto 20px; }
-  .auth-title { font-family: 'Playfair Display', serif; font-size: 24px; text-align: center; color: var(--dark); margin-bottom: 6px; }
-  .auth-sub { text-align: center; font-size: 13px; color: var(--grey-text); margin-bottom: 28px; }
-  .form-group { margin-bottom: 16px; }
-  .form-label { font-size: 13px; font-weight: 600; color: var(--dark); margin-bottom: 6px; display: block; }
-  .form-input { width: 100%; padding: 13px 16px; border: 1.5px solid #dde8e2; border-radius: 10px; font-size: 14px; font-family: 'Inter', sans-serif; background: var(--grey-soft); color: var(--dark); transition: border-color .2s; }
-  .form-input:focus { outline: none; border-color: var(--green-mid); background: #fff; }
-  .btn-green { width: 100%; background: var(--green-deep); color: var(--white); border: none; padding: 15px; border-radius: 10px; font-size: 15px; font-weight: 700; cursor: pointer; margin-top: 8px; transition: background .2s; }
-  .btn-green:hover { background: var(--green-mid); }
-  .btn-green:disabled { background: #aaa; cursor: not-allowed; }
-  .auth-switch { text-align: center; margin-top: 20px; font-size: 13px; color: var(--grey-text); }
-  .auth-switch a { color: var(--green-deep); font-weight: 600; cursor: pointer; text-decoration: none; }
-  .auth-back { text-align: center; margin-bottom: 16px; }
-  .auth-back a { color: var(--green-deep); font-size: 13px; cursor: pointer; }
-  .forgot-link { text-align: right; margin-top: -8px; margin-bottom: 12px; }
-  .forgot-link a { font-size: 12px; color: var(--green-mid); cursor: pointer; font-weight: 600; }
-  .error-msg { background: #fef0f0; color: var(--red); border: 1px solid #fcc; padding: 10px 14px; border-radius: 8px; font-size: 13px; margin-bottom: 14px; display: none; }
-  .success-msg { background: var(--green-pale); color: var(--green-deep); border: 1px solid #b2dfc8; padding: 10px 14px; border-radius: 8px; font-size: 13px; margin-bottom: 14px; display: none; }
-  /* Debug box — visible during reg so user can see exactly what's happening */
-  .debug-box { background: #f0f4ff; border: 1px solid #b0c0ff; color: #1a2a6c; padding: 10px 14px; border-radius: 8px; font-size: 12px; margin-bottom: 14px; display: none; font-family: monospace; white-space: pre-wrap; line-height: 1.5; }
-  .debug-box.show { display: block; }
-  #screen-dashboard { background: var(--grey-soft); }
-  .page-content { padding: 20px 16px; flex: 1; overflow-y: auto; }
-  .page-title { font-size: 20px; font-weight: 700; color: var(--dark); margin-bottom: 4px; }
-  .page-sub   { font-size: 13px; color: var(--grey-text); margin-bottom: 20px; }
-  .portfolio-banner { background: linear-gradient(135deg, var(--green-deep), var(--green-mid)); border-radius: var(--radius); padding: 24px 20px; color: #fff; margin-bottom: 16px; }
-  .portfolio-label  { font-size: 12px; opacity: .75; margin-bottom: 6px; }
-  .portfolio-amount { font-size: 34px; font-weight: 700; margin-bottom: 2px; }
-  .portfolio-sub    { font-size: 12px; opacity: .75; }
-  .portfolio-row    { display: flex; gap: 12px; margin-top: 16px; }
-  .portfolio-mini   { flex: 1; background: rgba(255,255,255,.15); border-radius: 10px; padding: 12px; }
-  .portfolio-mini-label { font-size: 10px; opacity: .75; margin-bottom: 4px; }
-  .portfolio-mini-value { font-size: 17px; font-weight: 700; }
-  .cards-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px; }
-  .stat-card  { background: var(--white); border-radius: var(--radius); padding: 18px 16px; box-shadow: var(--shadow); }
-  .stat-card-label { font-size: 11px; color: var(--grey-text); margin-bottom: 6px; font-weight: 500; }
-  .stat-card-value { font-size: 20px; font-weight: 700; color: var(--dark); }
-  .stat-card-value.green { color: var(--green-deep); }
-  .stat-card-value.gold  { color: var(--gold); }
-  .section-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
-  .section-title { font-size: 15px; font-weight: 700; color: var(--dark); }
-  .section-link  { font-size: 12px; color: var(--green-mid); cursor: pointer; font-weight: 600; }
-  .tx-list { display: flex; flex-direction: column; gap: 10px; }
-  .tx-item { background: var(--white); border-radius: 12px; padding: 14px 16px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 8px rgba(10,92,54,.06); }
-  .tx-left { display: flex; align-items: center; gap: 12px; }
-  .tx-icon { width: 38px; height: 38px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 17px; }
-  .tx-icon.invest { background: var(--green-pale); }
-  .tx-icon.return { background: #fff8e6; }
-  .tx-type   { font-size: 13px; font-weight: 600; color: var(--dark); }
-  .tx-date   { font-size: 11px; color: var(--grey-text); margin-top: 2px; }
-  .tx-amount { font-size: 14px; font-weight: 700; }
-  .tx-amount.positive { color: var(--green-deep); }
-  .tx-amount.neutral  { color: var(--gold); }
-  .badge { font-size: 10px; font-weight: 700; padding: 3px 9px; border-radius: 20px; text-transform: uppercase; }
-  .badge.active   { background: var(--green-pale); color: var(--green-deep); }
-  .badge.pending  { background: #fff8e6; color: #9a6f00; }
-  .badge.rejected { background: #fef0f0; color: var(--red); }
-  #screen-invest  { background: var(--grey-soft); }
-  .packages-grid  { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px; }
-  .package-card   { background: var(--white); border-radius: var(--radius); padding: 20px 16px; text-align: center; cursor: pointer; border: 2px solid transparent; box-shadow: var(--shadow); transition: border-color .2s, transform .15s; }
-  .package-card:hover    { transform: translateY(-2px); }
-  .package-card.selected { border-color: var(--green-mid); background: var(--green-pale); }
-  .package-amount   { font-size: 20px; font-weight: 700; color: var(--green-deep); }
-  .package-currency { font-size: 11px; color: var(--grey-text); margin-top: 3px; }
-  .package-returns  { font-size: 11px; color: var(--green-mid); margin-top: 8px; font-weight: 600; }
-  .custom-box { background: var(--white); border-radius: var(--radius); padding: 20px; margin-bottom: 20px; box-shadow: var(--shadow); }
-  .custom-box-title { font-size: 14px; font-weight: 700; margin-bottom: 12px; color: var(--dark); }
-  #screen-history { background: var(--grey-soft); }
-  #screen-profile { background: var(--grey-soft); }
-  .bottom-nav { background: var(--white); display: flex; border-top: 1px solid #e8ede9; position: sticky; bottom: 0; box-shadow: 0 -4px 16px rgba(10,92,54,.08); padding-bottom: var(--safe-bottom); }
-  .nav-item { flex: 1; display: flex; flex-direction: column; align-items: center; padding: 10px 0 12px; cursor: pointer; transition: color .2s; color: var(--grey-text); font-size: 10px; font-weight: 500; gap: 4px; border: none; background: transparent; }
-  .nav-item.active { color: var(--green-deep); }
-  .nav-item svg { width: 22px; height: 22px; }
-  .loader { display: inline-block; width: 18px; height: 18px; border: 2.5px solid rgba(255,255,255,.4); border-top-color: #fff; border-radius: 50%; animation: spin .7s linear infinite; vertical-align: middle; }
-  @keyframes spin { to { transform: rotate(360deg); } }
-  .empty-state { text-align: center; padding: 40px 20px; color: var(--grey-text); }
-  .empty-icon  { font-size: 40px; margin-bottom: 10px; }
-  .empty-text  { font-size: 14px; }
-  .pending-notice { background: #fff8e6; border: 1px solid #f0d080; border-radius: 10px; padding: 14px 16px; font-size: 13px; color: #7a5500; margin-bottom: 16px; display: none; }
-  .blocked-notice { background: #fef0f0; border: 1px solid #fcc; border-radius: 10px; padding: 18px 16px; font-size: 14px; color: var(--red); margin-bottom: 16px; text-align: center; line-height: 1.6; display: none; }
-  .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,.5); display: none; align-items: center; justify-content: center; z-index: 999; padding: 20px; }
-  .modal-overlay.open { display: flex; }
-  .modal-box { background: var(--white); border-radius: 20px; padding: 28px 24px; width: 100%; max-width: 360px; box-shadow: 0 20px 60px rgba(0,0,0,.2); }
-  .modal-title   { font-size: 18px; font-weight: 700; margin-bottom: 8px; color: var(--dark); }
-  .modal-body    { font-size: 14px; color: var(--grey-text); margin-bottom: 24px; line-height: 1.6; }
-  .modal-actions { display: flex; gap: 10px; }
-  .btn-cancel  { flex: 1; padding: 13px; border-radius: 10px; border: 1.5px solid #dde8e2; background: transparent; font-size: 14px; font-weight: 600; cursor: pointer; color: var(--dark); }
-  .btn-confirm { flex: 1; padding: 13px; border-radius: 10px; border: none; background: var(--green-deep); font-size: 14px; font-weight: 700; cursor: pointer; color: #fff; }
-  select.form-input { appearance: none; }
+/* ═══════════════════════════════════════════════
+   TOKENS
+═══════════════════════════════════════════════ */
+:root {
+  --navy:        #0B1F3A;
+  --navy-mid:    #142d52;
+  --navy-soft:   #1e3f70;
+  --emerald:     #0E7C50;
+  --emerald-mid: #13a068;
+  --emerald-pale:#e6f7f0;
+  --sky:         #3B9EE8;
+  --sky-pale:    #e8f4fd;
+  --sky-mid:     #1d7ec9;
+  --white:       #ffffff;
+  --page-bg:     #F0F5FB;
+  --card-border: #dde8f5;
+  --text-main:   #0B1F3A;
+  --text-mid:    #4a6080;
+  --text-soft:   #8aa0bc;
+  --gold:        #e8a020;
+  --gold-pale:   #fff8e6;
+  --red:         #d94040;
+  --red-pale:    #fef0f0;
+  --radius-lg:   18px;
+  --radius-md:   12px;
+  --radius-sm:   8px;
+  --shadow-card: 0 2px 16px rgba(11,31,58,.08);
+  --shadow-hero: 0 8px 40px rgba(11,31,58,.18);
+  --safe-top:    env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+/* ═══════════════════════════════════════════════
+   RESET & BASE
+═══════════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body {
+  height: 100%;
+  font-family: 'Inter', system-ui, sans-serif;
+  background: var(--page-bg);
+  color: var(--text-main);
+  -webkit-tap-highlight-color: transparent;
+  overscroll-behavior: none;
+  font-size: 15px;
+}
+
+/* ═══════════════════════════════════════════════
+   SCREENS
+═══════════════════════════════════════════════ */
+.screen { display: none; min-height: 100vh; flex-direction: column; }
+.screen.active { display: flex; }
+
+/* ═══════════════════════════════════════════════
+   LANDING
+═══════════════════════════════════════════════ */
+#screen-landing {
+  background: linear-gradient(150deg, var(--navy) 0%, var(--navy-mid) 45%, #1a4a80 100%);
+  align-items: center; justify-content: center; text-align: center;
+  padding: calc(48px + var(--safe-top)) 28px calc(48px + var(--safe-bottom));
+  position: relative; overflow: hidden;
+}
+#screen-landing::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(59,158,232,.18) 0%, transparent 70%);
+  pointer-events: none;
+}
+.landing-pill {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: rgba(59,158,232,.18); border: 1px solid rgba(59,158,232,.35);
+  color: #7ec8f5; font-size: 12px; font-weight: 600;
+  padding: 6px 16px; border-radius: 40px; margin-bottom: 32px;
+  letter-spacing: .3px;
+}
+.landing-pill span { width: 6px; height: 6px; border-radius: 50%; background: #3B9EE8; display: inline-block; animation: pulse 2s infinite; }
+@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(1.3)} }
+.landing-title {
+  font-size: clamp(34px, 9vw, 58px);
+  font-weight: 800; color: #fff; line-height: 1.1;
+  margin-bottom: 18px; letter-spacing: -.5px;
+}
+.landing-title em { color: #3B9EE8; font-style: normal; }
+.landing-sub {
+  font-size: 16px; color: rgba(255,255,255,.65);
+  max-width: 340px; margin: 0 auto 44px; line-height: 1.65; font-weight: 400;
+}
+.landing-cta { display: flex; flex-direction: column; gap: 12px; width: 100%; max-width: 320px; margin: 0 auto; }
+.btn-hero {
+  background: var(--sky); color: #fff; border: none;
+  padding: 17px; border-radius: var(--radius-md);
+  font-size: 15px; font-weight: 700; cursor: pointer;
+  box-shadow: 0 6px 24px rgba(59,158,232,.38);
+  transition: transform .15s, box-shadow .15s;
+}
+.btn-hero:hover { transform: translateY(-2px); box-shadow: 0 10px 32px rgba(59,158,232,.45); }
+.btn-ghost {
+  background: rgba(255,255,255,.08); color: #fff;
+  border: 1.5px solid rgba(255,255,255,.25);
+  padding: 16px; border-radius: var(--radius-md);
+  font-size: 15px; font-weight: 600; cursor: pointer;
+  transition: background .2s;
+}
+.btn-ghost:hover { background: rgba(255,255,255,.14); }
+.landing-stats {
+  display: flex; gap: 0; margin-top: 56px;
+  background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.12);
+  border-radius: var(--radius-md); overflow: hidden; max-width: 340px; width: 100%;
+}
+.lstat { flex: 1; padding: 18px 12px; text-align: center; }
+.lstat + .lstat { border-left: 1px solid rgba(255,255,255,.1); }
+.lstat-val { font-size: 22px; font-weight: 800; color: #fff; }
+.lstat-lbl { font-size: 10px; color: rgba(255,255,255,.5); margin-top: 3px; font-weight: 500; text-transform: uppercase; letter-spacing: .5px; }
+
+/* install banners */
+#install-banner { display: none; background: rgba(59,158,232,.12); border: 1px solid rgba(59,158,232,.3); border-radius: var(--radius-md); padding: 14px 16px; margin: 16px 24px 0; align-items: center; gap: 12px; }
+#install-banner.show { display: flex; }
+#install-banner .install-text { flex: 1; font-size: 13px; color: #7ec8f5; font-weight: 500; }
+#install-banner .btn-install { background: var(--sky); color: #fff; border: none; padding: 9px 16px; border-radius: var(--radius-sm); font-size: 13px; font-weight: 700; cursor: pointer; }
+#install-banner .btn-dismiss { background: none; border: none; color: rgba(255,255,255,.4); font-size: 18px; cursor: pointer; }
+#ios-tip { display: none; background: rgba(255,248,230,.1); border: 1px solid rgba(232,160,32,.3); border-radius: var(--radius-md); padding: 14px 16px; margin: 16px 24px 0; font-size: 13px; color: #f5d580; line-height: 1.6; }
+#ios-tip.show { display: block; }
+
+/* ═══════════════════════════════════════════════
+   AUTH SCREENS
+═══════════════════════════════════════════════ */
+#screen-login, #screen-register {
+  background: var(--page-bg);
+  align-items: center; justify-content: center; padding: 24px;
+}
+.auth-wrap { width: 100%; max-width: 420px; }
+.auth-header { text-align: center; margin-bottom: 32px; }
+.auth-logo-mark {
+  width: 56px; height: 56px;
+  background: linear-gradient(135deg, var(--navy), var(--navy-soft));
+  border-radius: 16px; display: inline-flex; align-items: center;
+  justify-content: center; font-size: 26px; margin-bottom: 16px;
+  box-shadow: 0 4px 20px rgba(11,31,58,.2);
+}
+.auth-title { font-size: 26px; font-weight: 800; color: var(--navy); margin-bottom: 6px; letter-spacing: -.3px; }
+.auth-sub { font-size: 14px; color: var(--text-mid); }
+.auth-card {
+  background: var(--white); border-radius: var(--radius-lg);
+  padding: 32px 28px; box-shadow: var(--shadow-card);
+  border: 1px solid var(--card-border);
+}
+.auth-back { margin-bottom: 20px; }
+.auth-back a { color: var(--sky); font-size: 13px; cursor: pointer; font-weight: 600; display: inline-flex; align-items: center; gap: 4px; }
+.form-group { margin-bottom: 16px; }
+.form-label { font-size: 12px; font-weight: 700; color: var(--text-mid); margin-bottom: 7px; display: block; text-transform: uppercase; letter-spacing: .4px; }
+.form-input {
+  width: 100%; padding: 13px 15px;
+  border: 1.5px solid var(--card-border);
+  border-radius: var(--radius-sm);
+  font-size: 14px; font-family: 'Inter', sans-serif;
+  background: var(--page-bg); color: var(--text-main);
+  transition: border-color .2s, background .2s;
+}
+.form-input:focus { outline: none; border-color: var(--sky); background: #fff; }
+.btn-primary-auth {
+  width: 100%; background: linear-gradient(135deg, var(--navy), var(--navy-soft));
+  color: #fff; border: none; padding: 15px;
+  border-radius: var(--radius-sm); font-size: 15px; font-weight: 700;
+  cursor: pointer; margin-top: 8px; transition: opacity .2s;
+  box-shadow: 0 4px 16px rgba(11,31,58,.25);
+}
+.btn-primary-auth:hover { opacity: .9; }
+.btn-primary-auth:disabled { opacity: .5; cursor: not-allowed; }
+.auth-switch { text-align: center; margin-top: 20px; font-size: 13px; color: var(--text-soft); }
+.auth-switch a { color: var(--sky); font-weight: 600; cursor: pointer; text-decoration: none; }
+.forgot-link { text-align: right; margin-top: -8px; margin-bottom: 12px; }
+.forgot-link a { font-size: 12px; color: var(--sky); cursor: pointer; font-weight: 600; }
+.error-msg { background: var(--red-pale); color: var(--red); border: 1px solid #fcc; padding: 11px 14px; border-radius: var(--radius-sm); font-size: 13px; margin-bottom: 14px; display: none; line-height: 1.5; }
+.success-msg { background: var(--emerald-pale); color: var(--emerald); border: 1px solid #a8dfc8; padding: 11px 14px; border-radius: var(--radius-sm); font-size: 13px; margin-bottom: 14px; display: none; }
+.debug-box { background: #f0f4ff; border: 1px solid #b0c0ff; color: #1a2a6c; padding: 11px 14px; border-radius: var(--radius-sm); font-size: 11px; margin-bottom: 14px; display: none; font-family: monospace; white-space: pre-wrap; line-height: 1.5; }
+.debug-box.show { display: block; }
+
+/* ═══════════════════════════════════════════════
+   DASHBOARD NAVBAR
+═══════════════════════════════════════════════ */
+.top-bar {
+  background: var(--navy);
+  padding: calc(16px + var(--safe-top)) 20px 16px;
+  display: flex; align-items: center; justify-content: space-between;
+  position: sticky; top: 0; z-index: 100;
+}
+.top-bar-logo { display: flex; align-items: center; gap: 10px; }
+.top-bar-icon {
+  width: 34px; height: 34px;
+  background: linear-gradient(135deg, var(--sky), var(--sky-mid));
+  border-radius: 9px; display: flex; align-items: center;
+  justify-content: center; font-size: 16px;
+}
+.top-bar-name { font-weight: 700; font-size: 14px; color: #fff; }
+.top-bar-sub  { font-size: 10px; color: rgba(255,255,255,.45); margin-top: 1px; }
+.top-bar-right { display: flex; align-items: center; gap: 10px; }
+.greeting-chip {
+  font-size: 12px; color: rgba(255,255,255,.6); font-weight: 500;
+}
+.btn-logout-sm {
+  background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.18);
+  color: rgba(255,255,255,.8); padding: 6px 13px; border-radius: 20px;
+  font-size: 12px; font-weight: 600; cursor: pointer;
+  transition: background .2s;
+}
+.btn-logout-sm:hover { background: rgba(255,255,255,.18); }
+
+/* ═══════════════════════════════════════════════
+   DASHBOARD CONTENT
+═══════════════════════════════════════════════ */
+.page-scroll { flex: 1; overflow-y: auto; padding-bottom: calc(80px + var(--safe-bottom)); }
+
+/* ── Hero Portfolio Card ── */
+.hero-card {
+  margin: 0;
+  background: linear-gradient(135deg, var(--navy) 0%, #1a3a65 50%, var(--navy-soft) 100%);
+  padding: 28px 20px 24px;
+  position: relative; overflow: hidden;
+}
+.hero-card::after {
+  content: '';
+  position: absolute; right: -40px; top: -40px;
+  width: 200px; height: 200px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(59,158,232,.2) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-card::before {
+  content: '';
+  position: absolute; left: -20px; bottom: -30px;
+  width: 160px; height: 160px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(14,124,80,.18) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-label { font-size: 11px; color: rgba(255,255,255,.5); font-weight: 600; text-transform: uppercase; letter-spacing: .8px; margin-bottom: 8px; }
+.hero-amount { font-size: 38px; font-weight: 800; color: #fff; letter-spacing: -1px; line-height: 1; margin-bottom: 4px; }
+.hero-usd { font-size: 13px; color: rgba(255,255,255,.45); margin-bottom: 24px; font-weight: 400; }
+.hero-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.hero-mini {
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: var(--radius-md); padding: 14px 16px;
+}
+.hero-mini-label { font-size: 10px; color: rgba(255,255,255,.45); font-weight: 600; text-transform: uppercase; letter-spacing: .5px; margin-bottom: 6px; }
+.hero-mini-value { font-size: 18px; font-weight: 700; color: #fff; }
+.hero-mini-value.sky { color: #7ec8f5; }
+.hero-mini-value.emerald { color: #5ed4a0; }
+
+/* status alert in hero area */
+.status-bar {
+  display: none;
+  margin: 0; padding: 11px 20px;
+  background: var(--gold-pale);
+  border-bottom: 1px solid rgba(232,160,32,.2);
+  font-size: 12px; color: #8a5500; font-weight: 500;
+  align-items: center; gap: 8px;
+}
+.status-bar.show { display: flex; }
+.status-bar.active-bar { background: var(--emerald-pale); color: var(--emerald); border-bottom-color: rgba(14,124,80,.15); }
+
+/* ── Stats Strip ── */
+.stats-strip {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 0; margin: 16px 16px 0;
+  background: var(--white); border-radius: var(--radius-lg);
+  border: 1px solid var(--card-border); overflow: hidden;
+  box-shadow: var(--shadow-card);
+}
+.strip-item { padding: 16px 12px; text-align: center; position: relative; }
+.strip-item + .strip-item::before {
+  content: ''; position: absolute; left: 0; top: 20%; height: 60%;
+  width: 1px; background: var(--card-border);
+}
+.strip-icon { font-size: 18px; margin-bottom: 6px; }
+.strip-value { font-size: 16px; font-weight: 800; color: var(--text-main); margin-bottom: 2px; }
+.strip-value.sky     { color: var(--sky); }
+.strip-value.emerald { color: var(--emerald); }
+.strip-value.navy    { color: var(--navy); }
+.strip-label { font-size: 10px; color: var(--text-soft); font-weight: 500; text-transform: uppercase; letter-spacing: .3px; }
+
+/* status badge */
+.status-badge {
+  display: inline-block; font-size: 11px; font-weight: 700;
+  padding: 3px 10px; border-radius: 20px; text-transform: uppercase; letter-spacing: .3px;
+}
+.status-badge.pending  { background: var(--gold-pale); color: #8a5500; }
+.status-badge.active   { background: var(--emerald-pale); color: var(--emerald); }
+.status-badge.rejected { background: var(--red-pale); color: var(--red); }
+
+/* ── Section heading ── */
+.section-hd {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 20px 16px 12px;
+}
+.section-hd-title {
+  font-size: 14px; font-weight: 700; color: var(--text-main);
+  display: flex; align-items: center; gap: 8px;
+}
+.section-hd-title .dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--sky); display: inline-block;
+}
+.section-hd-link { font-size: 12px; color: var(--sky); font-weight: 600; cursor: pointer; }
+
+/* ── Transaction cards ── */
+.tx-list { padding: 0 16px; display: flex; flex-direction: column; gap: 8px; }
+.tx-card {
+  background: var(--white); border-radius: var(--radius-md);
+  padding: 14px 16px; display: flex;
+  justify-content: space-between; align-items: center;
+  border: 1px solid var(--card-border);
+  box-shadow: 0 1px 8px rgba(11,31,58,.05);
+}
+.tx-left { display: flex; align-items: center; gap: 12px; }
+.tx-icon-wrap {
+  width: 40px; height: 40px; border-radius: 11px;
+  display: flex; align-items: center; justify-content: center; font-size: 18px;
+  flex-shrink: 0;
+}
+.tx-icon-wrap.invest { background: var(--sky-pale); }
+.tx-icon-wrap.earn   { background: var(--emerald-pale); }
+.tx-type { font-size: 13px; font-weight: 600; color: var(--text-main); }
+.tx-date { font-size: 11px; color: var(--text-soft); margin-top: 2px; }
+.tx-right { text-align: right; }
+.tx-amount { font-size: 14px; font-weight: 700; }
+.tx-amount.credit { color: var(--emerald); }
+.tx-amount.debit  { color: var(--sky); }
+
+.empty-state {
+  text-align: center; padding: 44px 20px;
+  color: var(--text-soft);
+}
+.empty-icon { font-size: 36px; margin-bottom: 10px; opacity: .5; }
+.empty-text { font-size: 13px; }
+
+/* ═══════════════════════════════════════════════
+   INVEST SCREEN
+═══════════════════════════════════════════════ */
+#screen-invest { background: var(--page-bg); }
+.invest-header {
+  background: linear-gradient(135deg, var(--navy), var(--navy-soft));
+  padding: calc(24px + var(--safe-top)) 20px 24px;
+}
+.invest-header-title { font-size: 22px; font-weight: 800; color: #fff; margin-bottom: 4px; }
+.invest-header-sub { font-size: 13px; color: rgba(255,255,255,.5); }
+
+.invest-content { padding: 20px 16px; }
+.invest-blocked-notice {
+  background: var(--gold-pale); border: 1px solid rgba(232,160,32,.3);
+  border-radius: var(--radius-md); padding: 14px 16px;
+  font-size: 13px; color: #7a5500; margin-bottom: 16px; display: none; line-height: 1.6;
+}
+
+.pkg-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 16px; }
+.pkg-card {
+  background: var(--white); border-radius: var(--radius-md);
+  padding: 18px 14px; cursor: pointer;
+  border: 2px solid var(--card-border);
+  box-shadow: 0 1px 8px rgba(11,31,58,.05);
+  transition: border-color .2s, transform .15s, background .2s;
+  position: relative; overflow: hidden;
+}
+.pkg-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--sky), var(--emerald));
+  opacity: 0; transition: opacity .2s;
+}
+.pkg-card:hover, .pkg-card.selected { border-color: var(--sky); background: var(--sky-pale); }
+.pkg-card:hover::before, .pkg-card.selected::before { opacity: 1; }
+.pkg-card.selected { border-color: var(--sky); }
+.pkg-amount { font-size: 18px; font-weight: 800; color: var(--navy); }
+.pkg-usd { font-size: 11px; color: var(--text-soft); margin-top: 3px; }
+.pkg-ret { font-size: 11px; color: var(--emerald); margin-top: 8px; font-weight: 600; background: var(--emerald-pale); display: inline-block; padding: 2px 8px; border-radius: 20px; }
+
+.custom-box {
+  background: var(--white); border-radius: var(--radius-md);
+  padding: 20px; margin-bottom: 16px;
+  border: 1px solid var(--card-border); box-shadow: var(--shadow-card);
+}
+.custom-box-title { font-size: 13px; font-weight: 700; margin-bottom: 12px; color: var(--text-main); }
+
+.btn-invest {
+  width: 100%; background: linear-gradient(135deg, var(--sky), var(--sky-mid));
+  color: #fff; border: none; padding: 16px;
+  border-radius: var(--radius-md); font-size: 15px; font-weight: 700;
+  cursor: pointer; box-shadow: 0 4px 20px rgba(59,158,232,.3);
+  transition: opacity .2s, transform .15s;
+}
+.btn-invest:hover { opacity: .92; transform: translateY(-1px); }
+.invest-note { font-size: 11px; color: var(--text-soft); margin-top: 10px; text-align: center; line-height: 1.5; }
+
+/* ═══════════════════════════════════════════════
+   HISTORY SCREEN
+═══════════════════════════════════════════════ */
+#screen-history { background: var(--page-bg); }
+.history-header {
+  background: linear-gradient(135deg, #1a3a65, var(--navy-soft));
+  padding: calc(24px + var(--safe-top)) 20px 24px;
+}
+.history-header-title { font-size: 22px; font-weight: 800; color: #fff; margin-bottom: 4px; }
+.history-header-sub { font-size: 13px; color: rgba(255,255,255,.5); }
+.history-filter { padding: 16px 16px 0; }
+.filter-tabs { display: flex; gap: 8px; }
+.filter-tab {
+  padding: 8px 16px; border-radius: 20px; font-size: 12px; font-weight: 600;
+  border: 1.5px solid var(--card-border); background: var(--white);
+  color: var(--text-mid); cursor: pointer; transition: all .2s;
+}
+.filter-tab.active { background: var(--navy); color: #fff; border-color: var(--navy); }
+.history-list { padding: 16px; display: flex; flex-direction: column; gap: 8px; }
+
+/* ═══════════════════════════════════════════════
+   PROFILE SCREEN
+═══════════════════════════════════════════════ */
+#screen-profile { background: var(--page-bg); }
+.profile-hero {
+  background: linear-gradient(135deg, var(--navy), var(--navy-soft));
+  padding: calc(28px + var(--safe-top)) 20px 32px;
+  text-align: center; position: relative;
+}
+.profile-avatar-wrap {
+  width: 72px; height: 72px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--sky), var(--emerald));
+  display: flex; align-items: center; justify-content: center;
+  font-size: 28px; font-weight: 800; color: #fff;
+  margin: 0 auto 14px;
+  box-shadow: 0 4px 20px rgba(0,0,0,.2);
+  border: 3px solid rgba(255,255,255,.2);
+}
+.profile-hero-name { font-size: 20px; font-weight: 800; color: #fff; margin-bottom: 4px; }
+.profile-hero-email { font-size: 13px; color: rgba(255,255,255,.5); margin-bottom: 12px; }
+.profile-hero-clientno {
+  display: inline-block; background: rgba(59,158,232,.2);
+  border: 1px solid rgba(59,158,232,.35); color: #7ec8f5;
+  font-size: 12px; font-weight: 700; padding: 5px 14px; border-radius: 20px;
+}
+.profile-card {
+  margin: 16px 16px 0;
+  background: var(--white); border-radius: var(--radius-lg);
+  border: 1px solid var(--card-border); box-shadow: var(--shadow-card);
+  overflow: hidden;
+}
+.profile-row {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 15px 18px; border-bottom: 1px solid var(--page-bg);
+}
+.profile-row:last-child { border-bottom: none; }
+.profile-row-label { font-size: 12px; color: var(--text-soft); font-weight: 500; }
+.profile-row-value { font-size: 13px; font-weight: 700; color: var(--text-main); text-align: right; }
+.profile-row-value.sky { color: var(--sky); }
+.btn-signout {
+  margin: 16px; width: calc(100% - 32px);
+  background: var(--red-pale); color: var(--red);
+  border: 1.5px solid rgba(217,64,64,.25);
+  padding: 14px; border-radius: var(--radius-md);
+  font-size: 14px; font-weight: 700; cursor: pointer;
+  transition: background .2s;
+}
+.btn-signout:hover { background: #fde0e0; }
+
+/* ═══════════════════════════════════════════════
+   BOTTOM NAV
+═══════════════════════════════════════════════ */
+.bottom-nav {
+  background: var(--white);
+  border-top: 1px solid var(--card-border);
+  display: flex;
+  position: sticky; bottom: 0; z-index: 100;
+  box-shadow: 0 -4px 20px rgba(11,31,58,.08);
+  padding-bottom: var(--safe-bottom);
+}
+.nav-btn {
+  flex: 1; display: flex; flex-direction: column;
+  align-items: center; padding: 11px 0 13px;
+  cursor: pointer; border: none; background: transparent;
+  color: var(--text-soft); font-size: 10px; font-weight: 600; gap: 4px;
+  transition: color .2s; letter-spacing: .2px;
+  position: relative;
+}
+.nav-btn.active { color: var(--navy); }
+.nav-btn.active::before {
+  content: ''; position: absolute; top: 0; left: 50%;
+  transform: translateX(-50%);
+  width: 32px; height: 3px; border-radius: 0 0 4px 4px;
+  background: linear-gradient(90deg, var(--sky), var(--emerald));
+}
+.nav-btn svg { width: 21px; height: 21px; }
+
+/* ═══════════════════════════════════════════════
+   MODAL
+═══════════════════════════════════════════════ */
+.modal-overlay {
+  position: fixed; inset: 0; background: rgba(11,31,58,.6);
+  display: none; align-items: flex-end; justify-content: center;
+  z-index: 999; padding: 0;
+}
+.modal-overlay.open { display: flex; }
+.modal-sheet {
+  background: var(--white); border-radius: 24px 24px 0 0;
+  padding: 28px 24px calc(32px + var(--safe-bottom));
+  width: 100%; max-width: 480px;
+  box-shadow: 0 -8px 40px rgba(11,31,58,.2);
+}
+.modal-handle { width: 40px; height: 4px; border-radius: 2px; background: #dde; margin: 0 auto 20px; }
+.modal-title { font-size: 18px; font-weight: 800; color: var(--navy); margin-bottom: 6px; }
+.modal-sub { font-size: 13px; color: var(--text-mid); margin-bottom: 20px; line-height: 1.6; }
+.modal-detail {
+  background: var(--page-bg); border-radius: var(--radius-md);
+  padding: 16px; margin-bottom: 20px;
+}
+.modal-detail-row { display: flex; justify-content: space-between; padding: 6px 0; font-size: 13px; }
+.modal-detail-row:not(:last-child) { border-bottom: 1px solid var(--card-border); }
+.modal-detail-row span:first-child { color: var(--text-mid); }
+.modal-detail-row span:last-child { font-weight: 700; color: var(--navy); }
+.modal-actions { display: flex; gap: 10px; }
+.btn-modal-cancel {
+  flex: 1; padding: 14px; border-radius: var(--radius-md);
+  border: 1.5px solid var(--card-border); background: transparent;
+  font-size: 14px; font-weight: 600; cursor: pointer; color: var(--text-mid);
+}
+.btn-modal-confirm {
+  flex: 2; padding: 14px; border-radius: var(--radius-md);
+  border: none;
+  background: linear-gradient(135deg, var(--sky), var(--sky-mid));
+  font-size: 14px; font-weight: 700; cursor: pointer; color: #fff;
+  box-shadow: 0 4px 16px rgba(59,158,232,.3);
+}
+
+/* ═══════════════════════════════════════════════
+   LOADER
+═══════════════════════════════════════════════ */
+.loader { display: inline-block; width: 16px; height: 16px; border: 2.5px solid rgba(255,255,255,.3); border-top-color: #fff; border-radius: 50%; animation: spin .7s linear infinite; vertical-align: middle; margin-right: 6px; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+select.form-input { appearance: none; }
 </style>
 </head>
 <body>
 
-<!-- LANDING -->
+<!-- ═══════════════════════ LANDING ═══════════════════════ -->
 <div id="screen-landing" class="screen active">
-  <div style="padding:40px 24px 0; text-align:center; flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center;">
-    <div class="landing-badge">Trusted Investment Platform</div>
-    <h1 class="landing-title">Grow Your<br/>Wealth With Us</h1>
-    <p class="landing-sub">Join Hadasah Investment Ltd and earn 4–8% monthly returns on your investment portfolio.</p>
-    <div class="landing-buttons">
-      <button class="btn-primary" onclick="showScreen('register')">Create Account</button>
-      <button class="btn-outline" onclick="showScreen('login')">Sign In</button>
+  <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;z-index:1;">
+    <div class="landing-pill"><span></span> Live Investment Platform</div>
+    <h1 class="landing-title">Grow Your<br/><em>Wealth</em> With Us</h1>
+    <p class="landing-sub">Earn 4–8% monthly returns on your portfolio, managed by Hadasah Investment Ltd.</p>
+    <div class="landing-cta">
+      <button class="btn-hero" onclick="showScreen('register')">Open an Account</button>
+      <button class="btn-ghost" onclick="showScreen('login')">Sign In</button>
     </div>
     <div class="landing-stats">
-      <div class="stat-item"><div class="stat-value">4–8%</div><div class="stat-label">Monthly Returns</div></div>
-      <div class="stat-item"><div class="stat-value">KSh 10K+</div><div class="stat-label">Min Investment</div></div>
-      <div class="stat-item"><div class="stat-value">100%</div><div class="stat-label">Secure</div></div>
+      <div class="lstat"><div class="lstat-val">4–8%</div><div class="lstat-lbl">Monthly</div></div>
+      <div class="lstat"><div class="lstat-val">KSh 10K</div><div class="lstat-lbl">Min. Entry</div></div>
+      <div class="lstat"><div class="lstat-val">100%</div><div class="lstat-lbl">Secure</div></div>
     </div>
   </div>
   <div id="install-banner">
-    <span class="install-text">📲 Install Hadasah as an app on your phone!</span>
+    <span class="install-text">📲 Install Hadasah as an app for quick access!</span>
     <button class="btn-install" onclick="triggerInstall()">Install</button>
     <button class="btn-dismiss" onclick="dismissInstall()">✕</button>
   </div>
   <div id="ios-tip">
-    <strong>📲 Install on iPhone / iPad</strong>
-    Tap the <strong>Share</strong> button (↑) in Safari, then <strong>"Add to Home Screen"</strong>.
+    <strong>📲 Add to Home Screen</strong><br/>
+    Tap <strong>Share ↑</strong> in Safari → <strong>"Add to Home Screen"</strong>
     <span style="float:right;cursor:pointer;font-size:16px;" onclick="document.getElementById('ios-tip').classList.remove('show')">✕</span>
   </div>
 </div>
 
-<!-- REGISTER -->
+<!-- ═══════════════════════ REGISTER ═══════════════════════ -->
 <div id="screen-register" class="screen">
   <div style="flex:1;display:flex;align-items:center;justify-content:center;padding:24px;overflow-y:auto;">
-    <div class="auth-card">
-      <div class="auth-back"><a onclick="showScreen('landing')">← Back</a></div>
-      <div class="auth-logo">🌿</div>
-      <h2 class="auth-title">Create Account</h2>
-      <p class="auth-sub">Join Hadasah Investment Ltd today</p>
-
-      <div id="reg-error"   class="error-msg"></div>
-      <div id="reg-success" class="success-msg"></div>
-      <div id="reg-debug"   class="debug-box"></div>
-
-      <div class="form-group">
-        <label class="form-label">Full Name</label>
-        <input id="reg-name" class="form-input" type="text" placeholder="Your full name" autocomplete="name"/>
+    <div class="auth-wrap">
+      <div class="auth-header">
+        <div class="auth-logo-mark">🌿</div>
+        <div class="auth-title">Create Account</div>
+        <div class="auth-sub">Join Hadasah Investment Ltd today</div>
       </div>
-      <div class="form-group">
-        <label class="form-label">Email Address</label>
-        <input id="reg-email" class="form-input" type="email" placeholder="your@email.com" autocomplete="email"/>
+      <div class="auth-card">
+        <div class="auth-back"><a onclick="showScreen('landing')">← Back to home</a></div>
+        <div id="reg-error"   class="error-msg"></div>
+        <div id="reg-success" class="success-msg"></div>
+        <div id="reg-debug"   class="debug-box"></div>
+        <div class="form-group"><label class="form-label">Full Name</label><input id="reg-name" class="form-input" type="text" placeholder="Your full name" autocomplete="name"/></div>
+        <div class="form-group"><label class="form-label">Email Address</label><input id="reg-email" class="form-input" type="email" placeholder="your@email.com" autocomplete="email"/></div>
+        <div class="form-group"><label class="form-label">Phone Number</label><input id="reg-phone" class="form-input" type="tel" placeholder="+254 7XX XXX XXX" autocomplete="tel"/></div>
+        <div class="form-group"><label class="form-label">National ID / Passport</label><input id="reg-id" class="form-input" type="text" placeholder="ID or Passport number"/></div>
+        <div class="form-group"><label class="form-label">Password</label><input id="reg-password" class="form-input" type="password" placeholder="Minimum 6 characters" autocomplete="new-password"/></div>
+        <button id="reg-btn" class="btn-primary-auth" onclick="handleRegister()">Create Account</button>
+        <div class="auth-switch">Already have an account? <a onclick="showScreen('login')">Sign in</a></div>
       </div>
-      <div class="form-group">
-        <label class="form-label">Phone Number</label>
-        <input id="reg-phone" class="form-input" type="tel" placeholder="+254 7XX XXX XXX" autocomplete="tel"/>
-      </div>
-      <div class="form-group">
-        <label class="form-label">National ID / Passport</label>
-        <input id="reg-id" class="form-input" type="text" placeholder="ID or Passport number"/>
-      </div>
-      <div class="form-group">
-        <label class="form-label">Password</label>
-        <input id="reg-password" class="form-input" type="password" placeholder="Min 6 characters" autocomplete="new-password"/>
-      </div>
-      <button id="reg-btn" class="btn-green" onclick="handleRegister()">Create Account</button>
-      <div class="auth-switch">Already have an account? <a onclick="showScreen('login')">Sign in</a></div>
     </div>
   </div>
 </div>
 
-<!-- LOGIN -->
+<!-- ═══════════════════════ LOGIN ═══════════════════════ -->
 <div id="screen-login" class="screen">
   <div style="flex:1;display:flex;align-items:center;justify-content:center;padding:24px;">
-    <div class="auth-card">
-      <div class="auth-back"><a onclick="showScreen('landing')">← Back</a></div>
-      <div class="auth-logo">🌿</div>
-      <h2 class="auth-title">Welcome Back</h2>
-      <p class="auth-sub">Sign in to your investment account</p>
-      <div id="login-error" class="error-msg"></div>
-      <div class="form-group">
-        <label class="form-label">Email Address</label>
-        <input id="login-email" class="form-input" type="email" placeholder="your@email.com" autocomplete="email"/>
+    <div class="auth-wrap">
+      <div class="auth-header">
+        <div class="auth-logo-mark">🌿</div>
+        <div class="auth-title">Welcome Back</div>
+        <div class="auth-sub">Sign in to your investment account</div>
       </div>
-      <div class="form-group">
-        <label class="form-label">Password</label>
-        <input id="login-password" class="form-input" type="password" placeholder="Your password" autocomplete="current-password"/>
+      <div class="auth-card">
+        <div class="auth-back"><a onclick="showScreen('landing')">← Back to home</a></div>
+        <div id="login-error" class="error-msg"></div>
+        <div class="form-group"><label class="form-label">Email Address</label><input id="login-email" class="form-input" type="email" placeholder="your@email.com" autocomplete="email"/></div>
+        <div class="form-group"><label class="form-label">Password</label><input id="login-password" class="form-input" type="password" placeholder="Your password" autocomplete="current-password"/></div>
+        <div class="forgot-link"><a onclick="handleForgotPassword()">Forgot password?</a></div>
+        <div id="reset-success" class="success-msg"></div>
+        <button id="login-btn" class="btn-primary-auth" onclick="handleLogin()">Sign In</button>
+        <div class="auth-switch">New here? <a onclick="showScreen('register')">Create account</a></div>
       </div>
-      <div class="forgot-link"><a onclick="handleForgotPassword()">Forgot password?</a></div>
-      <div id="reset-success" class="success-msg"></div>
-      <button id="login-btn" class="btn-green" onclick="handleLogin()">Sign In</button>
-      <div class="auth-switch">New here? <a onclick="showScreen('register')">Create account</a></div>
     </div>
   </div>
 </div>
 
-<!-- DASHBOARD -->
+<!-- ═══════════════════════ DASHBOARD ═══════════════════════ -->
 <div id="screen-dashboard" class="screen">
-  <nav class="navbar">
-    <div class="logo">
-      <div class="logo-icon">🌿</div>
-      <div><div class="logo-text">Hadasah Investment</div><div class="logo-sub">Client Portal</div></div>
-    </div>
-    <div class="nav-actions">
-      <span class="nav-name" id="nav-client-name"></span>
-      <button class="btn-logout" onclick="handleLogout()">Logout</button>
-    </div>
-  </nav>
-  <div class="page-content">
-    <div class="page-title" id="dash-greeting">Good morning!</div>
-    <p class="page-sub" id="dash-clientno"></p>
-    <div class="pending-notice" id="pending-notice">⏳ Your account is pending admin approval. You can still submit an investment request.</div>
-    <div class="portfolio-banner">
-      <div class="portfolio-label">Total Portfolio Value</div>
-      <div class="portfolio-amount" id="dash-total-invested">KSh 0</div>
-      <div class="portfolio-sub">Active investment balance</div>
-      <div class="portfolio-row">
-        <div class="portfolio-mini"><div class="portfolio-mini-label">Est. Monthly Returns</div><div class="portfolio-mini-value" id="dash-monthly-return">KSh 0</div></div>
-        <div class="portfolio-mini"><div class="portfolio-mini-label">Total Earned</div><div class="portfolio-mini-value" id="dash-total-earned">KSh 0</div></div>
+  <div class="top-bar">
+    <div class="top-bar-logo">
+      <div class="top-bar-icon">🌿</div>
+      <div>
+        <div class="top-bar-name">Hadasah Investment</div>
+        <div class="top-bar-sub">Client Portal</div>
       </div>
     </div>
-    <div class="cards-grid">
-      <div class="stat-card"><div class="stat-card-label">Interest Rate</div><div class="stat-card-value green" id="dash-rate">0%</div></div>
-      <div class="stat-card"><div class="stat-card-label">Account Status</div><div class="stat-card-value" id="dash-status">—</div></div>
-      <div class="stat-card"><div class="stat-card-label">Date Joined</div><div class="stat-card-value" id="dash-joined" style="font-size:14px;">—</div></div>
-      <div class="stat-card"><div class="stat-card-label">Investments</div><div class="stat-card-value gold" id="dash-inv-count">0</div></div>
+    <div class="top-bar-right">
+      <span class="greeting-chip" id="nav-client-name"></span>
+      <button class="btn-logout-sm" onclick="handleLogout()">Logout</button>
     </div>
-    <div class="section-head">
-      <div class="section-title">Recent Activity</div>
-      <div class="section-link" onclick="switchTab('history')">See all →</div>
+  </div>
+
+  <div class="page-scroll">
+    <!-- pending/active status bar -->
+    <div class="status-bar" id="status-bar">
+      <span>⏳</span>
+      <span id="status-bar-text">Your account is pending admin approval.</span>
+    </div>
+
+    <!-- Hero portfolio card -->
+    <div class="hero-card">
+      <div class="hero-label">Total Portfolio Value</div>
+      <div class="hero-amount" id="dash-total-invested">KSh 0</div>
+      <div class="hero-usd" id="dash-usd">≈ USD 0</div>
+      <div class="hero-row">
+        <div class="hero-mini">
+          <div class="hero-mini-label">Est. Monthly Return</div>
+          <div class="hero-mini-value sky" id="dash-monthly-return">KSh 0</div>
+        </div>
+        <div class="hero-mini">
+          <div class="hero-mini-label">Total Earned</div>
+          <div class="hero-mini-value emerald" id="dash-total-earned">KSh 0</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3-column stats strip -->
+    <div class="stats-strip">
+      <div class="strip-item">
+        <div class="strip-icon">📈</div>
+        <div class="strip-value sky" id="dash-rate">0%</div>
+        <div class="strip-label">Interest Rate</div>
+      </div>
+      <div class="strip-item">
+        <div class="strip-icon">📋</div>
+        <div class="strip-value navy" id="dash-inv-count">0</div>
+        <div class="strip-label">Investments</div>
+      </div>
+      <div class="strip-item">
+        <div class="strip-icon">🗓</div>
+        <div class="strip-value" id="dash-joined" style="font-size:13px;color:var(--text-mid);">—</div>
+        <div class="strip-label">Joined</div>
+      </div>
+    </div>
+
+    <!-- Greeting + status -->
+    <div style="padding:20px 16px 0; display:flex; justify-content:space-between; align-items:center;">
+      <div>
+        <div style="font-size:16px;font-weight:700;color:var(--text-main);" id="dash-greeting">Good morning!</div>
+        <div style="font-size:12px;color:var(--text-soft);margin-top:2px;" id="dash-clientno">Client No: —</div>
+      </div>
+      <div id="dash-status-badge"></div>
+    </div>
+
+    <!-- Recent activity -->
+    <div class="section-hd">
+      <div class="section-hd-title"><span class="dot"></span> Recent Activity</div>
+      <div class="section-hd-link" onclick="switchTab('history')">View all →</div>
     </div>
     <div class="tx-list" id="dash-tx-list">
       <div class="empty-state"><div class="empty-icon">📊</div><div class="empty-text">No transactions yet</div></div>
     </div>
+
+    <!-- Quick action -->
+    <div style="padding:20px 16px 0;">
+      <button class="btn-invest" onclick="switchTab('invest')">+ New Investment</button>
+    </div>
   </div>
+
   <div class="bottom-nav">
-    <button class="nav-item active" onclick="switchTab('dashboard')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>Dashboard</button>
-    <button class="nav-item" onclick="switchTab('invest')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>Invest</button>
-    <button class="nav-item" onclick="switchTab('history')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>History</button>
-    <button class="nav-item" onclick="switchTab('profile')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>Profile</button>
+    <button class="nav-btn active" onclick="switchTab('dashboard')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>Home</button>
+    <button class="nav-btn" onclick="switchTab('invest')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>Invest</button>
+    <button class="nav-btn" onclick="switchTab('history')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>History</button>
+    <button class="nav-btn" onclick="switchTab('profile')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>Profile</button>
   </div>
 </div>
 
-<!-- INVEST -->
+<!-- ═══════════════════════ INVEST ═══════════════════════ -->
 <div id="screen-invest" class="screen">
-  <nav class="navbar">
-    <div class="logo"><div class="logo-icon">🌿</div><div><div class="logo-text">Hadasah Investment</div></div></div>
-  </nav>
-  <div class="page-content">
-    <div class="page-title">New Investment</div>
-    <p class="page-sub">Choose a package or enter a custom amount</p>
-    <div class="blocked-notice" id="invest-blocked">⚠️ Your account is awaiting admin approval.<br/>You can submit a request and it will be processed once your account is activated.</div>
-    <div id="invest-error"   class="error-msg"></div>
-    <div id="invest-success" class="success-msg"></div>
-    <div class="section-title" style="margin-bottom:12px;">Select Package</div>
-    <div class="packages-grid">
-      <div class="package-card" onclick="selectPackage(this,'10000')"><div class="package-amount">KSh 10,000</div><div class="package-currency">≈ USD 77</div><div class="package-returns">4–8% / month</div></div>
-      <div class="package-card" onclick="selectPackage(this,'20000')"><div class="package-amount">KSh 20,000</div><div class="package-currency">≈ USD 154</div><div class="package-returns">4–8% / month</div></div>
-      <div class="package-card" onclick="selectPackage(this,'30000')"><div class="package-amount">KSh 30,000</div><div class="package-currency">≈ USD 231</div><div class="package-returns">4–8% / month</div></div>
-      <div class="package-card" onclick="selectPackage(this,'40000')"><div class="package-amount">KSh 40,000</div><div class="package-currency">≈ USD 308</div><div class="package-returns">4–8% / month</div></div>
-      <div class="package-card" onclick="selectPackage(this,'50000')"><div class="package-amount">KSh 50,000</div><div class="package-currency">≈ USD 385</div><div class="package-returns">4–8% / month</div></div>
-      <div class="package-card" onclick="selectPackage(this,'60000')"><div class="package-amount">KSh 60,000</div><div class="package-currency">≈ USD 462</div><div class="package-returns">4–8% / month</div></div>
-      <div class="package-card" onclick="selectPackage(this,'70000')"><div class="package-amount">KSh 70,000</div><div class="package-currency">≈ USD 538</div><div class="package-returns">4–8% / month</div></div>
-      <div class="package-card" onclick="selectPackage(this,'custom')"><div class="package-amount" style="font-size:15px;">Custom</div><div class="package-currency">Any amount</div><div class="package-returns">4–8% / month</div></div>
+  <div class="invest-header">
+    <div class="top-bar-logo" style="margin-bottom:16px;">
+      <div class="top-bar-icon">🌿</div>
+      <div><div class="top-bar-name">Hadasah Investment</div><div class="top-bar-sub">Client Portal</div></div>
     </div>
-    <div class="custom-box" id="custom-box" style="display:none;">
-      <div class="custom-box-title">Enter Custom Amount</div>
-      <div class="form-group"><label class="form-label">Amount (KSh)</label><input id="custom-amount" class="form-input" type="number" placeholder="e.g 15000" min="1000"/></div>
+    <div class="invest-header-title">New Investment</div>
+    <div class="invest-header-sub">Choose a package or enter a custom amount</div>
+  </div>
+  <div class="page-scroll">
+    <div class="invest-content">
+      <div class="invest-blocked-notice" id="invest-blocked">⚠️ <strong>Account Pending.</strong> You can still submit a request — it will be activated once admin confirms your payment.</div>
+      <div id="invest-error"   class="error-msg"></div>
+      <div id="invest-success" class="success-msg"></div>
+
+      <div style="font-size:13px;font-weight:700;color:var(--text-mid);margin-bottom:12px;text-transform:uppercase;letter-spacing:.5px;">Select a Package</div>
+      <div class="pkg-grid">
+        <div class="pkg-card" onclick="selectPackage(this,'10000')"><div class="pkg-amount">KSh 10,000</div><div class="pkg-usd">≈ USD 77</div><div class="pkg-ret">4–8% / month</div></div>
+        <div class="pkg-card" onclick="selectPackage(this,'20000')"><div class="pkg-amount">KSh 20,000</div><div class="pkg-usd">≈ USD 154</div><div class="pkg-ret">4–8% / month</div></div>
+        <div class="pkg-card" onclick="selectPackage(this,'30000')"><div class="pkg-amount">KSh 30,000</div><div class="pkg-usd">≈ USD 231</div><div class="pkg-ret">4–8% / month</div></div>
+        <div class="pkg-card" onclick="selectPackage(this,'40000')"><div class="pkg-amount">KSh 40,000</div><div class="pkg-usd">≈ USD 308</div><div class="pkg-ret">4–8% / month</div></div>
+        <div class="pkg-card" onclick="selectPackage(this,'50000')"><div class="pkg-amount">KSh 50,000</div><div class="pkg-usd">≈ USD 385</div><div class="pkg-ret">4–8% / month</div></div>
+        <div class="pkg-card" onclick="selectPackage(this,'60000')"><div class="pkg-amount">KSh 60,000</div><div class="pkg-usd">≈ USD 462</div><div class="pkg-ret">4–8% / month</div></div>
+        <div class="pkg-card" onclick="selectPackage(this,'70000')"><div class="pkg-amount">KSh 70,000</div><div class="pkg-usd">≈ USD 538</div><div class="pkg-ret">4–8% / month</div></div>
+        <div class="pkg-card" onclick="selectPackage(this,'custom')"><div class="pkg-amount" style="font-size:16px;">Custom</div><div class="pkg-usd">Any amount ≥ 1,000</div><div class="pkg-ret">4–8% / month</div></div>
+      </div>
+
+      <div class="custom-box" id="custom-box" style="display:none;">
+        <div class="custom-box-title">Enter Custom Amount (KSh)</div>
+        <input id="custom-amount" class="form-input" type="number" placeholder="e.g. 15,000" min="1000"/>
+      </div>
+
+      <button class="btn-invest" onclick="submitInvestment()">Submit Investment Request</button>
+      <p class="invest-note">Your request is reviewed and activated by admin after confirming your M-Pesa / bank payment.</p>
     </div>
-    <button class="btn-green" onclick="submitInvestment()">Submit Investment Request</button>
-    <p style="font-size:12px;color:var(--grey-text);margin-top:12px;text-align:center;">Your request will be reviewed and approved by admin after payment confirmation.</p>
   </div>
   <div class="bottom-nav">
-    <button class="nav-item" onclick="switchTab('dashboard')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>Dashboard</button>
-    <button class="nav-item active" onclick="switchTab('invest')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>Invest</button>
-    <button class="nav-item" onclick="switchTab('history')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>History</button>
-    <button class="nav-item" onclick="switchTab('profile')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>Profile</button>
+    <button class="nav-btn" onclick="switchTab('dashboard')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>Home</button>
+    <button class="nav-btn active" onclick="switchTab('invest')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>Invest</button>
+    <button class="nav-btn" onclick="switchTab('history')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>History</button>
+    <button class="nav-btn" onclick="switchTab('profile')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>Profile</button>
   </div>
 </div>
 
-<!-- HISTORY -->
+<!-- ═══════════════════════ HISTORY ═══════════════════════ -->
 <div id="screen-history" class="screen">
-  <nav class="navbar">
-    <div class="logo"><div class="logo-icon">🌿</div><div><div class="logo-text">Hadasah Investment</div></div></div>
-  </nav>
-  <div class="page-content">
-    <div class="page-title">Transaction History</div>
-    <p class="page-sub">All your investments and returns</p>
-    <div style="margin-bottom:16px;">
-      <select class="form-input" onchange="filterHistory(this.value)" style="max-width:220px;">
-        <option value="all">All Transactions</option>
-        <option value="Investment">Investments Only</option>
-        <option value="Return">Returns / ROI Only</option>
-      </select>
+  <div class="history-header">
+    <div class="top-bar-logo" style="margin-bottom:16px;">
+      <div class="top-bar-icon">🌿</div>
+      <div><div class="top-bar-name">Hadasah Investment</div><div class="top-bar-sub">Client Portal</div></div>
     </div>
-    <div class="tx-list" id="history-list">
+    <div class="invest-header-title">Transaction History</div>
+    <div class="invest-header-sub">All your investments and returns</div>
+  </div>
+  <div class="page-scroll">
+    <div class="history-filter">
+      <div class="filter-tabs">
+        <button class="filter-tab active" onclick="filterHistory('all',this)">All</button>
+        <button class="filter-tab" onclick="filterHistory('Investment',this)">Investments</button>
+        <button class="filter-tab" onclick="filterHistory('Return',this)">Returns</button>
+      </div>
+    </div>
+    <div class="history-list" id="history-list">
       <div class="empty-state"><div class="empty-icon">📋</div><div class="empty-text">No transactions found</div></div>
     </div>
   </div>
   <div class="bottom-nav">
-    <button class="nav-item" onclick="switchTab('dashboard')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>Dashboard</button>
-    <button class="nav-item" onclick="switchTab('invest')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>Invest</button>
-    <button class="nav-item active" onclick="switchTab('history')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>History</button>
-    <button class="nav-item" onclick="switchTab('profile')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>Profile</button>
+    <button class="nav-btn" onclick="switchTab('dashboard')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>Home</button>
+    <button class="nav-btn" onclick="switchTab('invest')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>Invest</button>
+    <button class="nav-btn active" onclick="switchTab('history')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>History</button>
+    <button class="nav-btn" onclick="switchTab('profile')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>Profile</button>
   </div>
 </div>
 
-<!-- PROFILE -->
+<!-- ═══════════════════════ PROFILE ═══════════════════════ -->
 <div id="screen-profile" class="screen">
-  <nav class="navbar">
-    <div class="logo"><div class="logo-icon">🌿</div><div><div class="logo-text">Hadasah Investment</div></div></div>
-  </nav>
-  <div class="page-content">
-    <div class="page-title">My Profile</div>
-    <p class="page-sub">Your account details</p>
-    <div style="background:var(--white);border-radius:var(--radius);padding:24px;box-shadow:var(--shadow);margin-bottom:16px;">
-      <div style="display:flex;align-items:center;gap:16px;margin-bottom:20px;">
-        <div style="width:56px;height:56px;background:var(--green-deep);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:22px;font-weight:700;" id="profile-avatar">?</div>
-        <div><div style="font-weight:700;font-size:17px;" id="profile-name">—</div><div style="font-size:13px;color:var(--grey-text);" id="profile-email">—</div></div>
-      </div>
-      <div style="display:flex;flex-direction:column;gap:14px;">
-        <div style="display:flex;justify-content:space-between;border-bottom:1px solid var(--grey-soft);padding-bottom:12px;"><span style="font-size:13px;color:var(--grey-text);">Client Number</span><span style="font-size:13px;font-weight:700;color:var(--green-deep);" id="profile-clientno">—</span></div>
-        <div style="display:flex;justify-content:space-between;border-bottom:1px solid var(--grey-soft);padding-bottom:12px;"><span style="font-size:13px;color:var(--grey-text);">Phone</span><span style="font-size:13px;font-weight:600;" id="profile-phone">—</span></div>
-        <div style="display:flex;justify-content:space-between;border-bottom:1px solid var(--grey-soft);padding-bottom:12px;"><span style="font-size:13px;color:var(--grey-text);">National ID</span><span style="font-size:13px;font-weight:600;" id="profile-id">—</span></div>
-        <div style="display:flex;justify-content:space-between;border-bottom:1px solid var(--grey-soft);padding-bottom:12px;"><span style="font-size:13px;color:var(--grey-text);">Date Joined</span><span style="font-size:13px;font-weight:600;" id="profile-joined">—</span></div>
-        <div style="display:flex;justify-content:space-between;"><span style="font-size:13px;color:var(--grey-text);">Account Status</span><span id="profile-status">—</span></div>
-      </div>
+  <div class="profile-hero">
+    <div class="profile-avatar-wrap" id="profile-avatar">?</div>
+    <div class="profile-hero-name" id="profile-name">—</div>
+    <div class="profile-hero-email" id="profile-email">—</div>
+    <div class="profile-hero-clientno" id="profile-clientno">—</div>
+  </div>
+  <div class="page-scroll">
+    <div class="profile-card">
+      <div class="profile-row"><span class="profile-row-label">Phone</span><span class="profile-row-value" id="profile-phone">—</span></div>
+      <div class="profile-row"><span class="profile-row-label">National ID</span><span class="profile-row-value" id="profile-id">—</span></div>
+      <div class="profile-row"><span class="profile-row-label">Date Joined</span><span class="profile-row-value" id="profile-joined">—</span></div>
+      <div class="profile-row"><span class="profile-row-label">Account Status</span><span class="profile-row-value" id="profile-status">—</span></div>
+      <div class="profile-row"><span class="profile-row-label">Interest Rate</span><span class="profile-row-value sky" id="profile-rate">—</span></div>
     </div>
-    <button class="btn-green" style="background:var(--red);" onclick="handleLogout()">Sign Out</button>
+    <button class="btn-signout" onclick="handleLogout()">Sign Out</button>
   </div>
   <div class="bottom-nav">
-    <button class="nav-item" onclick="switchTab('dashboard')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>Dashboard</button>
-    <button class="nav-item" onclick="switchTab('invest')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>Invest</button>
-    <button class="nav-item" onclick="switchTab('history')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>History</button>
-    <button class="nav-item active" onclick="switchTab('profile')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>Profile</button>
+    <button class="nav-btn" onclick="switchTab('dashboard')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>Home</button>
+    <button class="nav-btn" onclick="switchTab('invest')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>Invest</button>
+    <button class="nav-btn" onclick="switchTab('history')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>History</button>
+    <button class="nav-btn active" onclick="switchTab('profile')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>Profile</button>
   </div>
 </div>
 
-<!-- CONFIRM MODAL -->
+<!-- MODAL -->
 <div class="modal-overlay" id="confirm-modal">
-  <div class="modal-box">
+  <div class="modal-sheet">
+    <div class="modal-handle"></div>
     <div class="modal-title">Confirm Investment</div>
-    <div class="modal-body" id="modal-body"></div>
+    <div class="modal-sub">Review your investment details below, then confirm after sending payment.</div>
+    <div class="modal-detail" id="modal-detail"></div>
     <div class="modal-actions">
-      <button class="btn-cancel" onclick="closeModal()">Cancel</button>
-      <button class="btn-confirm" onclick="confirmInvestment()">Confirm & Submit</button>
+      <button class="btn-modal-cancel" onclick="closeModal()">Cancel</button>
+      <button class="btn-modal-confirm" onclick="confirmInvestment()">Confirm & Submit</button>
     </div>
   </div>
 </div>
 
 <!-- PWA -->
 <script>
-  let deferredPrompt = null;
-  function isIOS(){ return /iphone|ipad|ipod/i.test(navigator.userAgent)&&!window.MSStream; }
-  function isInStandaloneMode(){ return ('standalone' in window.navigator&&window.navigator.standalone)||window.matchMedia('(display-mode: standalone)').matches; }
-  window.addEventListener('beforeinstallprompt',(e)=>{ e.preventDefault(); deferredPrompt=e; if(!localStorage.getItem('installDismissed')) document.getElementById('install-banner').classList.add('show'); });
-  window.triggerInstall=async()=>{ if(!deferredPrompt)return; deferredPrompt.prompt(); const{outcome}=await deferredPrompt.userChoice; if(outcome==='accepted') document.getElementById('install-banner').classList.remove('show'); deferredPrompt=null; };
-  window.dismissInstall=()=>{ document.getElementById('install-banner').classList.remove('show'); localStorage.setItem('installDismissed','1'); };
-  window.addEventListener('load',()=>{ if(isIOS()&&!isInStandaloneMode()&&!localStorage.getItem('iosTipDismissed')) document.getElementById('ios-tip').classList.add('show'); });
+  let deferredPrompt=null;
+  function isIOS(){return /iphone|ipad|ipod/i.test(navigator.userAgent)&&!window.MSStream;}
+  function isInStandaloneMode(){return('standalone'in window.navigator&&window.navigator.standalone)||window.matchMedia('(display-mode: standalone)').matches;}
+  window.addEventListener('beforeinstallprompt',(e)=>{e.preventDefault();deferredPrompt=e;if(!localStorage.getItem('installDismissed'))document.getElementById('install-banner').classList.add('show');});
+  window.triggerInstall=async()=>{if(!deferredPrompt)return;deferredPrompt.prompt();const{outcome}=await deferredPrompt.userChoice;if(outcome==='accepted')document.getElementById('install-banner').classList.remove('show');deferredPrompt=null;};
+  window.dismissInstall=()=>{document.getElementById('install-banner').classList.remove('show');localStorage.setItem('installDismissed','1');};
+  window.addEventListener('load',()=>{if(isIOS()&&!isInStandaloneMode()&&!localStorage.getItem('iosTipDismissed'))document.getElementById('ios-tip').classList.add('show');});
 </script>
 
-<!-- FIREBASE + APP -->
+<!-- FIREBASE -->
 <script type="module">
-  import { initializeApp }
-    from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
   import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword,
            sendPasswordResetEmail, signOut, onAuthStateChanged }
     from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
   import { getFirestore, doc, setDoc, getDoc, collection, query, where,
-           getDocs, addDoc, onSnapshot, serverTimestamp }
+           getDocs, addDoc, onSnapshot }
     from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
   const firebaseConfig = {
@@ -440,8 +871,7 @@
   const app  = initializeApp(firebaseConfig);
   const auth = getAuth(app);
   const db   = getFirestore(app);
-
-  const USD_RATE = 130;
+  const USD  = 130;
 
   let currentUser  = null;
   let currentData  = null;
@@ -449,405 +879,253 @@
   let selectedPkg  = null;
   let unsubInv     = null;
   let unsubRet     = null;
-  let isRegistering = false;   // blocks auth listener during setDoc
+  let isRegistering = false;
 
-  // ── helper: write to the debug box on register screen ────────
-  function dbg(msg) {
-    const box = document.getElementById('reg-debug');
-    box.classList.add('show');
-    box.textContent += msg + '\n';
-    console.log('[Hadasah]', msg);
-  }
-  function dbgClear() {
-    const box = document.getElementById('reg-debug');
-    box.classList.remove('show');
-    box.textContent = '';
-  }
+  function dbg(msg){ const b=document.getElementById('reg-debug'); b.classList.add('show'); b.textContent+=msg+'\n'; console.log('[Hadasah]',msg); }
+  function dbgClear(){ const b=document.getElementById('reg-debug'); b.classList.remove('show'); b.textContent=''; }
+  function makeClientNumber(){ return 'INV-'+String(Date.now()).slice(-4)+String(Math.floor(Math.random()*900)+100); }
 
-  // ── generate a client number that doesn't need a full-collection read ──
-  // Uses timestamp + random suffix → e.g. INV-00042  (still sequential-ish)
-  function makeClientNumber() {
-    const ts   = Date.now();            // ms since epoch
-    const rand = Math.floor(Math.random() * 900) + 100; // 3-digit suffix
-    // last 5 digits of timestamp + rand keeps it short
-    const num  = String(ts).slice(-4) + String(rand);
-    return 'INV-' + num;               // e.g. INV-74832847
-  }
-
-  window.showScreen = (name) => {
-    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-    document.getElementById('screen-' + name).classList.add('active');
+  window.showScreen = n => {
+    document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+    document.getElementById('screen-'+n).classList.add('active');
   };
 
-  window.switchTab = (tab) => {
-    const map = { dashboard:'screen-dashboard', invest:'screen-invest', history:'screen-history', profile:'screen-profile' };
-    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  window.switchTab = tab => {
+    const map={dashboard:'screen-dashboard',invest:'screen-invest',history:'screen-history',profile:'screen-profile'};
+    document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
     document.getElementById(map[tab]).classList.add('active');
-    document.querySelectorAll('.bottom-nav').forEach(nav => {
-      nav.querySelectorAll('.nav-item').forEach((btn, i) => {
-        btn.classList.toggle('active', ['dashboard','invest','history','profile'][i] === tab);
+    document.querySelectorAll('.bottom-nav').forEach(nav=>{
+      nav.querySelectorAll('.nav-btn').forEach((b,i)=>{
+        b.classList.toggle('active',['dashboard','invest','history','profile'][i]===tab);
       });
     });
-    if (tab === 'history') loadHistory();
-    if (tab === 'profile') loadProfile();
-    if (tab === 'invest')  showInvestBlocked();
+    if(tab==='history') loadHistory();
+    if(tab==='profile') loadProfile();
+    if(tab==='invest')  { document.getElementById('invest-blocked').style.display = currentData&&currentData.status==='pending'?'block':'none'; }
   };
 
-  function showInvestBlocked() {
-    document.getElementById('invest-blocked').style.display =
-      currentData && currentData.status === 'pending' ? 'block' : 'none';
-  }
-
-  // ── AUTH STATE LISTENER ──────────────────────────────────────
-  onAuthStateChanged(auth, async (user) => {
-    if (isRegistering) return;   // skip while registration setDoc is in flight
-
-    if (user) {
-      currentUser = user;
-      await loadUserData();
-      showScreen('dashboard');
-    } else {
-      if (unsubInv) { unsubInv(); unsubInv = null; }
-      if (unsubRet) { unsubRet(); unsubRet = null; }
-      currentUser = null;
-      currentData = null;
-      showScreen('landing');
+  onAuthStateChanged(auth, async user => {
+    if(isRegistering) return;
+    if(user){ currentUser=user; await loadUserData(); showScreen('dashboard'); }
+    else {
+      if(unsubInv){unsubInv();unsubInv=null;} if(unsubRet){unsubRet();unsubRet=null;}
+      currentUser=null; currentData=null; showScreen('landing');
     }
   });
 
-  // ── REGISTER ─────────────────────────────────────────────────
   window.handleRegister = async () => {
-    const name  = document.getElementById('reg-name').value.trim();
-    const email = document.getElementById('reg-email').value.trim();
-    const phone = document.getElementById('reg-phone').value.trim();
-    const nid   = document.getElementById('reg-id').value.trim();
-    const pass  = document.getElementById('reg-password').value;
-
-    const errEl = document.getElementById('reg-error');
-    const sucEl = document.getElementById('reg-success');
-    const btn   = document.getElementById('reg-btn');
-
-    errEl.style.display = 'none';
-    sucEl.style.display = 'none';
-    dbgClear();
-
-    // ── client-side validation ──
-    if (!name || !email || !phone || !nid || !pass) {
-      errEl.textContent = 'Please fill in all fields.';
-      errEl.style.display = 'block'; return;
-    }
-    if (pass.length < 6) {
-      errEl.textContent = 'Password must be at least 6 characters.';
-      errEl.style.display = 'block'; return;
-    }
-
-    btn.disabled = true;
-    btn.innerHTML = '<span class="loader"></span> Creating account…';
+    const name=document.getElementById('reg-name').value.trim();
+    const email=document.getElementById('reg-email').value.trim();
+    const phone=document.getElementById('reg-phone').value.trim();
+    const nid=document.getElementById('reg-id').value.trim();
+    const pass=document.getElementById('reg-password').value;
+    const errEl=document.getElementById('reg-error');
+    const sucEl=document.getElementById('reg-success');
+    const btn=document.getElementById('reg-btn');
+    errEl.style.display='none'; sucEl.style.display='none'; dbgClear();
+    if(!name||!email||!phone||!nid||!pass){errEl.textContent='Please fill in all fields.';errEl.style.display='block';return;}
+    if(pass.length<6){errEl.textContent='Password must be at least 6 characters.';errEl.style.display='block';return;}
+    btn.disabled=true; btn.innerHTML='<span class="loader"></span> Creating account…';
     dbg('STEP 1 — Creating Firebase Auth user…');
-
-    // ── STEP 1: create Firebase Auth account ──
-    isRegistering = true;   // block auth listener
-
+    isRegistering=true;
     let cred;
-    try {
-      cred = await createUserWithEmailAndPassword(auth, email, pass);
-      dbg('STEP 1 ✅ Auth UID: ' + cred.user.uid);
-    } catch (e) {
-      isRegistering = false;
-      dbg('STEP 1 ❌ Auth error: ' + e.code + ' — ' + e.message);
-      errEl.textContent = translateAuthError(e.code);
-      errEl.style.display = 'block';
-      btn.disabled = false;
-      btn.textContent = 'Create Account';
-      return;
-    }
-
-    // ── STEP 2: build the exact document Firestore expects ──────
-    const uid          = cred.user.uid;
-    const clientNumber = makeClientNumber();
-    const dateJoined   = new Date().toISOString().split('T')[0];   // "YYYY-MM-DD"
-
-    // ⬇ Exact field names and values as required:
-    const profileDoc = {
-      clientNumber: clientNumber,   // string  e.g. "INV-74832847"
-      dateJoined:   dateJoined,     // string  e.g. "2025-09-26"
-      email:        email,          // string
-      fullName:     name,           // string
-      nationalId:   nid,            // string
-      phone:        phone,          // string
-      role:         'client',       // string  literal "client"
-      status:       'pending',      // string  literal "pending"
-      uid:          uid             // string  (handy for admin queries)
-    };
-
-    dbg('STEP 2 — Writing Firestore doc to users/' + uid + '…');
-    dbg('Fields: ' + JSON.stringify(profileDoc, null, 2));
-
-    // ── STEP 3: write to Firestore ──────────────────────────────
-    try {
-      await setDoc(doc(db, 'users', uid), profileDoc);
-      dbg('STEP 2 ✅ Firestore write successful!');
-    } catch (e) {
-      isRegistering = false;
-      dbg('STEP 2 ❌ Firestore error: ' + e.code + ' — ' + e.message);
-      errEl.textContent =
-        '⚠️ Account created in Auth but profile save failed.\n' +
-        'Error: ' + (e.code || '') + ' — ' + e.message + '\n\n' +
-        'Most likely cause: Firestore Security Rules are blocking the write.\n' +
-        'Go to Firebase Console → Firestore → Rules and allow authenticated users to write their own document.';
-      errEl.style.display = 'block';
-      btn.disabled = false;
-      btn.textContent = 'Create Account';
-      return;
-    }
-
-    // ── STEP 4: all good — release flag and navigate ────────────
-    isRegistering = false;
-    currentUser   = cred.user;
-    currentData   = profileDoc;
-
-    dbg('STEP 3 — Loading dashboard…');
-    await loadUserData();
-    showScreen('dashboard');
+    try{ cred=await createUserWithEmailAndPassword(auth,email,pass); dbg('STEP 1 ✅ UID: '+cred.user.uid); }
+    catch(e){ isRegistering=false; dbg('STEP 1 ❌ '+e.code+' — '+e.message); errEl.textContent=translateAuthError(e.code); errEl.style.display='block'; btn.disabled=false; btn.textContent='Create Account'; return; }
+    const uid=cred.user.uid;
+    const clientNumber=makeClientNumber();
+    const dateJoined=new Date().toISOString().split('T')[0];
+    const profileDoc={ clientNumber, dateJoined, email, fullName:name, nationalId:nid, phone, role:'client', status:'pending', uid };
+    dbg('STEP 2 — Writing to Firestore users/'+uid+'…\n'+JSON.stringify(profileDoc,null,2));
+    try{ await setDoc(doc(db,'users',uid),profileDoc); dbg('STEP 2 ✅ Firestore write OK!'); }
+    catch(e){ isRegistering=false; dbg('STEP 2 ❌ '+e.code+' — '+e.message); errEl.textContent='Profile save failed: '+e.message+'\nCheck Firestore security rules.'; errEl.style.display='block'; btn.disabled=false; btn.textContent='Create Account'; return; }
+    isRegistering=false; currentUser=cred.user; currentData=profileDoc;
+    dbg('STEP 3 — Navigating to dashboard…'); await loadUserData(); showScreen('dashboard');
   };
 
-  // ── LOGIN ────────────────────────────────────────────────────
   window.handleLogin = async () => {
-    const email = document.getElementById('login-email').value.trim();
-    const pass  = document.getElementById('login-password').value;
-    const err   = document.getElementById('login-error');
-    const btn   = document.getElementById('login-btn');
-
-    err.style.display = 'none';
-    if (!email || !pass) { err.textContent = 'Please enter email and password.'; err.style.display = 'block'; return; }
-
-    btn.disabled = true;
-    btn.innerHTML = '<span class="loader"></span> Signing in…';
-    try {
-      await signInWithEmailAndPassword(auth, email, pass);
-      btn.disabled = false;
-      btn.textContent = 'Sign In';
-    } catch (e) {
-      const msg = translateAuthError(e.code);
-      err.textContent = msg !== 'Something went wrong. Please try again.'
-        ? msg : 'Error (' + (e.code || 'unknown') + '): ' + e.message;
-      err.style.display = 'block';
-      btn.disabled = false;
-      btn.textContent = 'Sign In';
-    }
+    const email=document.getElementById('login-email').value.trim();
+    const pass=document.getElementById('login-password').value;
+    const err=document.getElementById('login-error'); const btn=document.getElementById('login-btn');
+    err.style.display='none';
+    if(!email||!pass){err.textContent='Please enter email and password.';err.style.display='block';return;}
+    btn.disabled=true; btn.innerHTML='<span class="loader"></span> Signing in…';
+    try{ await signInWithEmailAndPassword(auth,email,pass); btn.disabled=false; btn.textContent='Sign In'; }
+    catch(e){ err.textContent=translateAuthError(e.code)||'Error: '+e.message; err.style.display='block'; btn.disabled=false; btn.textContent='Sign In'; }
   };
 
   window.handleForgotPassword = async () => {
-    const email = document.getElementById('login-email').value.trim();
-    const err   = document.getElementById('login-error');
-    const suc   = document.getElementById('reset-success');
-    err.style.display = 'none'; suc.style.display = 'none';
-    if (!email) { err.textContent = 'Enter your email above first.'; err.style.display = 'block'; return; }
-    try {
-      await sendPasswordResetEmail(auth, email);
-      suc.textContent = '✅ Password reset email sent. Check your inbox.';
-      suc.style.display = 'block';
-    } catch (e) { err.textContent = translateAuthError(e.code); err.style.display = 'block'; }
+    const email=document.getElementById('login-email').value.trim();
+    const err=document.getElementById('login-error'); const suc=document.getElementById('reset-success');
+    err.style.display='none'; suc.style.display='none';
+    if(!email){err.textContent='Enter your email above first.';err.style.display='block';return;}
+    try{ await sendPasswordResetEmail(auth,email); suc.textContent='✅ Reset email sent. Check your inbox.'; suc.style.display='block'; }
+    catch(e){ err.textContent=translateAuthError(e.code); err.style.display='block'; }
   };
 
-  window.handleLogout = async () => { await signOut(auth); };
+  window.handleLogout = async () => await signOut(auth);
 
-  // ── LOAD USER DATA ───────────────────────────────────────────
   async function loadUserData() {
     try {
-      // if we already have currentData (just registered), skip the read
-      if (!currentData) {
-        const snap = await getDoc(doc(db, 'users', currentUser.uid));
-        if (!snap.exists()) {
-          // give Firestore a moment (very slow connection edge case)
-          await new Promise(r => setTimeout(r, 2000));
-          const retry = await getDoc(doc(db, 'users', currentUser.uid));
-          if (!retry.exists()) return;
-          currentData = retry.data();
-        } else {
-          currentData = snap.data();
-        }
+      if(!currentData){
+        const snap=await getDoc(doc(db,'users',currentUser.uid));
+        if(!snap.exists()){
+          await new Promise(r=>setTimeout(r,2000));
+          const retry=await getDoc(doc(db,'users',currentUser.uid));
+          if(!retry.exists()) return;
+          currentData=retry.data();
+        } else { currentData=snap.data(); }
       }
+      const first=(currentData.fullName||'').split(' ')[0];
+      document.getElementById('nav-client-name').textContent=first;
+      const hr=new Date().getHours();
+      const greet=hr<12?'Good morning':hr<17?'Good afternoon':'Good evening';
+      document.getElementById('dash-greeting').textContent=greet+', '+first+'!';
+      document.getElementById('dash-clientno').textContent='Client No: '+(currentData.clientNumber||'—');
 
-      const firstName = (currentData.fullName || '').split(' ')[0];
-      document.getElementById('nav-client-name').textContent = firstName;
+      const status=currentData.status||'pending';
+      const sb=document.getElementById('status-bar');
+      if(status==='pending'){
+        sb.classList.add('show'); sb.classList.remove('active-bar');
+        document.getElementById('status-bar-text').textContent='⏳  Account pending admin approval — you can still submit an investment.';
+      } else if(status==='active'){
+        sb.classList.add('show','active-bar');
+        document.getElementById('status-bar-text').textContent='✅  Account active — your investments are live.';
+      } else { sb.classList.remove('show'); }
 
-      const hr    = new Date().getHours();
-      const greet = hr < 12 ? 'Good morning' : hr < 17 ? 'Good afternoon' : 'Good evening';
-      document.getElementById('dash-greeting').textContent  = greet + ', ' + (currentData.fullName || '') + '!';
-      document.getElementById('dash-clientno').textContent  = 'Client No: ' + (currentData.clientNumber || '—');
-
-      const status = currentData.status || 'pending';
-      document.getElementById('dash-status').textContent  = status.toUpperCase();
-      document.getElementById('dash-status').className    = 'stat-card-value ' + (status === 'active' ? 'green' : 'gold');
-      document.getElementById('dash-joined').textContent  = currentData.dateJoined || '—';
-      document.getElementById('pending-notice').style.display = status === 'pending' ? 'block' : 'none';
+      document.getElementById('dash-status-badge').innerHTML=
+        `<span class="status-badge ${status}">${status}</span>`;
+      document.getElementById('dash-joined').textContent=currentData.dateJoined||'—';
 
       startRealTimeListeners();
-    } catch (e) {
-      console.error('loadUserData error:', e);
-    }
+    } catch(e){ console.error('loadUserData:',e); }
   }
 
-  function startRealTimeListeners() {
-    if (unsubInv) unsubInv();
-    if (unsubRet) unsubRet();
-
-    const invQ = query(collection(db, 'investments'), where('userId', '==', currentUser.uid));
-    const retQ = query(collection(db, 'returns'),     where('userId', '==', currentUser.uid));
-
-    let invData = [], retData = [];
-
-    unsubInv = onSnapshot(invQ, snap => {
-      invData = snap.docs.map(d => ({ id: d.id, ...d.data() }));
-      rebuildDashboard(invData, retData);
-    });
-    unsubRet = onSnapshot(retQ, snap => {
-      retData = snap.docs.map(d => ({ id: d.id, ...d.data() }));
-      rebuildDashboard(invData, retData);
-    });
+  function startRealTimeListeners(){
+    if(unsubInv) unsubInv(); if(unsubRet) unsubRet();
+    const invQ=query(collection(db,'investments'),where('userId','==',currentUser.uid));
+    const retQ=query(collection(db,'returns'),where('userId','==',currentUser.uid));
+    let invData=[],retData=[];
+    unsubInv=onSnapshot(invQ,snap=>{ invData=snap.docs.map(d=>({id:d.id,...d.data()})); rebuildDashboard(invData,retData); });
+    unsubRet=onSnapshot(retQ,snap=>{ retData=snap.docs.map(d=>({id:d.id,...d.data()})); rebuildDashboard(invData,retData); });
   }
 
-  function rebuildDashboard(investments, returns) {
-    let totalInvested = 0, weightedRate = 0, totalActive = 0;
-    allTxHistory = [];
-
-    investments.forEach(inv => {
-      const amt  = Number(inv.amount) || 0;
-      const rate = Number(inv.interestRate) || 0;
-      if (inv.status === 'active') { totalInvested += amt; weightedRate += rate * amt; totalActive += amt; }
-      allTxHistory.push({ type:'Investment', amount:amt, status:inv.status||'pending', date:inv.dateSubmitted||'', month:inv.dateSubmitted||'' });
+  function rebuildDashboard(investments,returns){
+    let total=0,wRate=0,tActive=0; allTxHistory=[];
+    investments.forEach(inv=>{
+      const amt=Number(inv.amount)||0, rate=Number(inv.interestRate)||0;
+      if(inv.status==='active'){total+=amt;wRate+=rate*amt;tActive+=amt;}
+      allTxHistory.push({type:'Investment',amount:amt,status:inv.status||'pending',date:inv.dateSubmitted||'',month:inv.dateSubmitted||''});
     });
-
-    const avgRate  = totalActive > 0 ? weightedRate / totalActive : 0;
-    const monthly  = (totalInvested * avgRate) / 100;
-    let totalEarned = 0;
-
-    returns.forEach(ret => {
-      const earned = Number(ret.amountEarned) || 0;
-      totalEarned += earned;
-      allTxHistory.push({ type:'Return', amount:earned, status:'Paid', date:ret.dateCalculated||'', month:ret.month||'' });
+    const avgRate=tActive>0?wRate/tActive:0;
+    const monthly=(total*avgRate)/100;
+    let earned=0;
+    returns.forEach(ret=>{
+      const e=Number(ret.amountEarned)||0; earned+=e;
+      allTxHistory.push({type:'Return',amount:e,status:'Paid',date:ret.dateCalculated||'',month:ret.month||''});
     });
+    allTxHistory.sort((a,b)=>b.date.localeCompare(a.date));
 
-    allTxHistory.sort((a, b) => b.date.localeCompare(a.date));
-
-    document.getElementById('dash-total-invested').textContent = 'KSh ' + fmt(totalInvested) + '  (~USD ' + fmt(totalInvested / USD_RATE) + ')';
-    document.getElementById('dash-monthly-return').textContent = 'KSh ' + fmt(monthly);
-    document.getElementById('dash-total-earned').textContent   = 'KSh ' + fmt(totalEarned);
-    document.getElementById('dash-rate').textContent           = avgRate ? avgRate.toFixed(1) + '%' : '0%';
-    document.getElementById('dash-inv-count').textContent      = investments.length;
-    renderTxList('dash-tx-list', allTxHistory.slice(0, 3));
+    document.getElementById('dash-total-invested').textContent='KSh '+fmt(total);
+    document.getElementById('dash-usd').textContent='≈ USD '+fmt(total/USD);
+    document.getElementById('dash-monthly-return').textContent='KSh '+fmt(monthly);
+    document.getElementById('dash-total-earned').textContent='KSh '+fmt(earned);
+    document.getElementById('dash-rate').textContent=avgRate?avgRate.toFixed(1)+'%':'0%';
+    document.getElementById('dash-inv-count').textContent=investments.length;
+    renderTxList('dash-tx-list',allTxHistory.slice(0,3));
   }
 
-  function renderTxList(elId, items) {
-    const el = document.getElementById(elId);
-    if (!items.length) {
-      el.innerHTML = '<div class="empty-state"><div class="empty-icon">📊</div><div class="empty-text">No transactions yet</div></div>';
-      return;
-    }
-    el.innerHTML = items.map(tx => `
-      <div class="tx-item">
+  function renderTxList(elId,items){
+    const el=document.getElementById(elId);
+    if(!items.length){ el.innerHTML='<div class="empty-state"><div class="empty-icon">📊</div><div class="empty-text">No transactions yet</div></div>'; return; }
+    el.innerHTML=items.map(tx=>`
+      <div class="tx-card">
         <div class="tx-left">
-          <div class="tx-icon ${tx.type==='Investment'?'invest':'return'}">${tx.type==='Investment'?'💰':'📈'}</div>
-          <div><div class="tx-type">${tx.type}</div><div class="tx-date">${tx.month||tx.date}</div></div>
+          <div class="tx-icon-wrap ${tx.type==='Investment'?'invest':'earn'}">${tx.type==='Investment'?'💰':'📈'}</div>
+          <div>
+            <div class="tx-type">${tx.type}</div>
+            <div class="tx-date">${tx.month||tx.date||'—'}</div>
+          </div>
         </div>
-        <div style="text-align:right;">
-          <div class="tx-amount ${tx.type==='Return'?'positive':'neutral'}">${tx.type==='Return'?'+':''}KSh ${fmt(tx.amount)}</div>
-          <span class="badge ${tx.status==='active'||tx.status==='Paid'?'active':tx.status==='rejected'?'rejected':'pending'}">${tx.status}</span>
+        <div class="tx-right">
+          <div class="tx-amount ${tx.type==='Return'?'credit':'debit'}">${tx.type==='Return'?'+':''}KSh ${fmt(tx.amount)}</div>
+          <span class="status-badge ${tx.status==='active'||tx.status==='Paid'?'active':tx.status==='rejected'?'rejected':'pending'}">${tx.status}</span>
         </div>
       </div>`).join('');
   }
 
-  function loadHistory() { renderTxList('history-list', allTxHistory); }
+  function loadHistory(){ renderTxList('history-list',allTxHistory); }
 
-  window.filterHistory = (type) => {
-    renderTxList('history-list', type === 'all' ? allTxHistory : allTxHistory.filter(t => t.type === type));
+  window.filterHistory=(type,btn)=>{
+    document.querySelectorAll('.filter-tab').forEach(t=>t.classList.remove('active'));
+    btn.classList.add('active');
+    renderTxList('history-list',type==='all'?allTxHistory:allTxHistory.filter(t=>t.type===type));
   };
 
-  function loadProfile() {
-    if (!currentData) return;
-    document.getElementById('profile-name').textContent     = currentData.fullName     || '—';
-    document.getElementById('profile-email').textContent    = currentData.email        || '—';
-    document.getElementById('profile-clientno').textContent = currentData.clientNumber || '—';
-    document.getElementById('profile-phone').textContent    = currentData.phone        || '—';
-    document.getElementById('profile-id').textContent       = currentData.nationalId   || '—';
-    document.getElementById('profile-joined').textContent   = currentData.dateJoined   || '—';
-    document.getElementById('profile-avatar').textContent   = (currentData.fullName||'?')[0].toUpperCase();
-    const status = currentData.status || 'pending';
-    document.getElementById('profile-status').innerHTML = `<span class="badge ${status==='active'?'active':'pending'}">${status}</span>`;
+  function loadProfile(){
+    if(!currentData) return;
+    document.getElementById('profile-name').textContent=currentData.fullName||'—';
+    document.getElementById('profile-email').textContent=currentData.email||'—';
+    document.getElementById('profile-clientno').textContent=currentData.clientNumber||'—';
+    document.getElementById('profile-phone').textContent=currentData.phone||'—';
+    document.getElementById('profile-id').textContent=currentData.nationalId||'—';
+    document.getElementById('profile-joined').textContent=currentData.dateJoined||'—';
+    document.getElementById('profile-avatar').textContent=(currentData.fullName||'?')[0].toUpperCase();
+    const status=currentData.status||'pending';
+    document.getElementById('profile-status').innerHTML=`<span class="status-badge ${status}">${status}</span>`;
+    // rate from live data
+    const rateEl=document.getElementById('dash-rate');
+    document.getElementById('profile-rate').textContent=rateEl?rateEl.textContent:'0%';
   }
 
-  window.selectPackage = (el, pkg) => {
-    document.querySelectorAll('.package-card').forEach(c => c.classList.remove('selected'));
-    el.classList.add('selected'); selectedPkg = pkg;
-    document.getElementById('custom-box').style.display = pkg === 'custom' ? 'block' : 'none';
-    document.getElementById('invest-error').style.display = document.getElementById('invest-success').style.display = 'none';
+  window.selectPackage=(el,pkg)=>{
+    document.querySelectorAll('.pkg-card').forEach(c=>c.classList.remove('selected'));
+    el.classList.add('selected'); selectedPkg=pkg;
+    document.getElementById('custom-box').style.display=pkg==='custom'?'block':'none';
+    document.getElementById('invest-error').style.display=document.getElementById('invest-success').style.display='none';
   };
 
-  window.submitInvestment = () => {
-    const err = document.getElementById('invest-error');
-    const suc = document.getElementById('invest-success');
-    err.style.display = suc.style.display = 'none';
-    if (!selectedPkg) { err.textContent = 'Please select an investment package.'; err.style.display = 'block'; return; }
-    let amount = selectedPkg === 'custom'
-      ? Number(document.getElementById('custom-amount').value)
-      : Number(selectedPkg);
-    if (!amount || amount < 1000) { err.textContent = 'Please enter a valid amount (min KSh 1,000).'; err.style.display = 'block'; return; }
-    document.getElementById('modal-body').innerHTML =
-      `<strong>Package:</strong> KSh ${fmt(amount)}<br/>
-       <strong>USD Equivalent:</strong> ~USD ${fmt(amount / USD_RATE)}<br/>
-       <strong>Est. Monthly Return:</strong> KSh ${fmt(amount * 0.04)} – KSh ${fmt(amount * 0.08)}<br/><br/>
-       Send the exact amount to our M-Pesa / Bank and tap <em>Confirm & Submit</em>. Admin will approve after confirming your payment.`;
+  window.submitInvestment=()=>{
+    const err=document.getElementById('invest-error'); const suc=document.getElementById('invest-success');
+    err.style.display=suc.style.display='none';
+    if(!selectedPkg){err.textContent='Please select a package first.';err.style.display='block';return;}
+    let amount=selectedPkg==='custom'?Number(document.getElementById('custom-amount').value):Number(selectedPkg);
+    if(!amount||amount<1000){err.textContent='Please enter a valid amount (min KSh 1,000).';err.style.display='block';return;}
+    document.getElementById('modal-detail').innerHTML=`
+      <div class="modal-detail-row"><span>Package</span><span>KSh ${fmt(amount)}</span></div>
+      <div class="modal-detail-row"><span>USD Equivalent</span><span>~USD ${fmt(amount/USD)}</span></div>
+      <div class="modal-detail-row"><span>Min. Monthly Return</span><span>KSh ${fmt(amount*0.04)}</span></div>
+      <div class="modal-detail-row"><span>Max. Monthly Return</span><span>KSh ${fmt(amount*0.08)}</span></div>`;
     document.getElementById('confirm-modal').classList.add('open');
-    window._pendingAmount = amount;
+    window._pendingAmount=amount;
   };
 
-  window.closeModal = () => { document.getElementById('confirm-modal').classList.remove('open'); };
+  window.closeModal=()=>document.getElementById('confirm-modal').classList.remove('open');
 
-  window.confirmInvestment = async () => {
+  window.confirmInvestment=async()=>{
     closeModal();
-    const amount = window._pendingAmount;
-    const err = document.getElementById('invest-error');
-    const suc = document.getElementById('invest-success');
-    try {
-      await addDoc(collection(db, 'investments'), {
-        userId:        currentUser.uid,
-        clientNumber:  currentData.clientNumber || '',
-        clientName:    currentData.fullName || '',
-        package:       selectedPkg === 'custom' ? 'Custom' : 'KSh ' + fmt(amount),
-        amount:        amount,
-        status:        'pending',
-        interestRate:  0,
-        dateSubmitted: new Date().toISOString().split('T')[0],
-        dateApproved:  '',
-        lastUpdated:   new Date().toISOString().split('T')[0]
+    const amount=window._pendingAmount;
+    const err=document.getElementById('invest-error'); const suc=document.getElementById('invest-success');
+    try{
+      await addDoc(collection(db,'investments'),{
+        userId:currentUser.uid,clientNumber:currentData.clientNumber||'',
+        clientName:currentData.fullName||'',
+        package:selectedPkg==='custom'?'Custom':'KSh '+fmt(amount),
+        amount,status:'pending',interestRate:0,
+        dateSubmitted:new Date().toISOString().split('T')[0],
+        dateApproved:'',lastUpdated:new Date().toISOString().split('T')[0]
       });
-      suc.textContent = '✅ Investment request of KSh ' + fmt(amount) + ' submitted! Awaiting admin approval.';
-      suc.style.display = 'block';
-      selectedPkg = null;
-      document.querySelectorAll('.package-card').forEach(c => c.classList.remove('selected'));
-      document.getElementById('custom-box').style.display = 'none';
-    } catch (e) { err.textContent = 'Error submitting: ' + e.message; err.style.display = 'block'; }
+      suc.textContent='✅ Investment request of KSh '+fmt(amount)+' submitted! Awaiting admin approval.';
+      suc.style.display='block'; selectedPkg=null;
+      document.querySelectorAll('.pkg-card').forEach(c=>c.classList.remove('selected'));
+      document.getElementById('custom-box').style.display='none';
+    } catch(e){ err.textContent='Error: '+e.message; err.style.display='block'; }
   };
 
-  function fmt(n) { return Number(n).toLocaleString('en-KE', { maximumFractionDigits: 0 }); }
+  function fmt(n){ return Number(n).toLocaleString('en-KE',{maximumFractionDigits:0}); }
 
-  function translateAuthError(code) {
-    const m = {
-      'auth/email-already-in-use':   'This email is already registered.',
-      'auth/invalid-email':          'Please enter a valid email address.',
-      'auth/weak-password':          'Password is too weak. Use at least 6 characters.',
-      'auth/user-not-found':         'No account found with this email.',
-      'auth/wrong-password':         'Incorrect password. Please try again.',
-      'auth/invalid-credential':     'Invalid email or password.',
-      'auth/too-many-requests':      'Too many attempts. Please try again later.',
-      'auth/network-request-failed': 'Network error. Check your connection.',
-      'auth/operation-not-allowed':  'Email/password login is not enabled. Contact support.',
-      'auth/configuration-not-found':'Firebase not configured correctly. Contact support.',
-      'auth/api-key-not-valid':      'Invalid Firebase API key. Contact support.',
-      'auth/app-not-authorized':     'This domain is not authorized in Firebase. Contact support.'
-    };
-    return m[code] || 'Something went wrong. Please try again.';
+  function translateAuthError(code){
+    const m={'auth/email-already-in-use':'This email is already registered.','auth/invalid-email':'Please enter a valid email address.','auth/weak-password':'Password too weak — use at least 6 characters.','auth/user-not-found':'No account found with this email.','auth/wrong-password':'Incorrect password.','auth/invalid-credential':'Invalid email or password.','auth/too-many-requests':'Too many attempts. Try again later.','auth/network-request-failed':'Network error. Check your connection.'};
+    return m[code]||'Something went wrong. Please try again.';
   }
 </script>
 </body>
