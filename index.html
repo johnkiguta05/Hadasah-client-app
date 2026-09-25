@@ -1,0 +1,1190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+<title>Hadasah Investment Ltd</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --green-deep:   #0a5c36;
+    --green-mid:    #1a8a52;
+    --green-light:  #25c26e;
+    --green-pale:   #e8f5ee;
+    --white:        #ffffff;
+    --grey-soft:    #f4f7f5;
+    --grey-text:    #6b7c74;
+    --dark:         #0d1f17;
+    --gold:         #c9a84c;
+    --red:          #d94040;
+    --radius:       14px;
+    --shadow:       0 4px 24px rgba(10,92,54,.10);
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; font-family: 'Inter', sans-serif; background: var(--grey-soft); color: var(--dark); }
+
+  /* ── SCREENS ── */
+  .screen { display: none; min-height: 100vh; }
+  .screen.active { display: flex; flex-direction: column; }
+
+  /* ── NAV BAR ── */
+  .navbar {
+    background: var(--white);
+    padding: 14px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 2px 12px rgba(10,92,54,.08);
+    position: sticky; top: 0; z-index: 100;
+  }
+  .navbar .logo { display: flex; align-items: center; gap: 10px; }
+  .navbar .logo-icon {
+    width: 36px; height: 36px; background: var(--green-deep);
+    border-radius: 8px; display: flex; align-items: center;
+    justify-content: center; color: var(--white); font-size: 18px;
+  }
+  .navbar .logo-text { font-weight: 700; font-size: 15px; color: var(--green-deep); }
+  .navbar .logo-sub { font-size: 10px; color: var(--grey-text); font-weight: 400; }
+  .nav-actions { display: flex; gap: 10px; align-items: center; }
+  .nav-name { font-size: 13px; color: var(--grey-text); }
+  .btn-logout {
+    background: transparent; border: 1.5px solid var(--green-mid);
+    color: var(--green-deep); padding: 7px 16px; border-radius: 8px;
+    font-size: 13px; font-weight: 600; cursor: pointer;
+  }
+
+  /* ── LANDING ── */
+  #screen-landing {
+    background: linear-gradient(160deg, var(--green-deep) 0%, var(--green-mid) 60%, var(--green-light) 100%);
+    align-items: center; justify-content: center; text-align: center;
+    padding: 40px 24px;
+  }
+  .landing-badge {
+    display: inline-block; background: rgba(255,255,255,.15);
+    color: #fff; font-size: 12px; font-weight: 500;
+    padding: 5px 14px; border-radius: 20px; margin-bottom: 24px;
+    letter-spacing: .5px;
+  }
+  .landing-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 8vw, 56px);
+    color: #fff; line-height: 1.15; margin-bottom: 16px;
+  }
+  .landing-sub {
+    font-size: 16px; color: rgba(255,255,255,.80);
+    max-width: 360px; margin: 0 auto 40px; line-height: 1.6;
+  }
+  .landing-buttons { display: flex; flex-direction: column; gap: 12px; width: 100%; max-width: 320px; margin: 0 auto; }
+  .btn-primary {
+    background: var(--white); color: var(--green-deep);
+    border: none; padding: 16px; border-radius: var(--radius);
+    font-size: 15px; font-weight: 700; cursor: pointer;
+    transition: transform .15s, box-shadow .15s;
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,.15); }
+  .btn-outline {
+    background: transparent; color: var(--white);
+    border: 2px solid rgba(255,255,255,.60);
+    padding: 15px; border-radius: var(--radius);
+    font-size: 15px; font-weight: 600; cursor: pointer;
+  }
+  .landing-stats {
+    display: flex; gap: 32px; margin-top: 48px;
+    justify-content: center; flex-wrap: wrap;
+  }
+  .stat-item { text-align: center; }
+  .stat-value { font-size: 26px; font-weight: 700; color: var(--white); }
+  .stat-label { font-size: 11px; color: rgba(255,255,255,.65); margin-top: 2px; }
+
+  /* ── AUTH SCREENS ── */
+  #screen-login, #screen-register {
+    background: var(--grey-soft);
+    align-items: center; justify-content: center; padding: 24px;
+  }
+  .auth-card {
+    background: var(--white); border-radius: 20px;
+    padding: 36px 32px; width: 100%; max-width: 400px;
+    box-shadow: var(--shadow);
+  }
+  .auth-logo {
+    width: 52px; height: 52px; background: var(--green-deep);
+    border-radius: 14px; display: flex; align-items: center;
+    justify-content: center; color: var(--white);
+    font-size: 24px; margin: 0 auto 20px;
+  }
+  .auth-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px; text-align: center; color: var(--dark);
+    margin-bottom: 6px;
+  }
+  .auth-sub { text-align: center; font-size: 13px; color: var(--grey-text); margin-bottom: 28px; }
+  .form-group { margin-bottom: 16px; }
+  .form-label { font-size: 13px; font-weight: 600; color: var(--dark); margin-bottom: 6px; display: block; }
+  .form-input {
+    width: 100%; padding: 13px 16px; border: 1.5px solid #dde8e2;
+    border-radius: 10px; font-size: 14px; font-family: 'Inter', sans-serif;
+    background: var(--grey-soft); color: var(--dark);
+    transition: border-color .2s;
+  }
+  .form-input:focus { outline: none; border-color: var(--green-mid); background: #fff; }
+  .btn-green {
+    width: 100%; background: var(--green-deep); color: var(--white);
+    border: none; padding: 15px; border-radius: 10px;
+    font-size: 15px; font-weight: 700; cursor: pointer; margin-top: 8px;
+    transition: background .2s;
+  }
+  .btn-green:hover { background: var(--green-mid); }
+  .btn-green:disabled { background: #aaa; cursor: not-allowed; }
+  .auth-switch { text-align: center; margin-top: 20px; font-size: 13px; color: var(--grey-text); }
+  .auth-switch a { color: var(--green-deep); font-weight: 600; cursor: pointer; text-decoration: none; }
+  .auth-back { text-align: center; margin-bottom: 16px; }
+  .auth-back a { color: var(--green-deep); font-size: 13px; cursor: pointer; }
+  .error-msg {
+    background: #fef0f0; color: var(--red); border: 1px solid #fcc;
+    padding: 10px 14px; border-radius: 8px; font-size: 13px;
+    margin-bottom: 14px; display: none;
+  }
+  .success-msg {
+    background: var(--green-pale); color: var(--green-deep);
+    border: 1px solid #b2dfc8; padding: 10px 14px;
+    border-radius: 8px; font-size: 13px; margin-bottom: 14px; display: none;
+  }
+
+  /* ── DASHBOARD ── */
+  #screen-dashboard { background: var(--grey-soft); }
+  .page-content { padding: 20px 16px; flex: 1; }
+  .page-title { font-size: 20px; font-weight: 700; color: var(--dark); margin-bottom: 4px; }
+  .page-sub { font-size: 13px; color: var(--grey-text); margin-bottom: 20px; }
+
+  /* Portfolio banner */
+  .portfolio-banner {
+    background: linear-gradient(135deg, var(--green-deep), var(--green-mid));
+    border-radius: var(--radius); padding: 24px 20px; color: #fff; margin-bottom: 16px;
+  }
+  .portfolio-label { font-size: 12px; opacity: .75; margin-bottom: 6px; }
+  .portfolio-amount { font-size: 34px; font-weight: 700; margin-bottom: 2px; }
+  .portfolio-sub { font-size: 12px; opacity: .75; }
+  .portfolio-row { display: flex; gap: 12px; margin-top: 16px; }
+  .portfolio-mini {
+    flex: 1; background: rgba(255,255,255,.15);
+    border-radius: 10px; padding: 12px;
+  }
+  .portfolio-mini-label { font-size: 10px; opacity: .75; margin-bottom: 4px; }
+  .portfolio-mini-value { font-size: 17px; font-weight: 700; }
+
+  /* Stat cards */
+  .cards-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px; }
+  .stat-card {
+    background: var(--white); border-radius: var(--radius);
+    padding: 18px 16px; box-shadow: var(--shadow);
+  }
+  .stat-card-label { font-size: 11px; color: var(--grey-text); margin-bottom: 6px; font-weight: 500; }
+  .stat-card-value { font-size: 20px; font-weight: 700; color: var(--dark); }
+  .stat-card-value.green { color: var(--green-deep); }
+  .stat-card-value.gold { color: var(--gold); }
+
+  /* Section heading */
+  .section-head {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 12px;
+  }
+  .section-title { font-size: 15px; font-weight: 700; color: var(--dark); }
+  .section-link { font-size: 12px; color: var(--green-mid); cursor: pointer; font-weight: 600; }
+
+  /* Transaction list */
+  .tx-list { display: flex; flex-direction: column; gap: 10px; }
+  .tx-item {
+    background: var(--white); border-radius: 12px;
+    padding: 14px 16px; display: flex;
+    justify-content: space-between; align-items: center;
+    box-shadow: 0 2px 8px rgba(10,92,54,.06);
+  }
+  .tx-left { display: flex; align-items: center; gap: 12px; }
+  .tx-icon {
+    width: 38px; height: 38px; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 17px;
+  }
+  .tx-icon.invest { background: var(--green-pale); }
+  .tx-icon.return { background: #fff8e6; }
+  .tx-type { font-size: 13px; font-weight: 600; color: var(--dark); }
+  .tx-date { font-size: 11px; color: var(--grey-text); margin-top: 2px; }
+  .tx-amount { font-size: 14px; font-weight: 700; }
+  .tx-amount.positive { color: var(--green-deep); }
+  .tx-amount.neutral { color: var(--gold); }
+
+  /* Status badge */
+  .badge {
+    font-size: 10px; font-weight: 700; padding: 3px 9px;
+    border-radius: 20px; text-transform: uppercase;
+  }
+  .badge.active { background: var(--green-pale); color: var(--green-deep); }
+  .badge.pending { background: #fff8e6; color: #9a6f00; }
+  .badge.rejected { background: #fef0f0; color: var(--red); }
+
+  /* ── INVEST SCREEN ── */
+  #screen-invest { background: var(--grey-soft); }
+  .packages-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px; }
+  .package-card {
+    background: var(--white); border-radius: var(--radius);
+    padding: 20px 16px; text-align: center; cursor: pointer;
+    border: 2px solid transparent; box-shadow: var(--shadow);
+    transition: border-color .2s, transform .15s;
+  }
+  .package-card:hover { transform: translateY(-2px); }
+  .package-card.selected { border-color: var(--green-mid); background: var(--green-pale); }
+  .package-amount { font-size: 20px; font-weight: 700; color: var(--green-deep); }
+  .package-currency { font-size: 11px; color: var(--grey-text); margin-top: 3px; }
+  .package-returns {
+    font-size: 11px; color: var(--green-mid); margin-top: 8px;
+    font-weight: 600;
+  }
+  .custom-box {
+    background: var(--white); border-radius: var(--radius);
+    padding: 20px; margin-bottom: 20px; box-shadow: var(--shadow);
+  }
+  .custom-box-title { font-size: 14px; font-weight: 700; margin-bottom: 12px; color: var(--dark); }
+
+  /* ── HISTORY SCREEN ── */
+  #screen-history { background: var(--grey-soft); }
+
+  /* ── BOTTOM NAV ── */
+  .bottom-nav {
+    background: var(--white); display: flex;
+    border-top: 1px solid #e8ede9; position: sticky; bottom: 0;
+    box-shadow: 0 -4px 16px rgba(10,92,54,.08);
+  }
+  .nav-item {
+    flex: 1; display: flex; flex-direction: column;
+    align-items: center; padding: 10px 0 12px;
+    cursor: pointer; transition: color .2s;
+    color: var(--grey-text); font-size: 10px; font-weight: 500; gap: 4px;
+    border: none; background: transparent;
+  }
+  .nav-item.active { color: var(--green-deep); }
+  .nav-item svg { width: 22px; height: 22px; }
+
+  /* Loader */
+  .loader {
+    display: inline-block; width: 18px; height: 18px;
+    border: 2.5px solid rgba(255,255,255,.4);
+    border-top-color: #fff; border-radius: 50%;
+    animation: spin .7s linear infinite; vertical-align: middle;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .empty-state {
+    text-align: center; padding: 40px 20px; color: var(--grey-text);
+  }
+  .empty-icon { font-size: 40px; margin-bottom: 10px; }
+  .empty-text { font-size: 14px; }
+
+  /* Pending notice */
+  .pending-notice {
+    background: #fff8e6; border: 1px solid #f0d080;
+    border-radius: 10px; padding: 14px 16px;
+    font-size: 13px; color: #7a5500; margin-bottom: 16px;
+    display: none;
+  }
+
+  /* Confirm modal */
+  .modal-overlay {
+    position: fixed; inset: 0; background: rgba(0,0,0,.5);
+    display: none; align-items: center; justify-content: center;
+    z-index: 999; padding: 20px;
+  }
+  .modal-overlay.open { display: flex; }
+  .modal-box {
+    background: var(--white); border-radius: 20px;
+    padding: 28px 24px; width: 100%; max-width: 360px;
+    box-shadow: 0 20px 60px rgba(0,0,0,.2);
+  }
+  .modal-title { font-size: 18px; font-weight: 700; margin-bottom: 8px; color: var(--dark); }
+  .modal-body { font-size: 14px; color: var(--grey-text); margin-bottom: 24px; line-height: 1.6; }
+  .modal-actions { display: flex; gap: 10px; }
+  .btn-cancel {
+    flex: 1; padding: 13px; border-radius: 10px;
+    border: 1.5px solid #dde8e2; background: transparent;
+    font-size: 14px; font-weight: 600; cursor: pointer; color: var(--dark);
+  }
+  .btn-confirm {
+    flex: 1; padding: 13px; border-radius: 10px;
+    border: none; background: var(--green-deep);
+    font-size: 14px; font-weight: 700; cursor: pointer; color: #fff;
+  }
+
+  select.form-input { appearance: none; }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════ -->
+<!--  LANDING SCREEN                            -->
+<!-- ═══════════════════════════════════════════ -->
+<div id="screen-landing" class="screen active">
+  <div style="padding:40px 24px 0; text-align:center;">
+    <div class="landing-badge">Trusted Investment Platform</div>
+    <h1 class="landing-title">Grow Your<br/>Wealth With Us</h1>
+    <p class="landing-sub">Join Hadasah Investment Ltd and earn 4–8% monthly returns on your investment portfolio.</p>
+    <div class="landing-buttons">
+      <button class="btn-primary" onclick="showScreen('register')">Create Account</button>
+      <button class="btn-outline" onclick="showScreen('login')">Sign In</button>
+    </div>
+    <div class="landing-stats">
+      <div class="stat-item">
+        <div class="stat-value">4–8%</div>
+        <div class="stat-label">Monthly Returns</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value">KSh 10K+</div>
+        <div class="stat-label">Min Investment</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value">100%</div>
+        <div class="stat-label">Secure</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!--  REGISTER SCREEN                           -->
+<!-- ═══════════════════════════════════════════ -->
+<div id="screen-register" class="screen">
+  <div style="flex:1; display:flex; align-items:center; justify-content:center; padding:24px;">
+    <div class="auth-card">
+      <div class="auth-back"><a onclick="showScreen('landing')">← Back</a></div>
+      <div class="auth-logo">🌿</div>
+      <h2 class="auth-title">Create Account</h2>
+      <p class="auth-sub">Join Hadasah Investment Ltd today</p>
+      <div id="reg-error" class="error-msg"></div>
+      <div id="reg-success" class="success-msg"></div>
+      <div class="form-group">
+        <label class="form-label">Full Name</label>
+        <input id="reg-name" class="form-input" type="text" placeholder="Your full name"/>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Email Address</label>
+        <input id="reg-email" class="form-input" type="email" placeholder="your@email.com"/>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Phone Number</label>
+        <input id="reg-phone" class="form-input" type="tel" placeholder="+254 7XX XXX XXX"/>
+      </div>
+      <div class="form-group">
+        <label class="form-label">National ID / Passport</label>
+        <input id="reg-id" class="form-input" type="text" placeholder="ID or Passport number"/>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Password</label>
+        <input id="reg-password" class="form-input" type="password" placeholder="Min 6 characters"/>
+      </div>
+      <button id="reg-btn" class="btn-green" onclick="handleRegister()">Create Account</button>
+      <div class="auth-switch">Already have an account? <a onclick="showScreen('login')">Sign in</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!--  LOGIN SCREEN                              -->
+<!-- ═══════════════════════════════════════════ -->
+<div id="screen-login" class="screen">
+  <div style="flex:1; display:flex; align-items:center; justify-content:center; padding:24px;">
+    <div class="auth-card">
+      <div class="auth-back"><a onclick="showScreen('landing')">← Back</a></div>
+      <div class="auth-logo">🌿</div>
+      <h2 class="auth-title">Welcome Back</h2>
+      <p class="auth-sub">Sign in to your investment account</p>
+      <div id="login-error" class="error-msg"></div>
+      <div class="form-group">
+        <label class="form-label">Email Address</label>
+        <input id="login-email" class="form-input" type="email" placeholder="your@email.com"/>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Password</label>
+        <input id="login-password" class="form-input" type="password" placeholder="Your password"/>
+      </div>
+      <button id="login-btn" class="btn-green" onclick="handleLogin()">Sign In</button>
+      <div class="auth-switch">New here? <a onclick="showScreen('register')">Create account</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!--  DASHBOARD SCREEN                          -->
+<!-- ═══════════════════════════════════════════ -->
+<div id="screen-dashboard" class="screen">
+  <nav class="navbar">
+    <div class="logo">
+      <div class="logo-icon">🌿</div>
+      <div>
+        <div class="logo-text">Hadasah Investment</div>
+        <div class="logo-sub">Client Portal</div>
+      </div>
+    </div>
+    <div class="nav-actions">
+      <span class="nav-name" id="nav-client-name"></span>
+      <button class="btn-logout" onclick="handleLogout()">Logout</button>
+    </div>
+  </nav>
+
+  <div class="page-content">
+    <div class="page-title" id="dash-greeting">Good morning!</div>
+    <p class="page-sub" id="dash-clientno"></p>
+
+    <!-- Pending notice -->
+    <div class="pending-notice" id="pending-notice">
+      Your account is pending admin approval. You can still submit an investment request.
+    </div>
+
+    <!-- Portfolio Banner -->
+    <div class="portfolio-banner">
+      <div class="portfolio-label">Total Portfolio Value</div>
+      <div class="portfolio-amount" id="dash-total-invested">KSh 0</div>
+      <div class="portfolio-sub">Active investment balance</div>
+      <div class="portfolio-row">
+        <div class="portfolio-mini">
+          <div class="portfolio-mini-label">Monthly Returns</div>
+          <div class="portfolio-mini-value" id="dash-monthly-return">KSh 0</div>
+        </div>
+        <div class="portfolio-mini">
+          <div class="portfolio-mini-label">Total Earned</div>
+          <div class="portfolio-mini-value" id="dash-total-earned">KSh 0</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stat Cards -->
+    <div class="cards-grid">
+      <div class="stat-card">
+        <div class="stat-card-label">Interest Rate</div>
+        <div class="stat-card-value green" id="dash-rate">0%</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card-label">Status</div>
+        <div class="stat-card-value" id="dash-status">—</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card-label">Date Joined</div>
+        <div class="stat-card-value" id="dash-joined" style="font-size:14px;">—</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card-label">Investments</div>
+        <div class="stat-card-value gold" id="dash-inv-count">0</div>
+      </div>
+    </div>
+
+    <!-- Recent Transactions -->
+    <div class="section-head">
+      <div class="section-title">Recent Activity</div>
+      <div class="section-link" onclick="switchTab('history')">See all</div>
+    </div>
+    <div class="tx-list" id="dash-tx-list">
+      <div class="empty-state">
+        <div class="empty-icon">📊</div>
+        <div class="empty-text">No transactions yet</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Nav -->
+  <div class="bottom-nav">
+    <button class="nav-item active" id="tab-dashboard" onclick="switchTab('dashboard')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+      Dashboard
+    </button>
+    <button class="nav-item" id="tab-invest" onclick="switchTab('invest')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      Invest
+    </button>
+    <button class="nav-item" id="tab-history" onclick="switchTab('history')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+      History
+    </button>
+    <button class="nav-item" id="tab-profile" onclick="switchTab('profile')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+      Profile
+    </button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!--  INVEST SCREEN                             -->
+<!-- ═══════════════════════════════════════════ -->
+<div id="screen-invest" class="screen">
+  <nav class="navbar">
+    <div class="logo">
+      <div class="logo-icon">🌿</div>
+      <div><div class="logo-text">Hadasah Investment</div></div>
+    </div>
+  </nav>
+  <div class="page-content">
+    <div class="page-title">New Investment</div>
+    <p class="page-sub">Choose a package or enter a custom amount</p>
+
+    <div id="invest-error" class="error-msg"></div>
+    <div id="invest-success" class="success-msg"></div>
+
+    <div class="section-title" style="margin-bottom:12px;">Select Package</div>
+    <div class="packages-grid" id="packages-grid">
+      <div class="package-card" onclick="selectPackage(this,'10000')">
+        <div class="package-amount">KSh 10,000</div>
+        <div class="package-currency">≈ USD 77</div>
+        <div class="package-returns">4–8% / month</div>
+      </div>
+      <div class="package-card" onclick="selectPackage(this,'20000')">
+        <div class="package-amount">KSh 20,000</div>
+        <div class="package-currency">≈ USD 154</div>
+        <div class="package-returns">4–8% / month</div>
+      </div>
+      <div class="package-card" onclick="selectPackage(this,'30000')">
+        <div class="package-amount">KSh 30,000</div>
+        <div class="package-currency">≈ USD 231</div>
+        <div class="package-returns">4–8% / month</div>
+      </div>
+      <div class="package-card" onclick="selectPackage(this,'40000')">
+        <div class="package-amount">KSh 40,000</div>
+        <div class="package-currency">≈ USD 308</div>
+        <div class="package-returns">4–8% / month</div>
+      </div>
+      <div class="package-card" onclick="selectPackage(this,'50000')">
+        <div class="package-amount">KSh 50,000</div>
+        <div class="package-currency">≈ USD 385</div>
+        <div class="package-returns">4–8% / month</div>
+      </div>
+      <div class="package-card" onclick="selectPackage(this,'60000')">
+        <div class="package-amount">KSh 60,000</div>
+        <div class="package-currency">≈ USD 462</div>
+        <div class="package-returns">4–8% / month</div>
+      </div>
+      <div class="package-card" onclick="selectPackage(this,'70000')">
+        <div class="package-amount">KSh 70,000</div>
+        <div class="package-currency">≈ USD 538</div>
+        <div class="package-returns">4–8% / month</div>
+      </div>
+      <div class="package-card" onclick="selectPackage(this,'custom')">
+        <div class="package-amount" style="font-size:15px;">Custom</div>
+        <div class="package-currency">Any amount</div>
+        <div class="package-returns">4–8% / month</div>
+      </div>
+    </div>
+
+    <!-- Custom amount -->
+    <div class="custom-box" id="custom-box" style="display:none;">
+      <div class="custom-box-title">Enter Custom Amount</div>
+      <div class="form-group">
+        <label class="form-label">Amount (KSh)</label>
+        <input id="custom-amount" class="form-input" type="number"
+               placeholder="e.g 15000" min="1000"/>
+      </div>
+    </div>
+
+    <button class="btn-green" onclick="submitInvestment()">Submit Investment Request</button>
+    <p style="font-size:12px; color:var(--grey-text); margin-top:12px; text-align:center;">
+      Your request will be reviewed and approved by admin after payment confirmation.
+    </p>
+  </div>
+
+  <div class="bottom-nav">
+    <button class="nav-item" id="tab2-dashboard" onclick="switchTab('dashboard')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+      Dashboard
+    </button>
+    <button class="nav-item active" id="tab2-invest" onclick="switchTab('invest')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      Invest
+    </button>
+    <button class="nav-item" id="tab2-history" onclick="switchTab('history')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+      History
+    </button>
+    <button class="nav-item" id="tab2-profile" onclick="switchTab('profile')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+      Profile
+    </button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!--  HISTORY SCREEN                            -->
+<!-- ═══════════════════════════════════════════ -->
+<div id="screen-history" class="screen">
+  <nav class="navbar">
+    <div class="logo">
+      <div class="logo-icon">🌿</div>
+      <div><div class="logo-text">Hadasah Investment</div></div>
+    </div>
+  </nav>
+  <div class="page-content">
+    <div class="page-title">Transaction History</div>
+    <p class="page-sub">All your investments and returns</p>
+
+    <!-- Filter -->
+    <div style="margin-bottom:16px;">
+      <select class="form-input" onchange="filterHistory(this.value)" style="max-width:200px;">
+        <option value="all">All Transactions</option>
+        <option value="Investment">Investments</option>
+        <option value="Return">Returns / ROI</option>
+      </select>
+    </div>
+
+    <div class="tx-list" id="history-list">
+      <div class="empty-state">
+        <div class="empty-icon">📋</div>
+        <div class="empty-text">No transactions found</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bottom-nav">
+    <button class="nav-item" onclick="switchTab('dashboard')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+      Dashboard
+    </button>
+    <button class="nav-item" onclick="switchTab('invest')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      Invest
+    </button>
+    <button class="nav-item active" onclick="switchTab('history')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+      History
+    </button>
+    <button class="nav-item" onclick="switchTab('profile')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+      Profile
+    </button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!--  PROFILE SCREEN                            -->
+<!-- ═══════════════════════════════════════════ -->
+<div id="screen-profile" class="screen">
+  <nav class="navbar">
+    <div class="logo">
+      <div class="logo-icon">🌿</div>
+      <div><div class="logo-text">Hadasah Investment</div></div>
+    </div>
+  </nav>
+  <div class="page-content">
+    <div class="page-title">My Profile</div>
+    <p class="page-sub">Your account details</p>
+
+    <!-- Profile Card -->
+    <div style="background:var(--white); border-radius:var(--radius); padding:24px; box-shadow:var(--shadow); margin-bottom:16px;">
+      <div style="display:flex; align-items:center; gap:16px; margin-bottom:20px;">
+        <div style="width:56px; height:56px; background:var(--green-deep); border-radius:50%; display:flex; align-items:center; justify-content:center; color:#fff; font-size:22px; font-weight:700;" id="profile-avatar">?</div>
+        <div>
+          <div style="font-weight:700; font-size:17px;" id="profile-name">—</div>
+          <div style="font-size:13px; color:var(--grey-text);" id="profile-email">—</div>
+        </div>
+      </div>
+
+      <div style="display:flex; flex-direction:column; gap:14px;">
+        <div style="display:flex; justify-content:space-between; border-bottom:1px solid var(--grey-soft); padding-bottom:12px;">
+          <span style="font-size:13px; color:var(--grey-text);">Client Number</span>
+          <span style="font-size:13px; font-weight:700; color:var(--green-deep);" id="profile-clientno">—</span>
+        </div>
+        <div style="display:flex; justify-content:space-between; border-bottom:1px solid var(--grey-soft); padding-bottom:12px;">
+          <span style="font-size:13px; color:var(--grey-text);">Phone</span>
+          <span style="font-size:13px; font-weight:600;" id="profile-phone">—</span>
+        </div>
+        <div style="display:flex; justify-content:space-between; border-bottom:1px solid var(--grey-soft); padding-bottom:12px;">
+          <span style="font-size:13px; color:var(--grey-text);">National ID</span>
+          <span style="font-size:13px; font-weight:600;" id="profile-id">—</span>
+        </div>
+        <div style="display:flex; justify-content:space-between; border-bottom:1px solid var(--grey-soft); padding-bottom:12px;">
+          <span style="font-size:13px; color:var(--grey-text);">Date Joined</span>
+          <span style="font-size:13px; font-weight:600;" id="profile-joined">—</span>
+        </div>
+        <div style="display:flex; justify-content:space-between;">
+          <span style="font-size:13px; color:var(--grey-text);">Account Status</span>
+          <span id="profile-status">—</span>
+        </div>
+      </div>
+    </div>
+
+    <button class="btn-green" style="background:var(--red);" onclick="handleLogout()">Sign Out</button>
+  </div>
+
+  <div class="bottom-nav">
+    <button class="nav-item" onclick="switchTab('dashboard')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+      Dashboard
+    </button>
+    <button class="nav-item" onclick="switchTab('invest')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      Invest
+    </button>
+    <button class="nav-item" onclick="switchTab('history')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+      History
+    </button>
+    <button class="nav-item active" onclick="switchTab('profile')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+      Profile
+    </button>
+  </div>
+</div>
+
+<!-- Confirm Modal -->
+<div class="modal-overlay" id="confirm-modal">
+  <div class="modal-box">
+    <div class="modal-title" id="modal-title">Confirm Investment</div>
+    <div class="modal-body" id="modal-body"></div>
+    <div class="modal-actions">
+      <button class="btn-cancel" onclick="closeModal()">Cancel</button>
+      <button class="btn-confirm" onclick="confirmInvestment()">Confirm</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!--  FIREBASE + APP LOGIC                                      -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+  import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged }
+    from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+  import { getFirestore, doc, setDoc, getDoc, collection, query, where, getDocs, addDoc, serverTimestamp }
+    from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+  // ── PASTE YOUR FIREBASE CONFIG HERE ──────────────────────
+  const firebaseConfig = {
+    apiKey:            "PASTE_YOUR_API_KEY_HERE",
+    authDomain:        "hadasah-investment-ltd.firebaseapp.com",
+    projectId:         "hadasah-investment-ltd",
+    storageBucket:     "hadasah-investment-ltd.appspot.com",
+    messagingSenderId: "PASTE_YOUR_SENDER_ID_HERE",
+    appId:             "PASTE_YOUR_APP_ID_HERE"
+  };
+  // ─────────────────────────────────────────────────────────
+
+  const app  = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const db   = getFirestore(app);
+
+  // USD conversion rate (1 USD = 130 KSh approx)
+  const USD_RATE = 130;
+
+  let currentUser  = null;
+  let currentData  = null;
+  let allTxHistory = [];
+  let selectedPkg  = null;
+
+  // ── SCREEN NAVIGATION ──────────────────────────────────
+  window.showScreen = (name) => {
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+    document.getElementById('screen-' + name).classList.add('active');
+  };
+
+  window.switchTab = (tab) => {
+    const screens = { dashboard:'screen-dashboard', invest:'screen-invest',
+                      history:'screen-history',   profile:'screen-profile' };
+    showScreen(screens[tab].replace('screen-',''));
+    if (tab === 'history') loadHistory();
+    if (tab === 'profile') loadProfile();
+  };
+
+  // ── AUTH STATE ──────────────────────────────────────────
+  onAuthStateChanged(auth, async (user) => {
+    if (user) {
+      currentUser = user;
+      await loadUserData();
+      showScreen('dashboard');
+    } else {
+      currentUser = null;
+      currentData = null;
+      showScreen('landing');
+    }
+  });
+
+  // ── REGISTER ───────────────────────────────────────────
+  window.handleRegister = async () => {
+    const name  = document.getElementById('reg-name').value.trim();
+    const email = document.getElementById('reg-email').value.trim();
+    const phone = document.getElementById('reg-phone').value.trim();
+    const nid   = document.getElementById('reg-id').value.trim();
+    const pass  = document.getElementById('reg-password').value.trim();
+    const err   = document.getElementById('reg-error');
+    const suc   = document.getElementById('reg-success');
+    const btn   = document.getElementById('reg-btn');
+
+    err.style.display = 'none';
+    suc.style.display = 'none';
+
+    if (!name || !email || !phone || !nid || !pass) {
+      err.textContent = 'Please fill in all fields.';
+      err.style.display = 'block'; return;
+    }
+    if (pass.length < 6) {
+      err.textContent = 'Password must be at least 6 characters.';
+      err.style.display = 'block'; return;
+    }
+
+    btn.disabled = true;
+    btn.innerHTML = '<span class="loader"></span> Creating account...';
+
+    try {
+      const cred = await createUserWithEmailAndPassword(auth, email, pass);
+      const uid  = cred.user.uid;
+
+      // Auto-generate client number
+      const snap = await getDocs(collection(db, 'users'));
+      const count = snap.size + 1;
+      const clientNumber = 'INV-' + String(count).padStart(5, '0');
+
+      // Save to Firestore
+      await setDoc(doc(db, 'users', uid), {
+        fullName:     name,
+        email:        email,
+        phone:        phone,
+        nationalId:   nid,
+        clientNumber: clientNumber,
+        dateJoined:   new Date().toISOString().split('T')[0],
+        status:       'pending',
+        role:         'client',
+        uid:          uid
+      });
+
+      suc.textContent = 'Account created! Client No: ' + clientNumber + '. Awaiting admin approval.';
+      suc.style.display = 'block';
+      btn.disabled = false;
+      btn.textContent = 'Create Account';
+
+    } catch (e) {
+      err.textContent = translateAuthError(e.code);
+      err.style.display = 'block';
+      btn.disabled = false;
+      btn.textContent = 'Create Account';
+    }
+  };
+
+  // ── LOGIN ───────────────────────────────────────────────
+  window.handleLogin = async () => {
+    const email = document.getElementById('login-email').value.trim();
+    const pass  = document.getElementById('login-password').value.trim();
+    const err   = document.getElementById('login-error');
+    const btn   = document.getElementById('login-btn');
+
+    err.style.display = 'none';
+    if (!email || !pass) {
+      err.textContent = 'Please enter email and password.';
+      err.style.display = 'block'; return;
+    }
+
+    btn.disabled = true;
+    btn.innerHTML = '<span class="loader"></span> Signing in...';
+
+    try {
+      await signInWithEmailAndPassword(auth, email, pass);
+      btn.disabled = false;
+      btn.textContent = 'Sign In';
+    } catch (e) {
+      err.textContent = translateAuthError(e.code);
+      err.style.display = 'block';
+      btn.disabled = false;
+      btn.textContent = 'Sign In';
+    }
+  };
+
+  // ── LOGOUT ──────────────────────────────────────────────
+  window.handleLogout = async () => {
+    await signOut(auth);
+    showScreen('landing');
+  };
+
+  // ── LOAD USER DATA ───────────────────────────────────────
+  async function loadUserData() {
+    try {
+      const snap = await getDoc(doc(db, 'users', currentUser.uid));
+      if (!snap.exists()) return;
+      currentData = snap.data();
+
+      // Update nav
+      document.getElementById('nav-client-name').textContent =
+        currentData.fullName ? currentData.fullName.split(' ')[0] : '';
+
+      // Greeting
+      const hr = new Date().getHours();
+      const greet = hr < 12 ? 'Good morning' : hr < 17 ? 'Good afternoon' : 'Good evening';
+      document.getElementById('dash-greeting').textContent =
+        greet + ', ' + (currentData.fullName || '') + '!';
+      document.getElementById('dash-clientno').textContent =
+        'Client No: ' + (currentData.clientNumber || '—');
+
+      // Status
+      const status = currentData.status || 'pending';
+      document.getElementById('dash-status').textContent = status.toUpperCase();
+      document.getElementById('dash-status').className =
+        'stat-card-value ' + (status === 'active' ? 'green' : 'gold');
+
+      document.getElementById('dash-joined').textContent =
+        currentData.dateJoined || '—';
+
+      // Show pending notice
+      if (status === 'pending') {
+        document.getElementById('pending-notice').style.display = 'block';
+      }
+
+      // Load investments
+      await loadDashboardInvestments();
+
+    } catch (e) {
+      console.error('Load user error:', e);
+    }
+  }
+
+  async function loadDashboardInvestments() {
+    try {
+      const q = query(collection(db, 'investments'),
+        where('userId', '==', currentUser.uid));
+      const snap = await getDocs(q);
+
+      let totalInvested = 0;
+      let activeRate    = 0;
+      let activeAmount  = 0;
+      let txItems       = [];
+      allTxHistory      = [];
+
+      snap.forEach(d => {
+        const inv = d.data();
+        const amt = Number(inv.amount) || 0;
+        if (inv.status === 'active') {
+          totalInvested += amt;
+          activeRate     = Number(inv.interestRate) || 0;
+          activeAmount   = amt;
+        }
+        txItems.push({
+          type:   'Investment',
+          amount:  amt,
+          status:  inv.status || 'pending',
+          date:    inv.dateSubmitted || '',
+          month:   inv.dateSubmitted || ''
+        });
+        allTxHistory.push({
+          type:   'Investment',
+          amount:  amt,
+          status:  inv.status || 'pending',
+          date:    inv.dateSubmitted || '',
+          month:   inv.dateSubmitted || ''
+        });
+      });
+
+      // Load returns
+      const rq = query(collection(db, 'returns'),
+        where('userId', '==', currentUser.uid));
+      const rsnap = await getDocs(rq);
+      let totalEarned = 0;
+
+      rsnap.forEach(d => {
+        const ret = d.data();
+        const earned = Number(ret.amountEarned) || 0;
+        totalEarned += earned;
+        txItems.push({
+          type:   'Return',
+          amount:  earned,
+          status:  'Paid',
+          date:    ret.dateCalculated || '',
+          month:   ret.month || ''
+        });
+        allTxHistory.push({
+          type:   'Return',
+          amount:  earned,
+          status:  'Paid',
+          date:    ret.dateCalculated || '',
+          month:   ret.month || ''
+        });
+      });
+
+      // Sort by date descending
+      txItems.sort((a,b) => b.date.localeCompare(a.date));
+      allTxHistory.sort((a,b) => b.date.localeCompare(a.date));
+
+      const monthly = (activeAmount * activeRate) / 100;
+
+      // Update dashboard
+      document.getElementById('dash-total-invested').textContent =
+        'KSh ' + fmt(totalInvested) + '  (~USD ' + fmt(totalInvested / USD_RATE) + ')';
+      document.getElementById('dash-monthly-return').textContent =
+        'KSh ' + fmt(monthly);
+      document.getElementById('dash-total-earned').textContent =
+        'KSh ' + fmt(totalEarned);
+      document.getElementById('dash-rate').textContent =
+        activeRate ? activeRate + '%' : '0%';
+      document.getElementById('dash-inv-count').textContent =
+        snap.size;
+
+      // Render recent 3
+      renderTxList('dash-tx-list', txItems.slice(0, 3));
+
+    } catch(e) {
+      console.error('Investments load error:', e);
+    }
+  }
+
+  // ── RENDER TX LIST ──────────────────────────────────────
+  function renderTxList(elId, items) {
+    const el = document.getElementById(elId);
+    if (!items.length) {
+      el.innerHTML = '<div class="empty-state"><div class="empty-icon">📊</div><div class="empty-text">No transactions yet</div></div>';
+      return;
+    }
+    el.innerHTML = items.map(tx => `
+      <div class="tx-item">
+        <div class="tx-left">
+          <div class="tx-icon ${tx.type === 'Investment' ? 'invest' : 'return'}">
+            ${tx.type === 'Investment' ? '💰' : '📈'}
+          </div>
+          <div>
+            <div class="tx-type">${tx.type}</div>
+            <div class="tx-date">${tx.month || tx.date}</div>
+          </div>
+        </div>
+        <div style="text-align:right;">
+          <div class="tx-amount ${tx.type === 'Return' ? 'positive' : 'neutral'}">
+            ${tx.type === 'Return' ? '+' : ''}KSh ${fmt(tx.amount)}
+          </div>
+          <span class="badge ${tx.status === 'active' || tx.status === 'Paid' ? 'active' : tx.status === 'rejected' ? 'rejected' : 'pending'}">
+            ${tx.status}
+          </span>
+        </div>
+      </div>`).join('');
+  }
+
+  // ── HISTORY ─────────────────────────────────────────────
+  function loadHistory() {
+    renderTxList('history-list', allTxHistory);
+  }
+
+  window.filterHistory = (type) => {
+    if (type === 'all') {
+      renderTxList('history-list', allTxHistory);
+    } else {
+      renderTxList('history-list',
+        allTxHistory.filter(t => t.type === type));
+    }
+  };
+
+  // ── PROFILE ─────────────────────────────────────────────
+  function loadProfile() {
+    if (!currentData) return;
+    document.getElementById('profile-name').textContent    = currentData.fullName   || '—';
+    document.getElementById('profile-email').textContent   = currentData.email      || '—';
+    document.getElementById('profile-clientno').textContent= currentData.clientNumber || '—';
+    document.getElementById('profile-phone').textContent   = currentData.phone      || '—';
+    document.getElementById('profile-id').textContent      = currentData.nationalId || '—';
+    document.getElementById('profile-joined').textContent  = currentData.dateJoined || '—';
+    document.getElementById('profile-avatar').textContent  =
+      (currentData.fullName || '?')[0].toUpperCase();
+
+    const status = currentData.status || 'pending';
+    document.getElementById('profile-status').innerHTML =
+      `<span class="badge ${status === 'active' ? 'active' : 'pending'}">${status}</span>`;
+  }
+
+  // ── INVEST ──────────────────────────────────────────────
+  window.selectPackage = (el, pkg) => {
+    document.querySelectorAll('.package-card').forEach(c => c.classList.remove('selected'));
+    el.classList.add('selected');
+    selectedPkg = pkg;
+    document.getElementById('custom-box').style.display =
+      pkg === 'custom' ? 'block' : 'none';
+    document.getElementById('invest-error').style.display   = 'none';
+    document.getElementById('invest-success').style.display = 'none';
+  };
+
+  window.submitInvestment = () => {
+    const err = document.getElementById('invest-error');
+    const suc = document.getElementById('invest-success');
+    err.style.display = 'none';
+    suc.style.display = 'none';
+
+    if (!selectedPkg) {
+      err.textContent = 'Please select an investment package.';
+      err.style.display = 'block'; return;
+    }
+
+    let amount = 0;
+    if (selectedPkg === 'custom') {
+      amount = Number(document.getElementById('custom-amount').value);
+      if (!amount || amount < 1000) {
+        err.textContent = 'Please enter a valid amount (min KSh 1,000).';
+        err.style.display = 'block'; return;
+      }
+    } else {
+      amount = Number(selectedPkg);
+    }
+
+    // Show confirm modal
+    document.getElementById('modal-body').innerHTML =
+      `<strong>Package:</strong> KSh ${fmt(amount)}<br/>
+       <strong>USD Equiv:</strong> ~USD ${fmt(amount / USD_RATE)}<br/>
+       <strong>Monthly Return:</strong> KSh ${fmt(amount * 0.04)} – KSh ${fmt(amount * 0.08)}<br/><br/>
+       Send the exact amount to our M-Pesa/Bank and submit. Admin will approve after confirmation.`;
+    document.getElementById('confirm-modal').classList.add('open');
+    window._pendingAmount = amount;
+  };
+
+  window.closeModal = () => {
+    document.getElementById('confirm-modal').classList.remove('open');
+  };
+
+  window.confirmInvestment = async () => {
+    closeModal();
+    const amount = window._pendingAmount;
+    const suc = document.getElementById('invest-success');
+    const err = document.getElementById('invest-error');
+
+    try {
+      await addDoc(collection(db, 'investments'), {
+        userId:       currentUser.uid,
+        clientNumber: currentData.clientNumber || '',
+        package:      selectedPkg === 'custom' ? 'Custom' : 'KSh ' + fmt(amount),
+        amount:       amount,
+        status:       'pending',
+        interestRate: 0,
+        dateSubmitted: new Date().toISOString().split('T')[0],
+        dateApproved: '',
+        lastUpdated:  new Date().toISOString().split('T')[0]
+      });
+
+      suc.textContent =
+        'Investment request of KSh ' + fmt(amount) +
+        ' submitted! Awaiting admin approval.';
+      suc.style.display = 'block';
+      selectedPkg = null;
+      document.querySelectorAll('.package-card').forEach(c =>
+        c.classList.remove('selected'));
+      document.getElementById('custom-box').style.display = 'none';
+
+      // Refresh dashboard data
+      await loadDashboardInvestments();
+
+    } catch(e) {
+      err.textContent = 'Error submitting: ' + e.message;
+      err.style.display = 'block';
+    }
+  };
+
+  // ── HELPERS ─────────────────────────────────────────────
+  function fmt(n) {
+    return Number(n).toLocaleString('en-KE', { maximumFractionDigits: 0 });
+  }
+
+  function translateAuthError(code) {
+    const map = {
+      'auth/email-already-in-use':    'This email is already registered.',
+      'auth/invalid-email':           'Please enter a valid email address.',
+      'auth/weak-password':           'Password is too weak. Use at least 6 characters.',
+      'auth/user-not-found':          'No account found with this email.',
+      'auth/wrong-password':          'Incorrect password. Please try again.',
+      'auth/invalid-credential':      'Invalid email or password.',
+      'auth/too-many-requests':       'Too many attempts. Please try again later.',
+      'auth/network-request-failed':  'Network error. Check your connection.'
+    };
+    return map[code] || 'Something went wrong. Please try again.';
+  }
+</script>
+</body>
+</html>
